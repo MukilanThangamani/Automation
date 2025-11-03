@@ -104,7 +104,7 @@ public class SourcingPage extends BasePage{
         savebtn.click();
         Thread.sleep(1000);
         // close.click();
-
+        //close.click();
       /*
         System.out.println("Start to inprogress :"+strtl.isDisplayed());
         strtl.click();
