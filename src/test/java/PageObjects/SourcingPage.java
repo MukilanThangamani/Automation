@@ -104,36 +104,6 @@ public class SourcingPage extends BasePage{
         savebtn.click();
         Thread.sleep(1000);
         // close.click();
-        //close.click();
-      /*
-        System.out.println("Start to inprogress :"+strtl.isDisplayed());
-        strtl.click();
-        System.out.println("CLicking in progress");
-        System.out.println("IN progress is visible :"+toInPro.isDisplayed());
-        Thread.sleep(1000);
-        toInPro.click();
-        System.out.println("STart in above is visible :"+topStart.isDisplayed());
-        Thread.sleep(1000);
-        topStart.click();
-        Thread.sleep(1000);
-        toInPro.click();
-//        Thread.sleep(1000);
-//        products.click();
-//        Thread.sleep(1000);
-//        dropOptions.click();
-        System.out.println("Download excel button is visible :"+download.isDisplayed());
-        Thread.sleep(1000);
-        download.click();
-        System.out.println("Edit is visible:"+edit.isDisplayed());
-        Thread.sleep(1000);
-        edit.click();
-        Thread.sleep(1000);
-        quant.clear();
-        Thread.sleep(1000);
-        quant.sendKeys(updatequant);
-        Thread.sleep(1000);
-        savebtn.click();*/
 
-        //span[text()='Expense']
     }
 }
