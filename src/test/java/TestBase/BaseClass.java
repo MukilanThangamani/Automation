@@ -23,14 +23,12 @@ public class BaseClass {
 
     }
 
-
-
     public String randomString() {
         return RandomStringUtils.randomAlphabetic(5);
     }
 
     public String phoneRandom() {
-        return "97"+RandomStringUtils.randomNumeric(10);
+        return RandomStringUtils.randomNumeric(10);
     }
 
     public String randomAlphaAnumeric() {

@@ -22,10 +22,10 @@ public class CrmPage extends BasePage{
     @FindBy(xpath = "//span[text()=' Orders']")
     WebElement order;
 
-    @FindBy(xpath = "//h3[text()='The Atelier Edits']" )
+    @FindBy(xpath = "//h3[text()='KumarTailor']" )
     WebElement boutiques;
 
-    @FindBy(xpath = "//li[text()='The Atelier Edits']" )
+    @FindBy(xpath = "//li[text()='KumarTailor']" )
     WebElement clickOneBoutique;
 
     //Locator
@@ -91,9 +91,6 @@ public class CrmPage extends BasePage{
 
     @FindBy(xpath = "//span[text()='Download Selected']")
     WebElement download;
-
-     @FindBy(xpath = "//*[@id=\"rc-tabs-6-panel-2\"]/div/div/div/form/div[3]/button")
-     WebElement close;
 
     @FindBy(xpath = "//span[text()='Download Excel']")
     WebElement downloadExcel;
@@ -170,8 +167,8 @@ public class CrmPage extends BasePage{
         System.out.println("hip field is displayed :"+hip.isDisplayed());
         hip.sendKeys(shoulders);
         Thread.sleep(1000);
-        System.out.println("New measurement added is displayed:"+newmeasure.isDisplayed());
-        newmeasure.sendKeys(added);
+     //   System.out.println("New measurement added is displayed:"+newmeasure.isDisplayed());
+     //   newmeasure.sendKeys(added);
         System.out.println("save measurement button is displayed :"+save.isDisplayed());
         save.click();
         Thread.sleep(1000);
@@ -180,16 +177,17 @@ public class CrmPage extends BasePage{
       //  checkbox.click();
         System.out.println("Download button is visible :"+download.isDisplayed());
        // download.click();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-        System.out.println("Close button is visible :"+close.isDisplayed());
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-        wait.until(ExpectedConditions.visibilityOf(close));
-        close.click();
+      //  driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+      //  System.out.println("Close button is visible :"+close.isDisplayed());
+      //  driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+      //  wait.until(ExpectedConditions.visibilityOf(close));
+      //  close.click();
         Thread.sleep(1000);
        // downloadExcel.click();
     }
 
     public void search(String name) throws InterruptedException {
+        driver.navigate().refresh();
         search.sendKeys(name);
         Thread.sleep(1000);
         searchIcon.click();
@@ -208,6 +206,6 @@ public class CrmPage extends BasePage{
         Thread.sleep(1000);
         System.out.println("Submit the updated :"+subBtn.isDisplayed());
         subBtn.click();
-        close.click();
+        driver.navigate().refresh();
     }
 }
