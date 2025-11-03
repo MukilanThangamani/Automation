@@ -1,8 +1,15 @@
 package PageObjects;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
+import java.util.List;
+import java.util.Random;
 
 public class SourcingPage extends BasePage{
 
@@ -16,25 +23,19 @@ public class SourcingPage extends BasePage{
     @FindBy(xpath = "//span[text()='Add Sourcing']")
     WebElement addBtn;
 
-    @FindBy(xpath = "//label[text()='Product']/following::div[@role='combobox'][1]")
+    @FindBy(id = "sourcing_productId")
     WebElement prodclick;
 
-    @FindBy(xpath = "//li[text()='1509']")
-    WebElement dropOptions;
-
-    @FindBy(xpath = "//label[text()='Sourcing Type']/following-sibling::div//div[@role='combobox']")
+    @FindBy(id = "sourcing_sourcingType")
     WebElement sourceclick;
 
-    @FindBy(xpath = "//li[text()='Trims']")
-    WebElement srcoptions;
-
-    @FindBy(name = "quantity")
+    @FindBy(id = "sourcing_quantity")
     WebElement quant;
 
-    @FindBy(name = "total")
+    @FindBy(id = "sourcing_total")
     WebElement totalamt;
 
-    @FindBy(xpath = "//button[text()='Save Sourcing']")
+    @FindBy(xpath = "//span[text()='Save Sourcing']")
     WebElement savebtn;
 
     @FindBy(xpath = "//button[text()='Close']")
@@ -68,15 +69,29 @@ public class SourcingPage extends BasePage{
         Thread.sleep(1000);
         System.out.println("Product type is visible :"+prodclick.isDisplayed());
         prodclick.click();
-        Thread.sleep(1500);
-        System.out.println("drop option is visible :"+dropOptions.isDisplayed());
-        dropOptions.click();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        List<WebElement> options = wait.until(
+                ExpectedConditions.visibilityOfAllElementsLocatedBy(
+                        By.xpath("/html/body/div[3]/div/div/div[2]/div[1]/div/div")
+                )
+        );
+
+        Random random = new Random();
+        int randomIndex = random.nextInt(options.size());  // random index from 0 to size-1
+        WebElement randomOption = options.get(randomIndex);
+
+        randomOption.click();
+
         System.out.println("Sourcing type is visible :"+sourceclick.isDisplayed());
         sourceclick.click();
-        Thread.sleep(1000);
-        System.out.println("Drop options in sourcing :"+srcoptions.isDisplayed());
-        Thread.sleep(1000);
-        srcoptions.click();
+
+        Thread.sleep(1500);
+        List<WebElement> sourcetype = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("/html/body/div[4]/div/div/div[2]/div/div/div")));
+        WebElement sourceoption = sourcetype.get(randomIndex);
+        sourceoption.click();
+
         Thread.sleep(1000);
         System.out.println("Quantity field is visible :"+quant.isDisplayed());
         quant.sendKeys(quantity);
@@ -89,6 +104,8 @@ public class SourcingPage extends BasePage{
         savebtn.click();
         Thread.sleep(1000);
         // close.click();
+
+      /*
         System.out.println("Start to inprogress :"+strtl.isDisplayed());
         strtl.click();
         System.out.println("CLicking in progress");
@@ -107,7 +124,7 @@ public class SourcingPage extends BasePage{
         System.out.println("Download excel button is visible :"+download.isDisplayed());
         Thread.sleep(1000);
         download.click();
-      /*  System.out.println("Edit is visible:"+edit.isDisplayed());
+        System.out.println("Edit is visible:"+edit.isDisplayed());
         Thread.sleep(1000);
         edit.click();
         Thread.sleep(1000);
