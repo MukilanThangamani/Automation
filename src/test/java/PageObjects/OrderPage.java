@@ -9,6 +9,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
+import java.util.List;
+import java.util.Random;
 
 public class OrderPage extends BasePage{
 
@@ -41,17 +43,14 @@ public class OrderPage extends BasePage{
     @FindBy(id = "reference")
     WebElement ref;
 
-    @FindBy(xpath ="/html/body/div[5]/div/div/div[2]/div/div/div/div[1]/div")
-    WebElement referenceOption;
+    @FindBy(xpath = "//div[text()='Whatsapp']")
+    WebElement refOption;
 
     @FindBy(xpath = "//span[text()='Next']")
     WebElement nextButton;
 
     @FindBy(id = "products_0_productTypeId")
     WebElement prodType;
-
-    @FindBy(xpath = "//div[text()='Skirt']")
-    WebElement productOption;
 
     @FindBy(id = "products_0_productName")
     WebElement productName;
@@ -145,7 +144,16 @@ public class OrderPage extends BasePage{
         System.out.println("Reference dropdown is displayed :" + ref.isDisplayed());
         ref.click();
         Thread.sleep(1000);
-        referenceOption.click();
+      //  refOption.click();
+
+        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(20));
+        List<WebElement> refOptions = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("/html/body/div[5]/div/div/div[2]/div/div/div")));
+        Random random = new Random();
+        int randomIndex = random.nextInt(refOptions.size());
+        WebElement selectReference = refOptions.get(randomIndex);
+        Thread.sleep(1000);
+        selectReference.click();
+
         Thread.sleep(1000);
         System.out.println("Next button in client details :" + nextButton.isDisplayed());
         nextButton.click();
@@ -232,7 +240,14 @@ public class OrderPage extends BasePage{
         System.out.println("Product type is displayed : "+prodType.isDisplayed());
         prodType.click();
         Thread.sleep(1000);
-        productOption.click();
+
+        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(20));
+        List<WebElement> options = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("/html/body/div[6]/div/div/div[2]/div/div/div")));
+        Random random = new Random();
+        int randomIndex = random.nextInt(options.size());
+        WebElement selectProduct = options.get(randomIndex);
+        selectProduct.click();
+
         Thread.sleep(1000);
         productName.sendKeys(productname);
         Thread.sleep(1000);

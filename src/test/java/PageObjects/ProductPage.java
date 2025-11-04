@@ -8,6 +8,7 @@ import org.testng.asserts.SoftAssert;
 
 import java.time.Duration;
 import java.util.List;
+import java.util.Random;
 
 public class ProductPage extends BasePage {
 
@@ -58,12 +59,13 @@ public class ProductPage extends BasePage {
 
         genderdrp.click();
         Thread.sleep(500);
+        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(20));
 
-        WebElement clkGender = driver.findElement(By.xpath("/html/body/div[5]/div/div/div[2]/div/div/div/div[2]/div"));
-        clkGender.click();
-
-        ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,400)");
-        Thread.sleep(500);
+        Random random = new Random();
+        List<WebElement> genderOption = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("/html/body/div[5]/div/div/div[2]/div/div/div")));
+        int randomIdx = random.nextInt(genderOption.size());
+        WebElement selectGender = genderOption.get(randomIdx);
+        selectGender.click();
 
         subInProd.click();
     }

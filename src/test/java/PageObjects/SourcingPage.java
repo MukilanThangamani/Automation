@@ -88,6 +88,7 @@ public class SourcingPage extends BasePage{
         sourceclick.click();
 
         Thread.sleep(1500);
+
         List<WebElement> sourcetype = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("/html/body/div[4]/div/div/div[2]/div/div/div")));
         WebElement sourceoption = sourcetype.get(randomIndex);
         sourceoption.click();

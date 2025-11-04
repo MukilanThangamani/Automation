@@ -7,7 +7,7 @@ public class AppointmentPageTest extends BaseClass{
     @Test(priority = 12)
     public void testAppointment() throws InterruptedException {
         AppointmentPage ap = new AppointmentPage(driver);
-        ap.clientDetails(phoneRandom(),randomString(),"River street ,karapakkam,indusland bank","Style consultation","06/11/2025 23:00","Style consulting in boutique");
+        ap.clientDetails(phoneRandom(),randomString(),"River street ,karapakkam,indusland bank","Style consultation","04/11/2025 20:30","Style consulting in boutique");
         ap.updateAppointment("Update appointment");
-    }// 17/10/2025 05:00
+    }   // 17/10/2025 05:00
 }

@@ -8,6 +8,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.asserts.SoftAssert;
 
 import java.time.Duration;
+import java.util.List;
+import java.util.Random;
 
 public class TaskSettingPage extends BasePage{
 
@@ -27,9 +29,6 @@ public class TaskSettingPage extends BasePage{
 
     @FindBy(id="taskForm_roleId")
     WebElement role;
-
-    @FindBy(xpath = "//div[text()='master']")
-    WebElement sltRole;
 
     @FindBy(xpath = "//span[text()='Submit']")
     WebElement subTask;
@@ -52,11 +51,16 @@ public class TaskSettingPage extends BasePage{
         System.out.println("Task charge field :" + chrg.isDisplayed());
         Thread.sleep(1000);
         chrg.sendKeys(charge);
-
-        role.click();
-        System.out.println("RoleOption is disp or not :" + sltRole.isDisplayed());
         Thread.sleep(1000);
-        sltRole.click();
+        role.click();
+        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(20));
+        List<WebElement> roleOptions = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("/html/body/div[4]/div/div/div[2]/div/div/div")));
+
+        Random random = new Random();
+        int randomIndex = random.nextInt(roleOptions.size());
+        WebElement selectRole = roleOptions.get(randomIndex);
+        selectRole.click();
+
         Thread.sleep(1000);
         System.out.println("Task submit is visible :" + subTask.isDisplayed());
         Thread.sleep(1000);
@@ -131,11 +135,16 @@ public class TaskSettingPage extends BasePage{
         tskname.sendKeys(task);
         chrg.sendKeys(chrge);
         role.click();
-        WebElement roleOption = driver.findElement(By.xpath("//div[text()='"+taskrole+"']"));
-        //div[text()='master'] Something went wrong!
-        System.out.println("RoleOption is disp or not :" + roleOption.isDisplayed());
+
+        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(20));
+        List<WebElement> roleOptions = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("/html/body/div[4]/div/div/div[2]/div/div/div")));
+
+        Random random = new Random();
+        int randomIndex = random.nextInt(roleOptions.size());
+        WebElement selectRole = roleOptions.get(randomIndex);
+        selectRole.click();
+
         Thread.sleep(1000);
-        roleOption.click();
         subTask.click();
     }
 

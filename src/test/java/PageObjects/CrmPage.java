@@ -22,10 +22,10 @@ public class CrmPage extends BasePage{
     @FindBy(xpath = "//span[text()=' Orders']")
     WebElement order;
 
-    @FindBy(xpath = "//h3[text()='KumarTailor']" )
+    @FindBy(xpath = "//h3[text()='The Atelier Edits']" )
     WebElement boutiques;
 
-    @FindBy(xpath = "//li[text()='KumarTailor']" )
+    @FindBy(xpath = "//li[text()='The Atelier Edits']" )
     WebElement clickOneBoutique;
 
     //Locator

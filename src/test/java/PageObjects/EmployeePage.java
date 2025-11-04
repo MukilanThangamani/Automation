@@ -11,6 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.List;
+import java.util.Random;
 
 public class EmployeePage extends BasePage {
 
@@ -92,14 +93,13 @@ public class EmployeePage extends BasePage {
         roleDropdown.click();
         Thread.sleep(1000); // Optional, better to wait with WebDriverWait
 
-        System.out.println("Clicking on 'role' option...");
-        role.click();
-        Thread.sleep(1000);
-      //  dob.click();
-      //  dob.sendKeys("12/2/1982");
-        Thread.sleep(1000);
-     //   doj.click();
-     //   doj.sendKeys("16/09/2025");
+        List<WebElement> roleOptions = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("/html/body/div[4]/div/div/div[2]/div/div/div")));
+
+        Random random = new Random();
+        int randomIndex = random.nextInt(roleOptions.size());
+        WebElement selectRole = roleOptions.get(randomIndex);
+        selectRole.click();
+
         Thread.sleep(1000);
         mobNum.click();
         Thread.sleep(1000);
@@ -115,7 +115,12 @@ public class EmployeePage extends BasePage {
         Thread.sleep(2000);
         genderDropdown.click(); // open dropdown
         Thread.sleep(1000); // or better: use WebDriverWait
-        genderMaleOption.click();
+
+        List<WebElement> genderOption = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("/html/body/div[5]/div/div/div[2]/div/div/div")));
+        int randomIdx = random.nextInt(genderOption.size());
+        WebElement selectGender = genderOption.get(randomIdx);
+        selectGender.click();
+
         Thread.sleep(1000);
         System.out.println("Submit button is displayed: " + subEmp.isDisplayed());
         Thread.sleep(1000);

@@ -9,7 +9,7 @@ public class RolePageTest extends BaseClass {
     public void testAddRole() throws InterruptedException {
         RolePage rp = new RolePage(driver);
 
-        //        Add and verify role
+        //add and verify role
         String roleName = randomString();
         rp.add(roleName);
         rp.verifyRoleInTable(roleName);

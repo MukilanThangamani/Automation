@@ -37,8 +37,10 @@ public class AppointmentPage extends BasePage {
 
     @FindBy(id = "appointmentTime")
     WebElement appointmentTime;
+
     @FindBy(xpath = "//span[text()='OK']")
     WebElement okbtn;
+
     @FindBy(id = "notes")
     WebElement notes;
 
