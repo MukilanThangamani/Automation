@@ -21,7 +21,7 @@ public class EmployeePage extends BasePage {
 
     // Locators
     @FindBy(xpath = "//span[text()='Add Employee']")
-    WebElement empbtn;
+    WebElement empbtn;//span[text()='Add Employee']
 
     @FindBy(id = "boutique_name")
     WebElement empName;

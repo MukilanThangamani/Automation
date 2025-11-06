@@ -112,8 +112,6 @@ public class ProductPage extends BasePage {
         }
     }
 
-
-
     public void verifyProductInList(String expectedProduct, int columnIndex) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
@@ -152,9 +150,11 @@ public class ProductPage extends BasePage {
         edit.click();
         System.out.println("Edit icon is clicked");
         System.out.println("addMeasurement field is displayed or not :"+addMeasurement.isDisplayed());
+        Thread.sleep(1300);
         addMeasurement.click();
         Thread.sleep(1300);
         System.out.println("give measurement field is displayed or not :"+giveMeasurement.isDisplayed());
+        Thread.sleep(1300);
         giveMeasurement.sendKeys(measure);
         Thread.sleep(1000);
         subInProd.click();

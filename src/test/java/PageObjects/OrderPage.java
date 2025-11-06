@@ -298,7 +298,7 @@ public class OrderPage extends BasePage{
         System.out.println("Order amount is not enabled right :"+orderamt.isDisplayed());
         System.out.println("Order amount is not enabled right :"+orderamt.isEnabled());
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
-        System.out.println("Advance field is displayed :"+advance.isDisplayed());
+        System.out.println("Advance field is displayed :"+advance.isEnabled());
         Thread.sleep(1000);
         advance.sendKeys(advamt);
         System.out.println("moving from payment to order");

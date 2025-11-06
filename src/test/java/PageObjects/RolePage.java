@@ -41,7 +41,7 @@ public class RolePage extends BasePage {
     @FindBy(xpath = "//button[text()='Submit']")
     WebElement s1;
 
-    @FindBy(css="#__next > div > div:nth-child(2) > section > div > div > main > section > div:nth-child(3) > div > div > div.ant-table-wrapper.custom-antd-table.css-ac2jek > div > div > div > div > div > table > tbody > tr:nth-child(1) > td:nth-child(2) > div > svg")
+    @FindBy(css="#__next > div > div:nth-child(2) > section > div > div > main > section > div:nth-child(3) > div > div > div.ant-table-wrapper.custom-antd-table.css-ac2jek > div > div > div > div > div > table > tbody > tr:nth-child(1) > td:nth-child(2) > div > svg > path")
     WebElement firstEdit;
 
     @FindBy(id = "roles_roleName")
@@ -52,11 +52,13 @@ public class RolePage extends BasePage {
 
 
     //  Method to add a role (without verifying immediately)
-    public void add(String roleName) {
+    public void add(String roleName) throws InterruptedException {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-
+        Thread.sleep(1000);
         wait.until(ExpectedConditions.elementToBeClickable(addRole)).click();
+        Thread.sleep(1000);
         wait.until(ExpectedConditions.visibilityOf(rolename)).clear();
+        Thread.sleep(1000);
         rolename.sendKeys(roleName);
 
         wait.until(ExpectedConditions.elementToBeClickable(rolesubnit)).click();

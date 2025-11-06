@@ -14,7 +14,6 @@ public class ProductPageTest extends BaseClass {
         String[] prod = {"Pant","Blouse","Skirt"};
         String[] gen = {"Female", "Female","Female"};
 
-
         for (int i = 0; i < prod.length; i++) {
             System.out.println("Adding product: " + prod[i]);
 

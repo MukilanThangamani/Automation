@@ -9,7 +9,7 @@ public class OrderPageTest extends BaseClass{
         Thread.sleep(1000);
         op.orderModuleClient(phoneRandom(),randomString(),randomString());
         System.out.println("*** All over ***");
-        op.ProductDetail(randomString(),"08/11/2025",randomNumber(),randomLength(),randomLength(),randomLength(),"Wait for your delivery");
+        op.ProductDetail(randomString(),"07/11/2025",randomNumber(),randomLength(),randomLength(),randomLength(),"Wait for your delivery");
         op.paymentDetails(randomAmount());
         System.out.println("***Order successfully created***");
     }

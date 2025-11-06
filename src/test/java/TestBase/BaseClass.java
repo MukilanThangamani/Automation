@@ -4,7 +4,6 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import java.time.Duration;
 
@@ -28,7 +27,7 @@ public class BaseClass {
     }
 
     public String phoneRandom() {
-        return RandomStringUtils.randomNumeric(10);
+        return "9"+RandomStringUtils.randomNumeric(9);
     }
 
     public String randomAlphaAnumeric() {

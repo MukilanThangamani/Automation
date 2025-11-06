@@ -1,8 +1,12 @@
 package PageObjects;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import java.util.List;
+import java.util.Random;
 
 public class ExpensePage extends BasePage{
 
@@ -14,119 +18,99 @@ public class ExpensePage extends BasePage{
     @FindBy(xpath = "//span[text()='Expense']")
     WebElement expenseMod;
 
-    @FindBy(xpath = "//button[text()='+ Add Expense']")
+    @FindBy(xpath = "//span[text()='Add Category']")
+    WebElement addCategory;
+
+    @FindBy(id = "name")
+    WebElement categoryName;
+
+    @FindBy(xpath = "//span[text()='Create']")
+    WebElement create;
+
+    @FindBy(xpath = "//span[text()='Add Expense']")
     WebElement addexpense;
 
-    @FindBy(name = "expenseType")
-    WebElement expensetype;
+    @FindBy(id = "expenseCategoryId")
+    WebElement expenseCategory;//html/body/div[3]/div/div/div[2]/div/div/div
 
-    @FindBy(xpath = "//option[text()='Rent']")
-    WebElement rent;
+    @FindBy(id = "paymentMethod")
+    WebElement paymentMethod; //html/body/div[4]/div/div/div[2]/div/div/div
 
-    @FindBy(name = "paymentMethod")
-    WebElement paymentmethod;
-
-    @FindBy(xpath = "//option[text()='UPI']")
-    WebElement upi;
-
-    @FindBy(name = "remarks")
+    @FindBy(id = "remarks")
     WebElement remarks;
 
-    @FindBy(name = "expenseDate")
-    WebElement expensedate;
+    @FindBy(id = "expenseDate")
+    WebElement expenseDate;
 
-    @FindBy(name = "expenseAmount")
-    WebElement expamt;
+    @FindBy(id = "expenseAmount")
+    WebElement expenseAmount;
 
-    @FindBy(name = "paymentStatus")
-    WebElement paymentstatus;
-
-    @FindBy(xpath = "//option[text()='Partially Paid']")
-    WebElement payment;
-
-    @FindBy(xpath = "//button[text()='Submit']")
-    WebElement submit;
-
-    @FindBy(xpath = "//button[text()='Close']")
-    WebElement close;
-
-    @FindBy(xpath = "//span[text()='PAID']")
-    WebElement topstatus;
-
-    @FindBy(xpath = "#__next > div > section > div > div > main > section > div.MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation1.MuiTableContainer-root.table-container-style.css-13xy2my > div:nth-child(1) > div > div.ant-select.ant-select-outlined.css-3rel02.ant-select-single.ant-select-allow-clear.ant-select-show-arrow > span.ant-select-clear > span > svg > path")
-    WebElement clear;
-
-    @FindBy(xpath = "//input[@type='search']")
-    WebElement search;
-
-    @FindBy(xpath = "//div[@name='Partially Paid']")
-    WebElement filterstatus;
-
-    @FindBy(xpath = "#__next > div > section > div > div > main > section > div.MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation1.MuiTableContainer-root.table-container-style.css-13xy2my > table > tbody > tr:nth-child(1) > td.MuiTableCell-root.MuiTableCell-body.MuiTableCell-sizeMedium.css-wjwotp > div > svg")
-    WebElement edit;
-
-    @FindBy(xpath = "//option[text()='Paid']")
-    WebElement updatepayment;
+    @FindBy(id = "paymentStatus")
+    WebElement paymentStatus;
 
     //Action
-    public void expenseDetail(String rem,String date,String amt) throws InterruptedException{
-        System.out.println("Expense module is visible :"+expenseMod.isDisplayed());
-        Thread.sleep(2000);
+    public void addCategory(String s) throws InterruptedException {
+        System.out.println("Expense module button is displayed :"+expenseMod.isDisplayed());
+        Thread.sleep(1000);
         expenseMod.click();
-        System.out.println("Add expense button is visible :"+addexpense.isDisplayed());
         Thread.sleep(1000);
-        addexpense.click();
-        System.out.println("Expense type is visible :"+expensetype.isDisplayed());
+        System.out.println("Add category button is displayed :"+addCategory.isDisplayed());
+        addCategory.click();
         Thread.sleep(1000);
-        expensetype.click();
-        System.out.println("Rent in dropdown is visible :"+rent.isDisplayed());
+        System.out.println("Category name is displayed :"+categoryName.isDisplayed());
+        categoryName.sendKeys(s);
+        System.out.println("Create button is displayed :"+create.isDisplayed());
         Thread.sleep(1000);
-        rent.click();
-        System.out.println("Payment method is visible :"+paymentmethod.isDisplayed());
-        Thread.sleep(1000);
-        paymentmethod.click();
-        System.out.println("UPI in dropdown is visible :"+upi.isDisplayed());
-        Thread.sleep(1000);
-        upi.click();
-        System.out.println("Remarks field is visible :"+remarks.isDisplayed());
-        Thread.sleep(1000);
-        remarks.sendKeys(rem);
-        System.out.println("Expense date is visible :"+expensedate.isDisplayed());
-        Thread.sleep(1000);
-        expensedate.sendKeys(date);
-        System.out.println("Expense amount is visible :"+expamt.isDisplayed());
-        Thread.sleep(1000);
-        expamt.sendKeys(amt);
-        System.out.println("Payment method field is visible :"+paymentstatus.isDisplayed());
-        Thread.sleep(1000);
-        paymentstatus.click();
-        System.out.println("Payment dropdown is visible :"+payment.isDisplayed());
-        Thread.sleep(1000);
-        payment.click();
-        System.out.println("Submit button is visible :"+submit.isDisplayed());
-        Thread.sleep(1000);
-        submit.click();
-        System.out.println("Close button is visible :"+close.isDisplayed());
-//        Thread.sleep(1000);
-//        close.click();
-        System.out.println("Payment status in top is visible :"+topstatus.isDisplayed());
-        Thread.sleep(1000);
-        topstatus.click();
-        System.out.println("Filter status in top is visible :"+filterstatus.isDisplayed());
-        Thread.sleep(1000);
-        filterstatus.click();
+        create.click();
     }
 
- /*   public void toUpdate() throws InterruptedException {
-        System.out.println("Edit button is visible :"+edit.isDisplayed());
+    public void addExpense(String s,String date,String amt) throws InterruptedException {
+        System.out.println("Add Expense button is displayed :"+addexpense.isDisplayed());
+        addexpense.click();
         Thread.sleep(1000);
-        edit.click();
+        System.out.println(" Expense category  dropdown is displayed :"+addCategory.isDisplayed());
+        expenseCategory.click();
         Thread.sleep(1000);
-        payment.click();
-        Thread.sleep(1000);
-        updatepayment.click();
-        Thread.sleep(1000);
-        submit.click();
-    } */
 
+        List<WebElement> categoryOptions = driver.findElements(By.xpath("/html/body/div[3]/div/div/div[2]/div/div/div"));
+        Random random = new Random();
+        int randomIndex = random.nextInt(categoryOptions.size());
+        WebElement selectedCategory = categoryOptions.get(randomIndex);
+        selectedCategory.click();
+
+        System.out.println("Payment method dropdown is displayed :"+paymentMethod.isDisplayed());
+        paymentMethod.click();
+
+        List<WebElement> paymentmethod = driver.findElements(By.xpath("/html/body/div[4]/div/div/div[2]/div/div/div"));
+        int randomIdx = random.nextInt(paymentmethod.size());
+        WebElement selectedPayment = paymentmethod.get(randomIdx);
+        selectedPayment.click();
+
+        System.out.println("Remarks field is displayed :"+remarks.isDisplayed());
+        remarks.click();
+        Thread.sleep(1000);
+        remarks.sendKeys(s);
+        Thread.sleep(1000);
+        System.out.println("ExpenseDate field is displayed :"+expenseDate.isDisplayed());
+        expenseDate.sendKeys(date);
+        Thread.sleep(1000);
+        System.out.println("ExpenseAmount field is displayed :"+expenseAmount.isDisplayed());
+        expenseAmount.click();
+        Thread.sleep(1000);
+        expenseAmount.sendKeys(amt);
+        Thread.sleep(1000);
+        System.out.println("Payment status dropdown is displayed :"+paymentStatus.isDisplayed());
+        paymentStatus.click();
+        Thread.sleep(1000);
+
+        List<WebElement> paymentStatus = driver.findElements(By.xpath("/html/body/div[6]/div/div/div[2]/div/div/div"));
+        int ranIdx = random.nextInt(paymentStatus.size());
+        WebElement status = paymentStatus.get(ranIdx);
+        status.click();
+
+        System.out.println("Create button is displayed :"+create.isDisplayed());
+        Thread.sleep(1000);
+        create.click();
+
+    }
 }

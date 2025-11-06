@@ -9,7 +9,7 @@ public class crmPageTest extends BaseClass {
     public void testCrm() throws InterruptedException {
         CrmPage cp = new CrmPage(driver);
         cp.clickCrm(randomString(),"8575656565","FB","1/432,chennai,AnnaNagar","Alteration process");
-        cp.measurement("9","8","9","7");
+        cp.measurement();
         cp.search("Madhan");
         cp.edit("Alteration");
     }

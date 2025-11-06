@@ -20,10 +20,11 @@
             <class name="TestBase.crmPageTest"/>
             <class name="TestBase.AppointmentPageTest"/>
             <class name="TestBase.SourcingPageTest"/>
-            <!--            <class name="TestBase.CheckAvailabilityTest"/>
-                         <class name="TestBase.ExpensePageTest"/>
+            <class name="TestBase.ExpensePageTest"/>
+            <!--            <class name="TestBase.CheckAvailabilityTest"/> -->
+            <!--             <class name="TestBase.ExpensePageTest"/>
                          <class name="TestBase.ShopePageTest"/>
-                              -->
+                             -->
         </classes>
 
     </test>

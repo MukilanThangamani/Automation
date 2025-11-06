@@ -3,15 +3,12 @@ package PageObjects;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-//import org.openqa.selenium.devtools.v136.page.model.WebAppManifest;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.time.Duration;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class CrmPage extends BasePage{
 
@@ -147,45 +144,38 @@ public class CrmPage extends BasePage{
            subBtn.submit();  //--> uncomment this for final execution
     }
 
-    public void measurement(String lenfronts,String lenBacks,String shoulders,String added) throws InterruptedException {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        Thread.sleep(1000);
-        System.out.println("product type dropdown is displayed:"+addProduct.isDisplayed());
+    public void measurement() throws InterruptedException {
         addProduct.click();
         Thread.sleep(1000);
         prodType.click();
-        Thread.sleep(1200);
-        WebElement down = driver.findElement(By.xpath("//div[text()='Skirt']"));
-        down.click();
-        Thread.sleep(1200);
-        System.out.println("Length field is displayed :"+length.isDisplayed());
-        length.sendKeys(lenfronts);
         Thread.sleep(1000);
-        System.out.println("waist field is displayed :"+waist.isDisplayed());
-        waist.sendKeys(lenBacks);
-        Thread.sleep(1000);
-        System.out.println("hip field is displayed :"+hip.isDisplayed());
-        hip.sendKeys(shoulders);
-        Thread.sleep(1000);
-     //   System.out.println("New measurement added is displayed:"+newmeasure.isDisplayed());
-     //   newmeasure.sendKeys(added);
-        System.out.println("save measurement button is displayed :"+save.isDisplayed());
-        save.click();
-        Thread.sleep(1000);
-       // close.click();
-        System.out.println("Checkbox to download product is displayed :"+checkbox.isDisplayed());
-      //  checkbox.click();
-        System.out.println("Download button is visible :"+download.isDisplayed());
-       // download.click();
-      //  driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-      //  System.out.println("Close button is visible :"+close.isDisplayed());
-      //  driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-      //  wait.until(ExpectedConditions.visibilityOf(close));
-      //  close.click();
-        Thread.sleep(1000);
-       // downloadExcel.click();
-    }
 
+        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(20));
+        List<WebElement> options = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("/html/body/div[5]/div/div/div[2]/div/div/div")));
+        Random random = new Random();
+        int randomIndex = random.nextInt(options.size());
+        WebElement selectProduct = options.get(randomIndex);
+        selectProduct.click();
+
+        List<WebElement> measurementFields = driver.findElements(By.xpath("//input[contains(@placeholder, 'Enter')]"));
+
+        for (WebElement field : measurementFields) {
+            String placeholder = field.getAttribute("placeholder");
+            System.out.println("Filling: " + placeholder);
+
+            if (placeholder.toLowerCase().contains("length"))
+                field.sendKeys("8");
+            else if (placeholder.toLowerCase().contains("waist"))
+                field.sendKeys("7");
+            else if (placeholder.toLowerCase().contains("hip"))
+                field.sendKeys("9");
+            else
+                field.sendKeys("7");
+        }
+        System.out.println("Sav measurement button is displayed:"+save.isDisplayed());
+        Thread.sleep(1000);
+        save.click();
+    }
     public void search(String name) throws InterruptedException {
         driver.navigate().refresh();
         search.sendKeys(name);
