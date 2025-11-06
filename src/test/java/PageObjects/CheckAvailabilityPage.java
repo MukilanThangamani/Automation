@@ -16,11 +16,15 @@ public class CheckAvailabilityPage extends BasePage{
         super(driver);
     }
 
+
     @FindBy(xpath = "//span[text()=' Check Availability']")
     WebElement checkmodbtn;
 
     @FindBy(id = "tasks_0_roleId")
     WebElement taskType;
+
+    @FindBy(xpath = "//div[text()='CfSdy']")
+    WebElement selecttask;
 
     @FindBy(id = "tasks_0_estimatedTimeInMinutes")
     WebElement estTime;
@@ -35,6 +39,7 @@ public class CheckAvailabilityPage extends BasePage{
     WebElement getCheckbtn;
 
     public void modAndDate(String estimation,String prio) throws InterruptedException {
+        Thread.sleep(1000);
         System.out.println("Check Availability Button is displayed:"+checkmodbtn.isDisplayed());
         Thread.sleep(1000);
         checkmodbtn.click();
@@ -44,14 +49,10 @@ public class CheckAvailabilityPage extends BasePage{
         System.out.println("Task type field is displayed :"+taskType.isDisplayed()); //-->sep
         Thread.sleep(1000);
         taskType.click();
-
-        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-        List<WebElement> taskOptions = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("/html/body/div[2]/div/div/div[2]/div/div/div")));
-        Random random = new Random();
-        int randomIndex = random.nextInt(taskOptions.size());
-        WebElement selectedTask = taskOptions.get(randomIndex);
-        selectedTask.click();
-
+        Thread.sleep(1000);
+        System.out.println("Selecting task tupe is displayed:"+selecttask.isDisplayed());
+        selecttask.click();
+        Thread.sleep(1000);
         System.out.println("Estimation time field is visible :"+estTime.isDisplayed());
         estTime.click();
         Thread.sleep(1000);
