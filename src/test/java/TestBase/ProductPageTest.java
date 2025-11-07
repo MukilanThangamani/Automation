@@ -14,6 +14,8 @@ public class ProductPageTest extends BaseClass {
         String[] prod = {"Pant","Blouse","Skirt"};
         String[] gen = {"Female", "Female","Female"};
 
+        pp.customMeasurement(randomString());
+
         for (int i = 0; i < prod.length; i++) {
             System.out.println("Adding product: " + prod[i]);
 
@@ -24,10 +26,8 @@ public class ProductPageTest extends BaseClass {
             pp.verifyProductInList(prod[i], 1);
         }
 
-        pp.edit(randomString());
         pp.backButton();
         softAssert.assertAll();
-
 
     }
 }

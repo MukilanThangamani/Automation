@@ -16,6 +16,12 @@ public class ProductPage extends BasePage {
         super(driver);
     }
 
+    @FindBy(xpath = "//input[@placeholder='Add Custom measurement']")
+    WebElement common;
+
+    @FindBy(xpath = "//span[text()='Save']")
+    WebElement save;
+
     @FindBy(xpath = "//span[text()='Add Product Type']")
     WebElement prodBtn;
 
@@ -37,17 +43,34 @@ public class ProductPage extends BasePage {
     @FindBy(xpath = "//span[text()='Close']")
     WebElement close;
 
-    @FindBy(xpath = "//span[text()='+ Add Measurement']")
-    WebElement addMeasurement;
+    @FindBy(css = "#__next > div > div:nth-child(2) > section > div > div > main > section > div:nth-child(3) > div > div.ant-table-wrapper.custom-antd-table.css-ac2jek > div > div > div > div > div > table > tbody > tr:nth-child(2) > td:nth-child(3) > div > div:nth-child(3) > button > span > svg")
+    WebElement copyIcon;
+
+    @FindBy(id = "productTypeName")
+    WebElement productype;
 
     @FindBy(id = "measurements_3_measurement")
     WebElement giveMeasurement;
 
     SoftAssert softAssert = new SoftAssert();
 
+    public void customMeasurement(String custom) throws InterruptedException {
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        System.out.println("Common field is displayed :"+common.isDisplayed());
+        common.click();
+        Thread.sleep(1000);
+        common.sendKeys(custom);
+        Thread.sleep(1000);
+        System.out.println("Save button is displayed:+"+save.isDisplayed());
+        Thread.sleep(1000);
+        save.click();
+
+    }
+
 
     public void addProduct(String produc, String gender) throws InterruptedException {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+
         prodBtn.click();
         Thread.sleep(1000);
 
@@ -140,24 +163,6 @@ public class ProductPage extends BasePage {
         } else {
             System.out.println("Product '" + expectedProduct + "' is NOT found in the list!");
         }
-    }
-
-    public void edit(String measure) throws InterruptedException {
-        System.out.println("Edit product type : ");
-        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-        WebElement edit = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#__next > div > div:nth-child(2) > section > div > div > main > section > div:nth-child(3) > div > div.ant-table-wrapper.custom-antd-table.css-ac2jek > div > div > div > div > div > table > tbody > tr:nth-child(2) > td:nth-child(3) > div > div:nth-child(1) > button > span > svg")));
-        System.out.println("Edit icon is displayed or not :"+edit.isDisplayed());
-        edit.click();
-        System.out.println("Edit icon is clicked");
-        System.out.println("addMeasurement field is displayed or not :"+addMeasurement.isDisplayed());
-        Thread.sleep(1300);
-        addMeasurement.click();
-        Thread.sleep(1300);
-        System.out.println("give measurement field is displayed or not :"+giveMeasurement.isDisplayed());
-        Thread.sleep(1300);
-        giveMeasurement.sendKeys(measure);
-        Thread.sleep(1000);
-        subInProd.click();
     }
 
     public void backButton()  {
