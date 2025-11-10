@@ -79,21 +79,6 @@ public class OrderPage extends BasePage{
     @FindBy(id = "products_0_notes")
     WebElement Notes;
 
-    // @FindBy(id = "outlined-Thigh Circumference")
-    //  WebElement outThigh;
-
-    // @FindBy(id = "outlined-Knee Circumference")
-    //  WebElement knee;
-
-    //  @FindBy(id="outlined-Shoulder")
-    //  WebElement shoulder;
-
-  /*  @FindBy(xpath = "//span[text()='Embroid']")
-    WebElement src;
-
-    @FindBy(xpath = "//div[@data-rbd-droppable-id='steps-0']")
-    WebElement tar;*/
-
     @FindBy(xpath = "//span[text()='Next']")
     WebElement nxtButton;
 
@@ -112,7 +97,47 @@ public class OrderPage extends BasePage{
     @FindBy(xpath = "//span[text()='Add Product']")
     WebElement addItem;
 
+    @FindBy(xpath = "//span[text()='Dashboard']")
+    WebElement dashboard;
+
+    @FindBy(xpath = "//div[text()='Today’s Delivery']//following-sibling::div[@class='count']")
+    WebElement todaysDelivery;
+
+    @FindBy(xpath = "//div[text()='Bills Pending']//following-sibling::div[@class='count']")
+    WebElement billspending;
+
+    @FindBy(xpath = "//div[text()='Appointments']//following-sibling::div[@class='count']")
+    WebElement appointments;
+
     String naame,num;
+
+    public void dashboard() throws InterruptedException {
+        dashboard.click();
+        Thread.sleep(1000);
+
+        WebElement totalProducts = driver.findElement(By.xpath("//div[text()='Total Products']/following-sibling::div[@class='count']"));
+        String count = totalProducts.getText();
+        System.out.println("Total Products count: " + count);
+        Thread.sleep(1000);
+
+        WebElement newproducts = driver.findElement(By.xpath("//div[text()='New Products']//following-sibling::div[@class='count']"));
+        String newcount = newproducts.getText();
+        System.out.println("New product count :"+newcount);
+        Thread.sleep(1000);
+
+        String deliverycount = todaysDelivery.getText();
+        System.out.println("Today's delivery count :"+deliverycount);
+        Thread.sleep(1000);
+
+        String billcount = billspending.getText();
+        System.out.println("Bills pending count :"+billcount);
+        Thread.sleep(1000);
+
+        String appointmentcount = appointments.getText();
+        System.out.println("Appointments count :"+appointmentcount);
+        Thread.sleep(1000);
+
+    }
 
     //Action
     public void orderModuleClient(String number,String name,String add) throws InterruptedException {

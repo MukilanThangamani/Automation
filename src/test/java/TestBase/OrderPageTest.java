@@ -7,9 +7,10 @@ public class OrderPageTest extends BaseClass{
     public void testOrderPage() throws InterruptedException{
         OrderPage op = new OrderPage(driver);
         Thread.sleep(1000);
+        op.dashboard();
         op.orderModuleClient(phoneRandom(),randomString(),randomString());
         System.out.println("*** All over ***");
-        op.ProductDetail(randomString(),"07/11/2025",randomNumber(),randomLength(),randomLength(),randomLength(),"Wait for your delivery");
+        op.ProductDetail(randomString(),"14/11/2025",randomNumber(),randomLength(),randomLength(),randomLength(),"Wait for your delivery");
         op.paymentDetails(randomLength());
         System.out.println("***Order successfully created***");
     }
