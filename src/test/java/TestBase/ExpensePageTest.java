@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 
 public class ExpensePageTest extends BaseClass{
 
-    @Test(priority = 14)
+    @Test(priority = 15)
     public void testExpense() throws InterruptedException{
         ExpensePage ep = new ExpensePage(driver);
         ep.addCategory(randomString());

@@ -81,7 +81,7 @@ public class BillingPage extends BasePage{
         Thread.sleep(1000);
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
-        List<WebElement> productOptions = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("/html/body/div[6]/div/div/div[2]/div/div/div")));
+        List<WebElement> productOptions = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("/html/body/div[2]/div/div/div[2]/div/div/div")));
         Random random = new Random();
         int randomIndex = random.nextInt(productOptions.size());
         WebElement selectProduct = productOptions.get(randomIndex);

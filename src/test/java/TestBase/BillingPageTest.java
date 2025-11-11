@@ -5,11 +5,11 @@ import org.testng.annotations.Test;
 
 public class BillingPageTest extends BaseClass{
 
-    @Test(priority = 15)
+    @Test(priority = 14)
     public void testBilling() throws InterruptedException {
         BillingPage bp = new BillingPage(driver);
         bp.navigateToBilling(phoneRandom(),randomString(),randomString());
-        bp.addProduct(randomLength(),randomLength());
+        bp.addProduct(randomLength(),randomAmount());
     }
 
 }
