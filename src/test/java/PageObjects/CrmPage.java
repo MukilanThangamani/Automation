@@ -65,23 +65,15 @@ public class CrmPage extends BasePage{
     @FindBy(id = "products_0_productTypeId")
     WebElement prodType;
 
-    @FindBy(xpath = "//input[@placeholder='Enter Length']")
-    WebElement length;
-
-    @FindBy(xpath = "//input[@placeholder='Enter Waist']")
-    WebElement waist;
-
-    @FindBy(xpath = "//input[@placeholder='Enter Hip']")
-    WebElement hip;
-
-    @FindBy(id = "products_0_measurements_3_value")
-    WebElement newmeasure;
 
     @FindBy(css =  "#__next > div > div:nth-child(2) > section > div > div > main > section > div > div > div.ant-table-wrapper.custom-antd-table.css-ac2jek > div > div > div > div > div > table > tbody > tr:nth-child(1) > td:nth-child(8) > div > svg")
     WebElement editIcon;
 
     @FindBy(xpath = "//span[text()='Save Measurements']")
     WebElement save;
+
+    @FindBy(xpath = "//label[text()='Product Type']/following::button[span[text()='Close']]")
+    WebElement close;
 
     @FindBy(xpath = "//input[@type='checkbox']")
     WebElement checkbox;
@@ -91,9 +83,6 @@ public class CrmPage extends BasePage{
 
     @FindBy(xpath = "//span[text()='Download Excel']")
     WebElement downloadExcel;
-
-    @FindBy(xpath = "//*[@id=\"__next\"]/div/div[2]/section/div/div/main/section/div/div/div[2]/div/div[1]/span/span/span[1]/span")
-    WebElement cancel;
 
     @FindBy(xpath = "//input[@placeholder='Search...']")
     WebElement search;
@@ -138,13 +127,13 @@ public class CrmPage extends BasePage{
         preference.sendKeys(prefer);
 
         System.out.println("Submit in client detail :"+subBtn.isDisplayed());
-      //  System.out.println("Close button is visible :"+close.isDisplayed());
-      //  close.click();
+       // close.click();
 
-           subBtn.submit();  //--> uncomment this for final execution
+        subBtn.submit();  //--> uncomment this for final execution
     }
 
     public void measurement() throws InterruptedException {
+        Thread.sleep(1000);
         addProduct.click();
         Thread.sleep(1000);
         prodType.click();
@@ -175,6 +164,9 @@ public class CrmPage extends BasePage{
         System.out.println("Sav measurement button is displayed:"+save.isDisplayed());
         Thread.sleep(1000);
         save.click();
+        System.out.println("Close button is visible :"+close.isDisplayed());
+        Thread.sleep(1000);
+        close.click();
     }
     public void search(String name) throws InterruptedException {
         driver.navigate().refresh();
@@ -196,6 +188,9 @@ public class CrmPage extends BasePage{
         Thread.sleep(1000);
         System.out.println("Submit the updated :"+subBtn.isDisplayed());
         subBtn.click();
+        Thread.sleep(1000);
+        close.click();
+        Thread.sleep(1000);
         driver.navigate().refresh();
     }
 }

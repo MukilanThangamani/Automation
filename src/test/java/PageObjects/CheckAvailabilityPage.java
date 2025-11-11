@@ -23,7 +23,7 @@ public class CheckAvailabilityPage extends BasePage{
     @FindBy(id = "tasks_0_roleId")
     WebElement taskType;
 
-    @FindBy(xpath = "//div[text()='CfSdy']")
+    @FindBy(xpath = "//div[text()='CkUpE']")
     WebElement selecttask;
 
     @FindBy(id = "tasks_0_estimatedTimeInMinutes")
@@ -50,7 +50,7 @@ public class CheckAvailabilityPage extends BasePage{
         Thread.sleep(1000);
         taskType.click();
         Thread.sleep(1000);
-        System.out.println("Selecting task tupe is displayed:"+selecttask.isDisplayed());
+        System.out.println("Selecting task type is displayed:"+selecttask.isDisplayed());
         selecttask.click();
         Thread.sleep(1000);
         System.out.println("Estimation time field is visible :"+estTime.isDisplayed());
