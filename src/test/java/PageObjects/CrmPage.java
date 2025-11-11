@@ -140,7 +140,7 @@ public class CrmPage extends BasePage{
         Thread.sleep(1000);
 
         WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(20));
-        List<WebElement> options = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("/html/body/div[6]/div/div/div[2]/div/div/div")));
+        List<WebElement> options = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("/html/body/div[5]/div/div/div[2]/div/div/div")));
         Random random = new Random();
         int randomIndex = random.nextInt(options.size());
         WebElement selectProduct = options.get(randomIndex);
