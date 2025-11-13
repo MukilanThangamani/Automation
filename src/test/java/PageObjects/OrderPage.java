@@ -112,6 +112,9 @@ public class OrderPage extends BasePage{
     String naame,num;
 
     public void dashboard() throws InterruptedException {
+        String pagetitle = driver.getTitle();
+        System.out.println("The page title is :"+pagetitle);
+
         dashboard.click();
         Thread.sleep(1000);
 

@@ -41,6 +41,8 @@ public class TaskSettingPage extends BasePage{
 
     //Action
     public void setAddTask(String taskname,String charge,String rle) throws InterruptedException {
+        String pagetitle = driver.getTitle();
+        System.out.println("The page title is :"+pagetitle);
 
         System.out.println("Task btn is displayed or not :" + addTask.isDisplayed());
         Thread.sleep(1000);

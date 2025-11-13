@@ -53,6 +53,8 @@ public class RolePage extends BasePage {
 
     //  Method to add a role (without verifying immediately)
     public void add(String roleName) throws InterruptedException {
+        String pagetitle = driver.getTitle();
+        System.out.println("The page title is :"+pagetitle);
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         Thread.sleep(1000);
         wait.until(ExpectedConditions.elementToBeClickable(addRole)).click();

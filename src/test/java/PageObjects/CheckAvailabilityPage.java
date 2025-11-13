@@ -39,6 +39,9 @@ public class CheckAvailabilityPage extends BasePage{
     WebElement getCheckbtn;
 
     public void modAndDate(String estimation,String prio) throws InterruptedException {
+        String pagetitle = driver.getTitle();
+        System.out.println("The page title is :"+pagetitle);
+
         Thread.sleep(1000);
         System.out.println("Check Availability Button is displayed:"+checkmodbtn.isDisplayed());
         Thread.sleep(1000);

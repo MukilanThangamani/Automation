@@ -55,6 +55,9 @@ public class AppointmentPage extends BasePage {
 
     //Actions
     public void clientDetails(String num,String cname,String add,String pur,String time,String not) throws InterruptedException {
+        String pageTitle = driver.getTitle();
+        System.out.println("The page title is :"+pageTitle);
+
         System.out.println("Appointment module button is displayed :"+appmodule.isDisplayed());
         appmodule.click();
         Thread.sleep(1000);

@@ -53,6 +53,9 @@ public class BillingPage extends BasePage{
 
     //Actions
     public void navigateToBilling(String number,String name,String address) throws InterruptedException {
+        String pageTitle = driver.getTitle();
+        System.out.println("The page title is ;"+pageTitle);
+
         System.out.println("Billing module button is displayed :"+billingModule.isDisplayed());
         Thread.sleep(1000);
         billingModule.click();

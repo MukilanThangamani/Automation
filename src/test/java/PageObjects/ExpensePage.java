@@ -50,6 +50,9 @@ public class ExpensePage extends BasePage{
 
     //Action
     public void addCategory(String s) throws InterruptedException {
+        String pagetitle = driver.getTitle();
+        System.out.println("The page title is :"+pagetitle);
+
         System.out.println("Expense module button is displayed :"+expenseMod.isDisplayed());
         Thread.sleep(1000);
         expenseMod.click();

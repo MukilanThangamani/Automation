@@ -60,6 +60,8 @@ public class SourcingPage extends BasePage{
     WebElement products;
 
     public void sourcingDetails(String quantity,String amt,String updatequant) throws InterruptedException{
+        String pagetitle = driver.getTitle();
+        System.out.println("The page title is :"+pagetitle);
         System.out.println("Sourcing button is visible :"+sourcingmodbtn.isDisplayed());
         Thread.sleep(2000);
         sourcingmodbtn.click();

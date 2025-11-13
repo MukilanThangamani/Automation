@@ -92,7 +92,8 @@ public class CrmPage extends BasePage{
 
     //Action
     public void clickCrm(String name,String phone,String other,String address,String prefer) throws InterruptedException {
-
+        String pagetitle = driver.getTitle();
+        System.out.println("The page title is :"+pagetitle);
         order.click();
         Thread.sleep(2000);
         boutiques.click();

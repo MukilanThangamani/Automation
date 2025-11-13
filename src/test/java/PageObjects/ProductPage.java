@@ -55,6 +55,8 @@ public class ProductPage extends BasePage {
     SoftAssert softAssert = new SoftAssert();
 
     public void customMeasurement(String custom) throws InterruptedException {
+        String pagetitle = driver.getTitle();
+        System.out.println("The page title is :"+pagetitle);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         System.out.println("Common field is displayed :"+common.isDisplayed());
         common.click();
