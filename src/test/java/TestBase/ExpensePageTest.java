@@ -9,7 +9,7 @@ public class ExpensePageTest extends BaseClass{
     public void testExpense() throws InterruptedException{
         ExpensePage ep = new ExpensePage(driver);
         ep.addCategory(randomString());
-        ep.addExpense(randomString(),"11/08/2025",randomAmount());
+        ep.addExpense(randomString(),"18/11/2025",randomAmount());
         // ep.toUpdate();
     }
 
