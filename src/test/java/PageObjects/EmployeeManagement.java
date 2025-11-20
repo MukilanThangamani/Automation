@@ -1,7 +1,6 @@
 package PageObjects;
 
 import org.apache.commons.lang3.RandomStringUtils;
-import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,13 +12,13 @@ import java.time.Duration;
 import java.util.List;
 import java.util.Random;
 
-public class EmployeePage extends BasePage {
+public class EmployeeManagement extends BasePage{
 
-    public EmployeePage(WebDriver driver) {
+    public EmployeeManagement(WebDriver driver) {
         super(driver);
     }
 
-    // Locators
+    //Locators
     @FindBy(xpath = "//span[text()='Add Employee']")
     WebElement empbtn;
 
@@ -62,7 +61,6 @@ public class EmployeePage extends BasePage {
 
     @FindBy(xpath = "//span[text()='Next']")
     WebElement nextButton;
-
 
     // Action
     public void empDetail() throws InterruptedException {
@@ -118,19 +116,16 @@ public class EmployeePage extends BasePage {
         Thread.sleep(1000);
         System.out.println("Submit button is displayed: " + subEmp.isDisplayed());
         Thread.sleep(1000);
-          subEmp.click();
-      //  close.click();
+        subEmp.click();
+        //  close.click();
     }
 
-    // Java
     public void nxtBtnEmp() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ant-modal-wrap")));
         System.out.println("Next button is displayed: " + nextButton.isDisplayed());
         nextButton.click();
     }
-
-
 
     public String randomString() {
         return RandomStringUtils.randomAlphabetic(5);
