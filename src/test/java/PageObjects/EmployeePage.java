@@ -29,6 +29,9 @@ public class EmployeePage extends BasePage {
     @FindBy(id = "boutique_roleId")
     WebElement roleDropdown;
 
+    @FindBy(xpath = "//div[text()='pzQVp']")
+    WebElement getRole;
+
     @FindBy(xpath = "/html/body/div[4]/div/div/div[2]/div/div/div/div[3]/div")
     WebElement role;
 
@@ -50,9 +53,8 @@ public class EmployeePage extends BasePage {
     @FindBy(xpath = "//*[@id=\"boutique_gender\"]")
     WebElement genderDropdown;
 
-    @FindBy(xpath = "/html/body/div[5]/div/div/div[2]/div/div/div/div[1]/div")
-    WebElement genderMaleOption;
-
+    @FindBy(xpath = "//span[text()='Delete']")
+    WebElement deleteBtn;
 
     @FindBy(xpath = "//span[text()='Submit']")
     WebElement subEmp;
@@ -87,6 +89,9 @@ public class EmployeePage extends BasePage {
         roleDropdown.click();
         Thread.sleep(1000); // Optional, better to wait with WebDriverWait
 
+      //  getRole.click();
+
+
         List<WebElement> roleOptions = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("/html/body/div[4]/div/div/div[2]/div/div/div")));
 
         Random random = new Random();
@@ -118,8 +123,19 @@ public class EmployeePage extends BasePage {
         Thread.sleep(1000);
         System.out.println("Submit button is displayed: " + subEmp.isDisplayed());
         Thread.sleep(1000);
-          subEmp.click();
-      //  close.click();
+        subEmp.click();
+        Thread.sleep(1000);
+      //  WebElement deleteIcon = driver.findElement(By.cssSelector("#__next > div > div:nth-child(2) > section > div > div > main > section > div:nth-child(3) > div > div > div.ant-table-wrapper.custom-antd-table.css-ac2jek > div > div > div > div > div > table > tbody > tr:nth-child(2) > td:nth-child(3) > div > div:nth-child(2) > svg"));
+        WebElement delete =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#__next > div > div:nth-child(2) > section > div > div > main > section > div:nth-child(3) > div > div > div.ant-table-wrapper.custom-antd-table.css-ac2jek > div > div > div > div > div > table > tbody > tr:nth-child(2) > td:nth-child(3) > div > div:nth-child(2) > svg")));
+        delete.click();
+        Thread.sleep(1000);
+        System.out.println("CloseButton in delete is displayed:"+close.isDisplayed());
+        Thread.sleep(1000);
+        System.out.println("Delete button is visible :"+deleteBtn.isDisplayed());
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+        deleteBtn.click();
+        Thread.sleep(1000);
+
     }
 
     // Java

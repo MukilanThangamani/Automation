@@ -17,6 +17,7 @@ public class TaskPageTest extends BaseClass {
             tp.setAddTask(taskname[i], charge[i], role[i]);
         }
 
+
         tp.verifyTasksInTable(taskname, charge);
         Thread.sleep(1000);
 

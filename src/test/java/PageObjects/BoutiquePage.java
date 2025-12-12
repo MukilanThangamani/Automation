@@ -15,12 +15,6 @@ public class BoutiquePage extends BasePage {
         super(driver);
     }
 
-    // Locators
-    //--> //div[text()='Add boutique details']
-    //-->"//div[normalize-space(text())='Ellie']/ancestor::div[contains(@class,'MuiPaper-root')]//button[normalize-space()='View Details']"
-    // @FindBy(xpath = "//div[text()='Add boutique details']")
-    //  WebElement ClkPlus;
-
     @FindBy(xpath = "(//button[contains(., 'View Details')])[32]")
     WebElement ClkPlus;
 
@@ -35,18 +29,6 @@ public class BoutiquePage extends BasePage {
 
     @FindBy(id = "boutique_gstNumber")
     WebElement gstNUmber;
-
-    @FindBy(xpath = "//*[@id=\"__next\"]/div/div[2]/section/div/div/main/section/div[3]/form/div[1]/div/div[5]/div/div[1]/div[2]/div[1]/div/div/div")
-    WebElement leaveDays;
-
-    @FindBy(xpath = "//div[@aria-controls=':r1b:']")
-    WebElement drop;
-
-    @FindBy(xpath = "//li[@data-value='Sunday']")
-    WebElement sun;
-
-    @FindBy(xpath = "//li[@data-value='Saturday']")
-    WebElement sat;
 
     @FindBy(id = "boutique_businessHoursStart")
     WebElement starttime;
@@ -81,30 +63,8 @@ public class BoutiquePage extends BasePage {
     @FindBy(xpath = "//input[@class='PhoneInputInput']")
     WebElement mobile;
 
-    @FindBy(xpath = "//option[@value='22']")
-    WebElement st;
-
     @FindBy(xpath = "//button[@type='submit' and contains(@class, 'MuiButton-containedPrimary')]")
     WebElement sub; //
-
-    @FindBy(xpath = "//div[normalize-space(text())='Blush The']/ancestor::div[contains(@class,'MuiPaper-root')]//button[normalize-space()='View Details'")
-    WebElement viewDet;
-
-    // @FindBy(xpath = "//button[text()='Next']")
-    // WebElement nxt;   //div[normalize-space(text())='Neonpixel']/ancestor::div[contains(@class,'MuiPaper-root')]//button[normalize-space()='View Details'
-
-    // WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-    // WebElement nextButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[text()='Next']")));
-
-
-    @FindBy(xpath = "//button[text()='Add Roles']")
-    WebElement addRole;
-
-    @FindBy(xpath = "//input[@name='roleName']")
-    WebElement rolname;
-
-    @FindBy(xpath = "//button[text()='Submit']")
-    WebElement rolsubnit;
 
     // Actions
     public void clickAddBoutique()  {
@@ -114,7 +74,8 @@ public class BoutiquePage extends BasePage {
 
     public void enterShopName(String shop) throws InterruptedException {
         System.out.println("** In Shop detail Page  ** ");
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOf(shopname));
         System.out.println("shop is displayed :"+shopname.isDisplayed());
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
         Thread.sleep(1200);

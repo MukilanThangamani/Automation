@@ -92,8 +92,7 @@ public class AppointmentPage extends BasePage {
         Thread.sleep(1000);
         System.out.println("Submit button in appointment modal is visible :"+subApp.isDisplayed());
         subApp.submit();
-        System.out.println("close button in appointment modal is visible :"+closebtn.isDisplayed());
-        //  closebtn.click();
+        Thread.sleep(1000);
     }
 
     public void updateAppointment(String update) throws InterruptedException {

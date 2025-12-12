@@ -142,6 +142,32 @@ public class OrderPage extends BasePage{
 
     }
 
+    public void getClient(){
+        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(60));
+        WebElement table = wait.until(
+                ExpectedConditions.visibilityOfElementLocated(
+                        By.cssSelector("#rc-tabs-0-panel-current > div > div.ant-table-wrapper.custom-antd-table.css-ac2jek > div > div > div > div > div.ant-table-header.ant-table-sticky-holder > table")
+                )
+        );
+        List<WebElement> headers = table.findElements(By.tagName("th"));
+
+        for (WebElement header : headers) {
+            System.out.println(header.getText());
+        }
+
+        List<WebElement> allRows = driver.findElements(
+                By.xpath("//div[contains(@class,'ant-table')]//tbody/tr[td]")
+        );
+
+        for (WebElement row : allRows) {
+
+            List<WebElement> columns = row.findElements(By.tagName("td"));
+
+            String firstColumnText = columns.get(0).getText();
+            System.out.println(firstColumnText);
+        }
+    }
+
     //Action
     public void orderModuleClient(String number,String name,String add) throws InterruptedException {
         naame = name;
@@ -149,6 +175,8 @@ public class OrderPage extends BasePage{
         System.out.println("Order button is displayed or not :" + order.isDisplayed());
         Thread.sleep(1000);
         order.click();
+        Thread.sleep(1000);
+        getClient();
         Thread.sleep(1000);
         System.out.println("Boutiques dropdown is visible :" + boutiques.isDisplayed());
         boutiques.click();

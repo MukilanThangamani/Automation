@@ -36,8 +36,17 @@ public class TaskSettingPage extends BasePage{
     @FindBy(xpath = "//span[text()='Next']")
     WebElement taskInNxt;
 
-    @FindBy(xpath = "//span[text()='Close']" )
+    @FindBy(xpath = "//span[text()='Close']")
     WebElement close;
+
+    @FindBy(css = "#__next > div > div:nth-child(2) > section > div > div > main > section > div:nth-child(3) > div > div.ant-table-wrapper.custom-antd-table.css-ac2jek > div > div > div > div > div > table > tbody > tr:nth-child(2) > td:nth-child(3) > button:nth-child(2) > svg")
+    WebElement deleteIcon;
+
+    @FindBy(xpath = "//button[text()='Delete']")
+    WebElement deleteBtn;
+
+    @FindBy(xpath = "//button[text()='Cancel']")
+    WebElement closeBtn;
 
     //Action
     public void setAddTask(String taskname,String charge,String rle) throws InterruptedException {
@@ -67,8 +76,8 @@ public class TaskSettingPage extends BasePage{
         System.out.println("Task submit is visible :" + subTask.isDisplayed());
         Thread.sleep(1000);
         subTask.click();
-
     }
+
 
     public void printDuplicateTaskErrorMessage() {
         By errorMessage = By.xpath("//*[contains(text(), 'already exists') or contains(text(), 'duplicate')]");

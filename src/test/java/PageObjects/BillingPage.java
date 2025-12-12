@@ -58,9 +58,11 @@ public class BillingPage extends BasePage{
 
         System.out.println("Billing module button is displayed :"+billingModule.isDisplayed());
         Thread.sleep(1000);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
         billingModule.click();
         System.out.println("Estimation button is displayed:"+estimation.isDisplayed());
         Thread.sleep(1000);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
         estimation.click();
         System.out.println("Create Estimation button is displayed:"+createEstimation.isDisplayed());
         Thread.sleep(1000);
