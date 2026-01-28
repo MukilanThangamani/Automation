@@ -5,11 +5,13 @@ import org.testng.annotations.Test;
 
 public class CheckAvailabilityTest extends BaseClass{
 
-    @Test(priority = 11)
+    @Test
     public void testAvailability() throws InterruptedException{
         CheckAvailabilityPage cp = new CheckAvailabilityPage(driver);
         cp.modAndDate(randomOne(),randomOne());
         cp.close();
     }
+
+
 
 }

@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 
 public class TaskPageTest extends BaseClass {
 
-    @Test(priority = 8)
+     @Test
     public void testTaskSettings() throws InterruptedException {
         TaskSettingPage tp = new TaskSettingPage(driver);
         String[] taskname = {randomString(), randomString(), randomString(), randomString()};
@@ -17,11 +17,9 @@ public class TaskPageTest extends BaseClass {
             tp.setAddTask(taskname[i], charge[i], role[i]);
         }
 
-
         tp.verifyTasksInTable(taskname, charge);
         Thread.sleep(1000);
 
-        //For Duplicate. Task already exists
         String duplicateTask = taskname[0];
         tp.addTask(duplicateTask, randomAmount(), "master");
 

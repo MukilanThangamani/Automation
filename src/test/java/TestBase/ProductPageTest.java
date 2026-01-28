@@ -6,7 +6,8 @@ import org.testng.asserts.SoftAssert;
 
 public class ProductPageTest extends BaseClass {
 
-    @Test(priority = 9)
+    //@Test(priority = 9)
+    @Test
     public void testProductTypes() throws InterruptedException {
         ProductPage pp = new ProductPage(driver);
         SoftAssert softAssert = new SoftAssert();

@@ -7,12 +7,16 @@ import org.openqa.selenium.bidi.log.Log;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.Test;
 
 import java.time.Duration;
 
 public class LoginPage extends BasePage {
     @FindBy(xpath = "//button[text()='Reject']")
     WebElement reject;
+
+    @FindBy(xpath = "//div[contains(@class,'ant-modal')]//div[text()='Timezone Missing!']/ancestor::div[contains(@class,'ant-modal')]//button[@aria-label='Close']")
+    WebElement cross;
 
     public LoginPage(WebDriver driver){
         super(driver);
@@ -31,6 +35,7 @@ public class LoginPage extends BasePage {
     WebElement clkLogin = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@type='submit']")));
 
     //Action
+
     public void setPhonenumber(String phnum) throws InterruptedException {
         System.out.println("Phone number field is present :"+enterphonenumber.isDisplayed());
         Thread.sleep(1000);
@@ -48,6 +53,8 @@ public class LoginPage extends BasePage {
         System.out.println("login button is visible :"+clkLogin.isDisplayed());
         Thread.sleep(1000);
         clkLogin.click();
+        Thread.sleep(1000);
+        cross.click();
     }
 
 

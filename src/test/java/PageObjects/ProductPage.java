@@ -34,23 +34,11 @@ public class ProductPage extends BasePage {
     @FindBy(xpath = "//span[text()='Submit']")
     WebElement subInProd;
 
-    @FindBy(xpath = "//span[text()='Back']")
-    WebElement backButton;
-
-    @FindBy(xpath = "//*[contains(@class,'toast') or contains(text(),'exists') or contains(text(),'duplicate')]")
-    WebElement duplicateErrorToast;
+    @FindBy(xpath = "//span[text()='Done']")
+    WebElement DoneButton;
 
     @FindBy(xpath = "//span[text()='Close']")
     WebElement close;
-
-    @FindBy(css = "#__next > div > div:nth-child(2) > section > div > div > main > section > div:nth-child(3) > div > div.ant-table-wrapper.custom-antd-table.css-ac2jek > div > div > div > div > div > table > tbody > tr:nth-child(2) > td:nth-child(3) > div > div:nth-child(3) > button > span > svg")
-    WebElement copyIcon;
-
-    @FindBy(id = "productTypeName")
-    WebElement productype;
-
-    @FindBy(id = "measurements_3_measurement")
-    WebElement giveMeasurement;
 
     SoftAssert softAssert = new SoftAssert();
 
@@ -87,9 +75,11 @@ public class ProductPage extends BasePage {
         WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(20));
 
         Random random = new Random();
-        List<WebElement> genderOption = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("/html/body/div[5]/div/div/div[2]/div/div/div")));
-        int randomIdx = random.nextInt(genderOption.size());
-        WebElement selectGender = genderOption.get(randomIdx);
+//        List<WebElement> genderOption = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("/html/body/div[5]/div/div/div[2]/div/div/div")));
+//        int randomIdx = random.nextInt(genderOption.size());
+//        WebElement selectGender = genderOption.get(randomIdx);
+//        selectGender.click();
+        WebElement selectGender = driver.findElement(By.xpath("//div[contains(@class,'ant-select-item-option') and @title='Female']"));
         selectGender.click();
 
         subInProd.click();
@@ -169,9 +159,9 @@ public class ProductPage extends BasePage {
 
     public void backButton()  {
         WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.visibilityOf(backButton));
-        System.out.println("Back button is displayed or not :"+backButton.isDisplayed());
-        backButton.click();
+        wait.until(ExpectedConditions.visibilityOf(DoneButton));
+        System.out.println("Done button is displayed or not :"+DoneButton.isDisplayed());
+        DoneButton.click();
     }
 
     public void assertAll() {

@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.Test;
 
 import java.time.Duration;
 
@@ -48,6 +49,9 @@ public class BoutiquePage extends BasePage {
     @FindBy(id = "boutique_address")
     WebElement addr;
 
+    @FindBy(xpath = "//label[text()='Time Zone']")
+    WebElement timeZone;
+
     @FindBy(id = "boutique_landmark")
     WebElement land;
 
@@ -64,13 +68,16 @@ public class BoutiquePage extends BasePage {
     WebElement mobile;
 
     @FindBy(xpath = "//button[@type='submit' and contains(@class, 'MuiButton-containedPrimary')]")
-    WebElement sub; //
+    WebElement sub;
+
 
     // Actions
+
     public void clickAddBoutique()  {
         System.out.println("Boutique is visible :"+ClkPlus.isDisplayed());
         ClkPlus.click();
     }
+
 
     public void enterShopName(String shop) throws InterruptedException {
         System.out.println("** In Shop detail Page  ** ");
@@ -84,6 +91,7 @@ public class BoutiquePage extends BasePage {
      //   shopname.sendKeys(shop);   //->Rem
     }
 
+
     public void enterLegalName(String legal) throws InterruptedException {
         System.out.println("Legal name is displayed :"+legalname.isDisplayed());
         //  legalname.clear();
@@ -91,6 +99,7 @@ public class BoutiquePage extends BasePage {
    //     legalname.sendKeys(legal);  //->Rem
         Thread.sleep(1000);
     }
+
 
     public void enterNickName(String nick) {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
@@ -100,13 +109,18 @@ public class BoutiquePage extends BasePage {
         //   nickname.sendKeys(nick);
     }
 
+
     public void enterGst(String gstnum) {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
         System.out.println("GstNumber field is displayed :"+gstNUmber.isDisplayed());
        // System.out.println("Leave days field is displayed :"+leaveDays.isDisplayed());
         //   gstNUmber.clear();
         //->Rem   gstNUmber.sendKeys(gstnum);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+        System.out.println("TimeZone field is displayed :"+timeZone.isDisplayed());
+
     }
+
 
     public void address(String shopnum, String address, String landmark, String cities, String pincode, String mobileNum) throws InterruptedException {
         System.out.println("Start time is displayed : "+starttime.isDisplayed());
@@ -165,42 +179,23 @@ public class BoutiquePage extends BasePage {
         timeField.sendKeys(timeValue);  // Set new time
     }
 
- /*   public void fillShopTimings(String startTime, String endTime) {
-        WebElement start = getStartTimeField();
-        WebElement end = getEndTimeField();
-
-        setTime(start, startTime);
-        setTime(end, endTime);
-    }*/
 
     public void nxt() {
         try {
             // Wait for and click the Submit button
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
             System.out.println("Submit button visible: " + sub.isDisplayed());
-            //   sub.click();
 
-            // Log current URL after clicking submit
             System.out.println("Current URL after submit: " + driver.getCurrentUrl());
-
-            // Navigate back and refresh
-            //  driver.navigate().back();
-            //  driver.navigate().refresh();
 
             System.out.println("Current URL after refresh: " + driver.getCurrentUrl());
 
-            // Wait until 'View Details' button is visible for product "Blush Theo"
             WebElement viewDetail = wait.until(ExpectedConditions.visibilityOfElementLocated(
                     By.xpath("//div[normalize-space(text())='Maison']/ancestor::div[contains(@class,'MuiPaper-root')]//button[normalize-space()='View Details']")
             ));
 
             System.out.println("View Detail button is displayed: " + viewDetail.isDisplayed());
-            //   viewDetail.click();
 
-            // Log the URL after clicking 'View Details'
-            //    System.out.println("Current URL after clicking 'View Details': " + driver.getCurrentUrl());
-
-            // Wait for and click the 'Next' button
             WebElement nextButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
                     By.xpath("//button[normalize-space()='Next']")
             ));
@@ -212,6 +207,7 @@ public class BoutiquePage extends BasePage {
             e.printStackTrace();
         }
     }
+
 
     public void nextInB(){
 

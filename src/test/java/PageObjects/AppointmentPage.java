@@ -14,7 +14,7 @@ public class AppointmentPage extends BasePage {
     @FindBy(xpath = "//span[text()='Appointments']")
     WebElement appmodule;
 
-    @FindBy(xpath = "//*[@id=\"__next\"]/div/div[2]/section/div/header/div/div[3]/button")
+    @FindBy(css = "#__next > div > div > div > section > div > header > div > div:nth-child(4) > button")
     WebElement scheduleApp;
 
     @FindBy(xpath = "//input[@type='tel']")
@@ -61,8 +61,8 @@ public class AppointmentPage extends BasePage {
         System.out.println("Appointment module button is displayed :"+appmodule.isDisplayed());
         appmodule.click();
         Thread.sleep(1000);
-          scheduleApp.click();
-          Thread.sleep(1000);
+        scheduleApp.click();
+        Thread.sleep(1000);
         System.out.println("Phone number field is visible :"+phoneNUmber.isDisplayed());
         phoneNUmber.sendKeys(num);
         Thread.sleep(1000);

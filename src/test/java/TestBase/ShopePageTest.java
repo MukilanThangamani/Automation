@@ -6,8 +6,8 @@ import java.time.Duration;
 
 public class ShopePageTest extends BaseClass {
 
-    @Test(priority = 5)
-    public void shopDetails() throws InterruptedException {
+    @Test
+    public void verifyAllShopFields() throws InterruptedException {
         BoutiquePage bm = new BoutiquePage(driver);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
        bm.enterShopName("The Atelier Edi");

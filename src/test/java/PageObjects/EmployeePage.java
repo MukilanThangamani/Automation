@@ -8,7 +8,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.Test;
 
+import java.security.cert.X509Certificate;
 import java.time.Duration;
 import java.util.List;
 import java.util.Random;
@@ -20,26 +22,17 @@ public class EmployeePage extends BasePage {
     }
 
     // Locators
-    @FindBy(xpath = "//span[text()='Add Employee']")
-    WebElement empbtn;
-
     @FindBy(id = "boutique_name")
     WebElement empName;
 
+    @FindBy(id = "boutique_userRoleId")
+    WebElement roleId;
+
+    @FindBy(xpath = "//div[text()='EMPLOYEE']")
+    WebElement selectRole;
+
     @FindBy(id = "boutique_roleId")
     WebElement roleDropdown;
-
-    @FindBy(xpath = "//div[text()='pzQVp']")
-    WebElement getRole;
-
-    @FindBy(xpath = "/html/body/div[4]/div/div/div[2]/div/div/div/div[3]/div")
-    WebElement role;
-
-    @FindBy(xpath = "//*[@id=boutique_dateOfBirth]")
-    WebElement dob;
-
-    @FindBy(xpath = "//*[@id=boutique_dateOfJoining]")
-    WebElement doj;
 
     @FindBy(id = "boutique_phone")
     WebElement mobNum;
@@ -67,37 +60,35 @@ public class EmployeePage extends BasePage {
 
 
     // Action
+
     public void empDetail() throws InterruptedException {
 
         String pagetitle = driver.getTitle();
         System.out.println("The page title is :"+pagetitle);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-
-        wait.until(ExpectedConditions.visibilityOf(empbtn));
-        System.out.println("Add emp button is displayed : " + empbtn.isDisplayed());
+       WebElement addEmp =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Add Employee']")));
         Thread.sleep(2000);
-        empbtn.click();
+        System.out.println("Add emp button is displayed : " + addEmp.isDisplayed());
+        Thread.sleep(2000);
+        addEmp.click();
 
-        wait.until(ExpectedConditions.visibilityOf(empName));
+      //  wait.until(ExpectedConditions.visibilityOf(empName));
         System.out.println("Add emp name field is displayed : " + empName.isDisplayed());
         Thread.sleep(2000);
         empName.sendKeys(randomString());
-
+        Thread.sleep(1000);
+        roleId.click();
+        Thread.sleep(2000);
+        selectRole.click();
+        Thread.sleep(1000);
         System.out.println("Role dropdown is visible: " + roleDropdown.isDisplayed());
         Thread.sleep(2000);
         roleDropdown.click();
         Thread.sleep(1000); // Optional, better to wait with WebDriverWait
-
-      //  getRole.click();
-
-
-        List<WebElement> roleOptions = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("/html/body/div[4]/div/div/div[2]/div/div/div")));
-
         Random random = new Random();
-        int randomIndex = random.nextInt(roleOptions.size());
-        WebElement selectRole = roleOptions.get(randomIndex);
-        selectRole.click();
+        WebElement selectRole1 = driver.findElement(By.xpath("//div[text()='oSBUl']"));
+        selectRole1.click();
 
         Thread.sleep(1000);
         mobNum.click();
@@ -115,9 +106,9 @@ public class EmployeePage extends BasePage {
         genderDropdown.click(); // open dropdown
         Thread.sleep(1000); // or better: use WebDriverWait
 
-        List<WebElement> genderOption = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("/html/body/div[5]/div/div/div[2]/div/div/div")));
-        int randomIdx = random.nextInt(genderOption.size());
-        WebElement selectGender = genderOption.get(randomIdx);
+//        List<WebElement> genderOption = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("/html/body/div[7]/div/div/div[2]/div/div/div")));
+//        int randomIdx = random.nextInt(genderOption.size());
+        WebElement selectGender = driver.findElement(By.xpath("//div[contains(@class,'ant-select-item-option') and @title='Male']"));
         selectGender.click();
 
         Thread.sleep(1000);
@@ -126,7 +117,7 @@ public class EmployeePage extends BasePage {
         subEmp.click();
         Thread.sleep(1000);
       //  WebElement deleteIcon = driver.findElement(By.cssSelector("#__next > div > div:nth-child(2) > section > div > div > main > section > div:nth-child(3) > div > div > div.ant-table-wrapper.custom-antd-table.css-ac2jek > div > div > div > div > div > table > tbody > tr:nth-child(2) > td:nth-child(3) > div > div:nth-child(2) > svg"));
-        WebElement delete =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#__next > div > div:nth-child(2) > section > div > div > main > section > div:nth-child(3) > div > div > div.ant-table-wrapper.custom-antd-table.css-ac2jek > div > div > div > div > div > table > tbody > tr:nth-child(2) > td:nth-child(3) > div > div:nth-child(2) > svg")));
+        WebElement delete =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#__next > div > div > div > section > div > div > main > section > div:nth-child(3) > div > div.ant-table-wrapper.custom-antd-table.css-198drv2 > div > div > div > div > div > table > tbody > tr:nth-child(2) > td:nth-child(3) > div > div:nth-child(2) > svg")));
         delete.click();
         Thread.sleep(1000);
         System.out.println("CloseButton in delete is displayed:"+close.isDisplayed());
@@ -135,18 +126,16 @@ public class EmployeePage extends BasePage {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
         deleteBtn.click();
         Thread.sleep(1000);
-
     }
 
     // Java
+
     public void nxtBtnEmp() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ant-modal-wrap")));
         System.out.println("Next button is displayed: " + nextButton.isDisplayed());
         nextButton.click();
     }
-
-
 
     public String randomString() {
         return RandomStringUtils.randomAlphabetic(5);

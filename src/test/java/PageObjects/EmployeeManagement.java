@@ -23,23 +23,17 @@ public class EmployeeManagement extends BasePage{
     @FindBy(xpath = "//span[text()='Employee Management']")
     WebElement empMgmt;
 
-    @FindBy(xpath = "//span[text()='Add Employee']")
-    WebElement empbtn;
-
     @FindBy(id = "boutique_name")
     WebElement empName;
 
+    @FindBy(id = "boutique_userRoleId")
+    WebElement roleId;
+
+    @FindBy(xpath = "//div[text()='EMPLOYEE']")
+    WebElement selectRole;
+
     @FindBy(id = "boutique_roleId")
     WebElement roleDropdown;
-
-    @FindBy(xpath = "/html/body/div[4]/div/div/div[2]/div/div/div/div[3]/div")
-    WebElement role;
-
-    @FindBy(xpath = "//*[@id=boutique_dateOfBirth]")
-    WebElement dob;
-
-    @FindBy(xpath = "//*[@id=boutique_dateOfJoining]")
-    WebElement doj;
 
     @FindBy(id = "boutique_phone")
     WebElement mobNum;
@@ -53,6 +47,8 @@ public class EmployeeManagement extends BasePage{
     @FindBy(xpath = "//*[@id=\"boutique_gender\"]")
     WebElement genderDropdown;
 
+    @FindBy(xpath = "//span[text()='Delete']")
+    WebElement deleteBtn;
 
     @FindBy(xpath = "//span[text()='Submit']")
     WebElement subEmp;
@@ -63,46 +59,39 @@ public class EmployeeManagement extends BasePage{
     @FindBy(xpath = "//span[text()='Next']")
     WebElement nextButton;
 
-    @FindBy(css = "#__next > div > div:nth-child(2) > section > div > div > main > section > div > div > div.ant-table-wrapper.custom-antd-table.css-ac2jek > div > div > div > div > div > table > tbody > tr:nth-child(2) > td:nth-child(3) > div > div:nth-child(2) > svg")
-    WebElement deleteIcon;
-
-    @FindBy(xpath = "//span[text()='Delete']")
-    WebElement deleteBtn;
 
     // Action
     public void empDetail() throws InterruptedException {
-
-        System.out.println("Navigating to Employee Management section.");
-        System.out.println("Employee Management button is displayed : " + empMgmt.isDisplayed());
+        System.out.println("In Employee Management page");
+        System.out.println("Employee Management module is displayed:"+empMgmt.isDisplayed());
         empMgmt.click();
-        Thread.sleep(1000);
 
         String pagetitle = driver.getTitle();
         System.out.println("The page title is :"+pagetitle);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-
-        wait.until(ExpectedConditions.visibilityOf(empbtn));
-        System.out.println("Add emp button is displayed : " + empbtn.isDisplayed());
+        WebElement addEmp =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Add Employee']")));
         Thread.sleep(2000);
-        empbtn.click();
+        System.out.println("Add emp button is displayed : " + addEmp.isDisplayed());
+        Thread.sleep(2000);
+        addEmp.click();
 
-        wait.until(ExpectedConditions.visibilityOf(empName));
+        //  wait.until(ExpectedConditions.visibilityOf(empName));
         System.out.println("Add emp name field is displayed : " + empName.isDisplayed());
         Thread.sleep(2000);
         empName.sendKeys(randomString());
-
+        Thread.sleep(1000);
+        roleId.click();
+        Thread.sleep(2000);
+        selectRole.click();
+        Thread.sleep(1000);
         System.out.println("Role dropdown is visible: " + roleDropdown.isDisplayed());
         Thread.sleep(2000);
         roleDropdown.click();
         Thread.sleep(1000); // Optional, better to wait with WebDriverWait
-
-        List<WebElement> roleOptions = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("/html/body/div[3]/div/div/div[2]/div[1]/div/div")));
-
         Random random = new Random();
-        int randomIndex = random.nextInt(roleOptions.size());
-        WebElement selectRole = roleOptions.get(randomIndex);
-        selectRole.click();
+        WebElement selectRole1 = driver.findElement(By.xpath("//div[text()='oSBUl']"));
+        selectRole1.click();
 
         Thread.sleep(1000);
         mobNum.click();
@@ -120,26 +109,19 @@ public class EmployeeManagement extends BasePage{
         genderDropdown.click(); // open dropdown
         Thread.sleep(1000); // or better: use WebDriverWait
 
-        List<WebElement> genderOption = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("/html/body/div[4]/div/div/div[2]/div/div/div")));
-        int randomIdx = random.nextInt(genderOption.size());
-        WebElement selectGender = genderOption.get(randomIdx);
+//        List<WebElement> genderOption = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("/html/body/div[7]/div/div/div[2]/div/div/div")));
+//        int randomIdx = random.nextInt(genderOption.size());
+        WebElement selectGender = driver.findElement(By.xpath("//div[contains(@class,'ant-select-item-option') and @title='Male']"));
         selectGender.click();
 
         Thread.sleep(1000);
         System.out.println("Submit button is displayed: " + subEmp.isDisplayed());
         Thread.sleep(1000);
         subEmp.click();
-        System.out.println("Close button is visible :"+close.isDisplayed());
         Thread.sleep(1000);
-        System.out.println("Delete icon is visible :"+deleteIcon.isDisplayed());
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-        deleteIcon.click();
-        Thread.sleep(1000);
-        System.out.println("CloseButton in delete is displayed:"+close.isDisplayed());
-        System.out.println("Delete button is visible :"+deleteBtn.isDisplayed());
-        deleteBtn.click();
-        Thread.sleep(1000);
-
+        //  WebElement deleteIcon = driver.findElement(By.cssSelector("#__next > div > div:nth-child(2) > section > div > div > main > section > div:nth-child(3) > div > div > div.ant-table-wrapper.custom-antd-table.css-ac2jek > div > div > div > div > div > table > tbody > tr:nth-child(2) > td:nth-child(3) > div > div:nth-child(2) > svg"));
+//        WebElement delete =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#__next > div > div:nth-child(2) > section > div > div > main > section > div:nth-child(3) > div > div.ant-table-wrapper.custom-antd-table.css-198drv2 > div > div > div > div > div > table > tbody > tr:nth-child(2) > td:nth-child(3) > div > div:nth-child(2) > svg")));
+//        delete.click();
     }
 
     public String randomString() {

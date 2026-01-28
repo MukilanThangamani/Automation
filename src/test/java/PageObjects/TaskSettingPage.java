@@ -1,6 +1,7 @@
 package PageObjects;
 
 import org.junit.Assert;
+import org.junit.Test;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -64,18 +65,41 @@ public class TaskSettingPage extends BasePage{
         chrg.sendKeys(charge);
         Thread.sleep(1000);
         role.click();
-        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(20));
-        List<WebElement> roleOptions = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("/html/body/div[4]/div/div/div[2]/div/div/div")));
-
-        Random random = new Random();
-        int randomIndex = random.nextInt(roleOptions.size());
-        WebElement selectRole = roleOptions.get(randomIndex);
-        selectRole.click();
-
+      //  selectRandomAntDropdownOption();
+//        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(20));
+//        List<WebElement> roleOptions = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("/html/body/div[6]/div/div/div[2]/div[1]/div/div")));
+//        Random random = new Random();
+//        int randomIndex = random.nextInt(roleOptions.size());
+//        WebElement selectRole = roleOptions.get(randomIndex);
+//        selectRole.click();
+        WebElement tsk = driver.findElement(By.xpath("//div[text()='oSBUl']"));
+        tsk.click();
         Thread.sleep(1000);
         System.out.println("Task submit is visible :" + subTask.isDisplayed());
         Thread.sleep(1000);
         subTask.click();
+    }
+
+    public void selectRandomAntDropdownOption() {
+
+       WebDriverWait wait =  new WebDriverWait(driver, Duration.ofSeconds(10));
+
+       Random random = new Random();
+        By optionsLocator = By.xpath(
+                "//div[contains(@class,'ant-select-item-option') and @role='option']"
+        );
+
+        wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(optionsLocator, 0));
+
+        List<WebElement> options = driver.findElements(optionsLocator);
+
+        WebElement option = options.get(random.nextInt(options.size()));
+
+        ((JavascriptExecutor) driver).executeScript(
+                "arguments[0].scrollIntoView(true);", option
+        );
+
+        option.click();
     }
 
 
@@ -140,24 +164,30 @@ public class TaskSettingPage extends BasePage{
         }
     }
 
+
     public void addTask(String task, String chrge,String taskrole) throws InterruptedException {
         System.out.println("In duplicate for task setting..");
         addTask.click();
+        Thread.sleep(1000);
         tskname.sendKeys(task);
+        Thread.sleep(1000);
         chrg.sendKeys(chrge);
+        Thread.sleep(1000);
         role.click();
-
-        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(20));
-        List<WebElement> roleOptions = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("/html/body/div[4]/div/div/div[2]/div/div/div")));
-
-        Random random = new Random();
-        int randomIndex = random.nextInt(roleOptions.size());
-        WebElement selectRole = roleOptions.get(randomIndex);
-        selectRole.click();
-
+        Thread.sleep(1000);
+//        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(20));
+//        List<WebElement> roleOptions = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("body > div:nth-child(19) > div > div > div.rc-virtual-list > div.rc-virtual-list-holder > div > div")));
+//        Random random = new Random();
+//        int randomIndex = random.nextInt(roleOptions.size());
+//        WebElement select = roleOptions.get(randomIndex);
+//        select.click();
+        WebElement tsk = driver.findElement(By.xpath("//div[text()='oSBUl']"));
+        Thread.sleep(1000);
+        tsk.click();
         Thread.sleep(1000);
         subTask.click();
     }
+
 
     public void nextInTask() throws InterruptedException {
         System.out.println("next button is displayed in task settings :"+taskInNxt.isDisplayed());

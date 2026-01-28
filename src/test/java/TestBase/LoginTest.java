@@ -1,19 +1,19 @@
 package TestBase;
 
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import PageObjects.LoginPage;
-import TestBase.BaseClass;
 
 public class LoginTest extends BaseClass {
 
-    @Test(priority = 2)
-    // @Test(dependsOnMethods = "testHomePageAndClickLogin", alwaysRun = true)
+    @Test
     public void testLoginFunctionality() throws InterruptedException {
-        LoginPage lp = new LoginPage(driver);
-        lp.setPhonenumber("6369188818");
-        lp.setPassword("Mukilan@2003");
-        lp.clickLogin();
-        //  logger.info("Login successful");
-        //  logger.info("TestCase 2 passed");
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.setPhonenumber("6369188818");
+        loginPage.setPassword("Mukilan@2003");
+        loginPage.clickLogin();
     }
+
+
+
 }

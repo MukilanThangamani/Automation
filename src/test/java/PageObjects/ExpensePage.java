@@ -84,6 +84,8 @@ public class ExpensePage extends BasePage{
         System.out.println("Payment method dropdown is displayed :"+paymentMethod.isDisplayed());
         paymentMethod.click();
 
+        Thread.sleep(1000);
+
         List<WebElement> paymentmethod = driver.findElements(By.xpath("/html/body/div[4]/div/div/div[2]/div/div/div"));
         int randomIdx = random.nextInt(paymentmethod.size());
         WebElement selectedPayment = paymentmethod.get(randomIdx);

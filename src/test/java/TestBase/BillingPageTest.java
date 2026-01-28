@@ -5,7 +5,8 @@ import org.testng.annotations.Test;
 
 public class BillingPageTest extends BaseClass{
 
-    @Test(priority = 14)
+
+    @Test
     public void testBilling() throws InterruptedException {
         BillingPage bp = new BillingPage(driver);
         bp.navigateToBilling(phoneRandom(),randomString(),randomString());

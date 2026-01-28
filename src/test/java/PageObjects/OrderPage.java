@@ -64,17 +64,8 @@ public class OrderPage extends BasePage{
     @FindBy(id = "products_0_rushOrder")
     WebElement rushorder;
 
-    @FindBy(id="products_0_measurements_Length")
+    @FindBy(id="products_0_measurements_Sleeve Length")
     WebElement length;
-
-    @FindBy(id = "products_0_measurements_Waist")
-    WebElement width;
-
-    @FindBy(id = "products_0_measurements_Hip")
-    WebElement hei;
-
-    @FindBy(id = "products_0_measurements_ArmHole")
-    WebElement armHole;
 
     @FindBy(id = "products_0_notes")
     WebElement Notes;
@@ -176,7 +167,7 @@ public class OrderPage extends BasePage{
         Thread.sleep(1000);
         order.click();
         Thread.sleep(1000);
-        getClient();
+       // getClient();
         Thread.sleep(1000);
         System.out.println("Boutiques dropdown is visible :" + boutiques.isDisplayed());
         boutiques.click();
@@ -187,32 +178,43 @@ public class OrderPage extends BasePage{
         System.out.println("Order button is displayed or not :" + createOrder.isDisplayed());
         createOrder.click();
         Thread.sleep(2000);
-        System.out.println("Phone field is present:" + phoneNUmber.isDisplayed());
-        phoneNUmber.sendKeys(number);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-        System.out.println("Client name field is enabled :" + clientName.isEnabled());
-        clientName.sendKeys(name);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-        System.out.println("Address field is present or not :" + address.isDisplayed());
-        address.sendKeys(add);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-        Thread.sleep(2000);
-        System.out.println("Reference dropdown is displayed :" + ref.isDisplayed());
-        ref.click();
-        Thread.sleep(1000);
-      //  refOption.click();
-
-        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(20));
-        List<WebElement> refOptions = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("/html/body/div[5]/div/div/div[2]/div/div/div")));
-        Random random = new Random();
-        int randomIndex = random.nextInt(refOptions.size());
-        WebElement selectReference = refOptions.get(randomIndex);
-        Thread.sleep(1000);
-        selectReference.click();
-
-        Thread.sleep(1000);
-        System.out.println("Next button in client details :" + nextButton.isDisplayed());
         nextButton.click();
+
+        boolean isMobileErr = !driver.findElements(By.xpath("//div[text()='Mobile Number is required']")).isEmpty();
+        boolean isNameErr = !driver.findElements(By.xpath("//div[text()='Name is required']")).isEmpty();
+        boolean isAddressErr = !driver.findElements(By.xpath("//div[text()='Address is required']")).isEmpty();
+
+        if(isMobileErr || isNameErr || isAddressErr) {
+            System.out.println("Validation triggered: Filling mandatory fields...");
+            System.out.println("Phone field is present:" + phoneNUmber.isDisplayed());
+            phoneNUmber.sendKeys(number);
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+            System.out.println("Client name field is enabled :" + clientName.isEnabled());
+            clientName.sendKeys(name);
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+            System.out.println("Address field is present or not :" + address.isDisplayed());
+            address.sendKeys(add);
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+            Thread.sleep(2000);
+            System.out.println("Reference dropdown is displayed :" + ref.isDisplayed());
+            ref.click();
+            Thread.sleep(1000);
+            //  refOption.click();
+
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+            List<WebElement> refOptions = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("/html/body/div[7]/div/div/div[2]/div/div/div")));
+            Random random = new Random();
+            int randomIndex = random.nextInt(refOptions.size());
+            WebElement selectReference = refOptions.get(randomIndex);
+            Thread.sleep(1000);
+            selectReference.click();
+
+            Thread.sleep(1000);
+            System.out.println("Next button in client details :" + nextButton.isDisplayed());
+            nextButton.click();
+        }
+        else {}
+        System.out.println("proceeding to next screen..");
     }
 
     public void checkValueOfOrderDetail() throws InterruptedException {
@@ -230,17 +232,10 @@ public class OrderPage extends BasePage{
         Thread.sleep(1000);
         System.out.println("values checked completely in order page");
         nextButton.click();
-      //  String reference = driver.findElement(By.xpath("//select[@name='reference']")).getAttribute("value");
-      //  System.out.println(reference);
-      //  System.out.println("values checked completely in order page");
     }
 
     public void checkValueOfProductDetail(){
         System.out.println("Checking values of product details:");
-      //  WebElement dropdown = driver.findElement(By.xpath("//div[@role='combobox']"));
-      //  Select select = new Select(prodType);
-      //  String selectedItem = select.getFirstSelectedOption().getText();
-      //  System.out.println("Selected dropdown value: " + selectedItem);
 
         String Pname = driver.findElement(By.id("products_0_productName")).getAttribute("value");
         System.out.println("Entered value: " + Pname);
@@ -250,10 +245,6 @@ public class OrderPage extends BasePage{
         System.out.println("Entered value: " + pAmount);
         String l = length.getAttribute("value");
         System.out.println("length :"+l);
-        String w = width.getAttribute("value");
-        System.out.println("Waaist:"+w);
-        String H = hei.getAttribute("value");
-        System.out.println("Hip:"+H);
         System.out.println("values checked completely in product page");
     }
 
@@ -290,7 +281,7 @@ public class OrderPage extends BasePage{
         nextButton.click();
     }
 
-    public void ProductDetail(String productname,String date,String amount,String len,String wid,String height,String notes) throws InterruptedException {
+    public void ProductDetail(String productname,String date,String amount,String len,String notes) throws InterruptedException {
         //span[text()='Previous']
         Thread.sleep(1000);
         System.out.println("Product type is displayed : "+prodType.isDisplayed());
@@ -298,7 +289,7 @@ public class OrderPage extends BasePage{
         Thread.sleep(1000);
 
         WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(20));
-        List<WebElement> options = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("/html/body/div[6]/div/div/div[2]/div/div/div")));
+        List<WebElement> options = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("/html/body/div[8]/div/div/div[2]/div/div/div")));
         Random random = new Random();
         int randomIndex = random.nextInt(options.size());
         WebElement selectProduct = options.get(randomIndex);
@@ -316,37 +307,16 @@ public class OrderPage extends BasePage{
         System.out.println("Length measurement is displayed :"+length.isDisplayed());
         length.sendKeys(len);
         Thread.sleep(1000);
-        System.out.println("waist measurement is displayed :"+width.isDisplayed());
-        width.sendKeys(wid);
-        Thread.sleep(1000);
-        System.out.println("hip measurement is displayed :"+hei.isDisplayed());
-        hei.sendKeys(height);
-        Thread.sleep(1000);
 
         System.out.println("Notes field is measurement :"+Notes.isDisplayed());
         Notes.sendKeys(notes);
-
-      /*  outThigh.sendKeys(calf);
-        Thread.sleep(1000);
-        knee.sendKeys(hems);
-        Thread.sleep(1000);
-        shoulder.sendKeys(cro);
-        Thread.sleep(1000);
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);",src);
-        Thread.sleep(500); // give time for scroll to complete
-        src.click();
-        Thread.sleep(1000);
-        tar.click();
-        Thread.sleep(1500);
-        Actions builder = new Actions(driver);
-        builder.dragAndDrop(src,tar).perform();*/
 
         System.out.println("Next button in product details :" + nxtButton.isDisplayed());
         Thread.sleep(1000);
         previousPage();
         Thread.sleep(1000);
         Thread.sleep(1000);
-     //   nxtButton.click();
+
     }
 
     public void paymentDetails(String advamt) throws InterruptedException {
@@ -361,31 +331,11 @@ public class OrderPage extends BasePage{
         previousPage1();
         Thread.sleep(1000);
         checkValueOfPaymentDetail();
-        System.out.println("rommed from payment to order and returned");
+        System.out.println("payment to order and returned");
         System.out.println("Create order in order submit :"+orderSubmission.isDisplayed());
         Thread.sleep(1000);
         orderSubmission.submit();
-
         Thread.sleep(5000);
-   /*      WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-        Alert alert = wait.until(ExpectedConditions.alertIsPresent());
-        System.out.println(alert.getText());
-        alert.accept();
-
-       try{
-            WebElement nameCell = driver.findElement(By.xpath("//div[text()='"+naame+"']"));
-            WebElement nameCell1 = driver.findElement(By.xpath("//div[text()='"+num+"']"));
-            String actualText = nameCell.getText();
-            String actualText1 = nameCell1.getText();
-            Assert.assertEquals(actualText,naame);
-            Assert.assertEquals(actualText1,num);
-            System.out.println("Client detail name and you've entered name :"+naame);
-            System.out.println("Client detail name and you've entered name :"+"+91 "+num);
-        }
-
-        catch (Exception e){
-            e.printStackTrace();
-        }*/
-
     }
+
 }

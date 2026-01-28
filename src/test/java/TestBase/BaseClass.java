@@ -21,7 +21,6 @@ public class BaseClass {
         driver.manage().window().maximize();
         driver.get("https://www.fabriplay.com");
        // driver.get("https://stage.fabriplay.com/");
-
     }
 
     public String randomString() {
