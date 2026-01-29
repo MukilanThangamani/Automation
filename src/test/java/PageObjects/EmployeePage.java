@@ -95,8 +95,8 @@ public class EmployeePage extends BasePage {
         Thread.sleep(1000);
         mobNum.sendKeys(phoneRandom());
         Thread.sleep(1000);
-        mobNum1.click();
-        mobNum1.sendKeys(phoneRandom());
+      //  mobNum1.click();
+      //  mobNum1.sendKeys(phoneRandom());
         Thread.sleep(1000);
         pass.click();
         pass.sendKeys(randomAlphaAnumeric());
@@ -114,7 +114,17 @@ public class EmployeePage extends BasePage {
         Thread.sleep(1000);
         System.out.println("Submit button is displayed: " + subEmp.isDisplayed());
         Thread.sleep(1000);
+
         subEmp.click();
+
+        boolean isEmergencyErr = !driver.findElements(By.xpath("//div[text()='Emergency Contact Number is required']")).isEmpty();
+        if(isEmergencyErr){
+            mobNum1.click();
+            mobNum1.sendKeys(phoneRandom());
+        }
+        else {}
+        subEmp.click();
+
         Thread.sleep(1000);
       //  WebElement deleteIcon = driver.findElement(By.cssSelector("#__next > div > div:nth-child(2) > section > div > div > main > section > div:nth-child(3) > div > div > div.ant-table-wrapper.custom-antd-table.css-ac2jek > div > div > div > div > div > table > tbody > tr:nth-child(2) > td:nth-child(3) > div > div:nth-child(2) > svg"));
         WebElement delete =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#__next > div > div > div > section > div > div > main > section > div:nth-child(3) > div > div.ant-table-wrapper.custom-antd-table.css-198drv2 > div > div > div > div > div > table > tbody > tr:nth-child(2) > td:nth-child(3) > div > div:nth-child(2) > svg")));

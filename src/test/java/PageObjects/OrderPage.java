@@ -43,7 +43,7 @@ public class OrderPage extends BasePage{
     @FindBy(id = "reference")
     WebElement ref;
 
-    @FindBy(xpath = "//div[text()='Whatsapp']")
+    @FindBy(xpath = "//div[text()='Instagram']")
     WebElement refOption;
 
     @FindBy(xpath = "//span[text()='Next']")
@@ -199,16 +199,16 @@ public class OrderPage extends BasePage{
             System.out.println("Reference dropdown is displayed :" + ref.isDisplayed());
             ref.click();
             Thread.sleep(1000);
-            //  refOption.click();
 
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+          /*  WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
             List<WebElement> refOptions = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("/html/body/div[7]/div/div/div[2]/div/div/div")));
             Random random = new Random();
             int randomIndex = random.nextInt(refOptions.size());
             WebElement selectReference = refOptions.get(randomIndex);
             Thread.sleep(1000);
-            selectReference.click();
+            selectReference.click();*/
 
+            refOption.click();
             Thread.sleep(1000);
             System.out.println("Next button in client details :" + nextButton.isDisplayed());
             nextButton.click();
@@ -282,35 +282,46 @@ public class OrderPage extends BasePage{
     }
 
     public void ProductDetail(String productname,String date,String amount,String len,String notes) throws InterruptedException {
-        //span[text()='Previous']
         Thread.sleep(1000);
-        System.out.println("Product type is displayed : "+prodType.isDisplayed());
-        prodType.click();
-        Thread.sleep(1000);
+        nextButton.click();
 
-        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(20));
-        List<WebElement> options = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("/html/body/div[8]/div/div/div[2]/div/div/div")));
-        Random random = new Random();
-        int randomIndex = random.nextInt(options.size());
-        WebElement selectProduct = options.get(randomIndex);
-        selectProduct.click();
+        boolean isProductTypeErr = !driver.findElements(By.xpath("//div[text()='Product Type Required']")).isEmpty();
+        boolean isProductNameErr = !driver.findElements(By.xpath("//div[text()='Product Name Required']")).isEmpty();
+        boolean isDeliveryDateErr = !driver.findElements(By.xpath("//div[text()='Delivery Date Required']")).isEmpty();
+        boolean isProductAmtErr = !driver.findElements(By.xpath("//div[text()='Product Amount Required']")).isEmpty();
 
-        Thread.sleep(1000);
-        productName.sendKeys(productname);
-        Thread.sleep(1000);
-        delDate.sendKeys(date);
-        Thread.sleep(1000);
-        prodAmount.sendKeys(amount);
-        System.out.println("checkbox is displayed :" + rushorder.isDisplayed());
-        rushorder.click();
-        Thread.sleep(2000);
-        System.out.println("Length measurement is displayed :"+length.isDisplayed());
-        length.sendKeys(len);
-        Thread.sleep(1000);
+        if(isProductTypeErr || isProductNameErr || isDeliveryDateErr || isProductAmtErr) {
+            System.out.println("Product type is displayed : " + prodType.isDisplayed());
+            prodType.click();
+            Thread.sleep(1000);
 
-        System.out.println("Notes field is measurement :"+Notes.isDisplayed());
-        Notes.sendKeys(notes);
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+            List<WebElement> options = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("/html/body/div[8]/div/div/div[2]/div/div/div")));
+            Random random = new Random();
+            int randomIndex = random.nextInt(options.size());
+            WebElement selectProduct = options.get(randomIndex);
+            selectProduct.click();
 
+            Thread.sleep(1000);
+            productName.sendKeys(productname);
+            Thread.sleep(1000);
+            delDate.sendKeys(date);
+            Thread.sleep(1000);
+            prodAmount.sendKeys(amount);
+            System.out.println("checkbox is displayed :" + rushorder.isDisplayed());
+            rushorder.click();
+            Thread.sleep(2000);
+            System.out.println("Length measurement is displayed :" + length.isDisplayed());
+            length.sendKeys(len);
+            Thread.sleep(1000);
+
+            System.out.println("Notes field is measurement :" + Notes.isDisplayed());
+            Notes.sendKeys(notes);
+        }
+
+        else{
+            System.out.println("Moving to previous page");
+        }
         System.out.println("Next button in product details :" + nxtButton.isDisplayed());
         Thread.sleep(1000);
         previousPage();

@@ -94,9 +94,8 @@ public class BillingPage extends BasePage{
 
         System.out.println("Product quantity field is displayed:"+productQuantity.isDisplayed());
         Thread.sleep(1000);
-        productQuantity.click();
-        productQuantity.sendKeys(quantity);
-
+       // productQuantity.click();
+       // productQuantity.sendKeys(quantity);
         System.out.println("Price per unit field is displayed :"+pricePerUnit.isDisplayed());
         Thread.sleep(1000);
         pricePerUnit.click();
@@ -108,6 +107,13 @@ public class BillingPage extends BasePage{
 
         System.out.println("Submit button is displayed:"+submit.isDisplayed());
         Thread.sleep(1000);
+        submit.click();
+
+        boolean isQuantityErr = !driver.findElements(By.xpath("//div[text()='Quantity is required']")).isEmpty();
+        if(isQuantityErr){
+            productQuantity.sendKeys(quantity);
+        }else {}
+
         submit.click();
     }
 }

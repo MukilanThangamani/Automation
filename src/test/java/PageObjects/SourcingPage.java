@@ -100,13 +100,16 @@ public class SourcingPage extends BasePage{
         quant.sendKeys(quantity);
         System.out.println("Total amount is visible :"+totalamt.isDisplayed());
         Thread.sleep(1000);
-        totalamt.sendKeys(amt);
+       // totalamt.sendKeys(amt);
         System.out.println("Save sourcing button  is visible :"+savebtn.isDisplayed());
         System.out.println("Save sourcing button  is enabled :"+savebtn.isEnabled());
-        //  Thread.sleep(1000);//--->next give save for final
         savebtn.click();
         Thread.sleep(1000);
-        // close.click();
+        boolean isTotalAmount = !driver.findElements(By.xpath("//div[text()='Total Amount is required']")).isEmpty();
+        if(isTotalAmount){
+            totalamt.sendKeys(amt);
+        }
+        savebtn.click();
 
     }
 }

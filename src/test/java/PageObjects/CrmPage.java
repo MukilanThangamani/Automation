@@ -110,7 +110,7 @@ public class CrmPage extends BasePage{
         addCustomer.click();
         Thread.sleep(1000);
         System.out.println("client name field is visible :"+clientname.isDisplayed());
-        clientname.sendKeys(name);
+       // clientname.sendKeys(name);
         Thread.sleep(1000);
         System.out.println("Phone number field is visible :"+tele.isDisplayed());
         tele.sendKeys(phone);
@@ -132,8 +132,15 @@ public class CrmPage extends BasePage{
 
         System.out.println("Submit in client detail :"+subBtn.isDisplayed());
        // close.click();
-
         subBtn.submit();  //--> uncomment this for final execution
+
+        boolean isClientName = !driver.findElements(By.xpath("//div[text()='Name is required']")).isEmpty();
+        if(isClientName){
+            clientname.sendKeys(name);
+        }else {}
+
+        subBtn.submit();
+
     }
 
     public void measurement(String measu1,String measu2,String measu3) throws InterruptedException {

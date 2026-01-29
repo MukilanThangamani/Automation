@@ -68,6 +68,7 @@ public class ExpensePage extends BasePage{
     }
 
     public void addExpense(String s,String date,String amt) throws InterruptedException {
+
         System.out.println("Add Expense button is displayed :"+addexpense.isDisplayed());
         addexpense.click();
         Thread.sleep(1000);
@@ -102,7 +103,7 @@ public class ExpensePage extends BasePage{
         System.out.println("ExpenseAmount field is displayed :"+expenseAmount.isDisplayed());
         expenseAmount.click();
         Thread.sleep(1000);
-        expenseAmount.sendKeys(amt);
+       // expenseAmount.sendKeys(amt);
         Thread.sleep(1000);
         System.out.println("Payment status dropdown is displayed :"+paymentStatus.isDisplayed());
         paymentStatus.click();
@@ -115,6 +116,13 @@ public class ExpensePage extends BasePage{
 
         System.out.println("Create button is displayed :"+create.isDisplayed());
         Thread.sleep(1000);
+        create.click();
+        Thread.sleep(2000);
+        boolean isExpenseAmt = !driver.findElements(By.xpath("//div[text()='Expense amount is required']")).isEmpty();
+
+        if(isExpenseAmt){
+            expenseAmount.sendKeys(amt);
+        }
         create.click();
 
     }

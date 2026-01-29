@@ -1,5 +1,6 @@
 package PageObjects;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -56,43 +57,57 @@ public class AppointmentPage extends BasePage {
     //Actions
     public void clientDetails(String num,String cname,String add,String pur,String time,String not) throws InterruptedException {
         String pageTitle = driver.getTitle();
-        System.out.println("The page title is :"+pageTitle);
+        System.out.println("The page title is :" + pageTitle);
 
-        System.out.println("Appointment module button is displayed :"+appmodule.isDisplayed());
+        System.out.println("Appointment module button is displayed :" + appmodule.isDisplayed());
         appmodule.click();
         Thread.sleep(1000);
         scheduleApp.click();
         Thread.sleep(1000);
-        System.out.println("Phone number field is visible :"+phoneNUmber.isDisplayed());
-        phoneNUmber.sendKeys(num);
-        Thread.sleep(1000);
-        System.out.println("Client name field is visible :"+clientName.isDisplayed());
-        clientName.sendKeys(cname);
-        Thread.sleep(1000);
-        System.out.println("Address field is visible :"+address.isDisplayed());
-        address.sendKeys(add);
-        Thread.sleep(1000);
-        System.out.println("Reference field is visible :"+ref.isDisplayed());
-        ref.click();
-        Thread.sleep(1000);
-        System.out.println("Reference option field is visible :"+referenceOption.isDisplayed());
-        referenceOption.click();
-        Thread.sleep(1000);
-        System.out.println("Purpose field is visible :"+purpose.isDisplayed());
-        purpose.sendKeys(pur);
-        Thread.sleep(1000);
-        System.out.println("Select then appointment slot is visible :"+appointmentTime.isDisplayed());
-        Thread.sleep(1000);
-        appointmentTime.sendKeys(time);
-        Thread.sleep(1000);
-        okbtn.click();
-        Thread.sleep(1000);
-        System.out.println("Notes field is visible :"+notes.isDisplayed());
-        notes.sendKeys(not);
-        Thread.sleep(1000);
-        System.out.println("Submit button in appointment modal is visible :"+subApp.isDisplayed());
         subApp.submit();
-        Thread.sleep(1000);
+
+        boolean isMobileErr = !driver.findElements(By.xpath("//div[text()='Mobile Number is required']")).isEmpty();
+        boolean isClientErr = !driver.findElements(By.xpath("//div[text()='Client Name is required']")).isEmpty();
+        boolean isClientAddErr = !driver.findElements(By.xpath("//div[text()='Client Address is required']")).isEmpty();
+        boolean isReferenceErr = !driver.findElements(By.xpath("//div[text()='Reference is required']")).isEmpty();
+        boolean isPurposeErr = !driver.findElements(By.xpath("//div[text()='Purpose is required']")).isEmpty();
+        boolean isDeliveryDate = !driver.findElements(By.xpath("//div[text()='Appointment Date is required']")).isEmpty();
+
+        if (isMobileErr || isClientErr || isClientAddErr || isReferenceErr || isPurposeErr || isDeliveryDate) {
+            System.out.println("Phone number field is visible :" + phoneNUmber.isDisplayed());
+            phoneNUmber.sendKeys(num);
+            Thread.sleep(1000);
+            System.out.println("Client name field is visible :" + clientName.isDisplayed());
+            clientName.sendKeys(cname);
+            Thread.sleep(1000);
+            System.out.println("Address field is visible :" + address.isDisplayed());
+            address.sendKeys(add);
+            Thread.sleep(1000);
+            System.out.println("Reference field is visible :" + ref.isDisplayed());
+            ref.click();
+            Thread.sleep(1000);
+            System.out.println("Reference option field is visible :" + referenceOption.isDisplayed());
+            referenceOption.click();
+            Thread.sleep(1000);
+            System.out.println("Purpose field is visible :" + purpose.isDisplayed());
+            purpose.sendKeys(pur);
+            Thread.sleep(1000);
+            System.out.println("Select then appointment slot is visible :" + appointmentTime.isDisplayed());
+            Thread.sleep(1000);
+            appointmentTime.sendKeys(time);
+            Thread.sleep(1000);
+            okbtn.click();
+            Thread.sleep(1000);
+            System.out.println("Notes field is visible :" + notes.isDisplayed());
+            notes.sendKeys(not);
+            Thread.sleep(1000);
+            System.out.println("Submit button in appointment modal is visible :" + subApp.isDisplayed());
+            subApp.submit();
+            Thread.sleep(1000);
+        }
+        else{
+
+        }
     }
 
     public void updateAppointment(String update) throws InterruptedException {

@@ -92,17 +92,6 @@ public class EndToEnd {
         WebElement  cate = driver.findElement(By.id("category"));
         cate.click();
 
-//        WebElement newcat = driver.findElement(By.xpath("//span[text()='Create New Category']"));
-//        newcat.click();
-//
-//        WebElement catname = driver.findElement(By.id("categoryName"));
-//        catname.sendKeys(",m");
-//
-//        WebElement add = driver.findElement(By.xpath("//span[text()='Add']"));
-//        add.click();
-//
-//        WebElement catego = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("category")));
-//        catego.click();
 
         List<WebElement> categoryList = driver.findElements(By.xpath("/html/body/div[3]/div/div/div[2]/div/div/div"));
         Random random = new Random();
