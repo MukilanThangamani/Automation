@@ -90,7 +90,7 @@ public class EmployeeManagement extends BasePage{
         roleDropdown.click();
         Thread.sleep(1000); // Optional, better to wait with WebDriverWait
         Random random = new Random();
-        WebElement selectRole1 = driver.findElement(By.xpath("//div[text()='oSBUl']"));
+        WebElement selectRole1 = driver.findElement(By.xpath("//div[text()='PRHjD']"));
         selectRole1.click();
 
         Thread.sleep(1000);
@@ -119,7 +119,7 @@ public class EmployeeManagement extends BasePage{
         Thread.sleep(1000);
         subEmp.click();
         Thread.sleep(1000);
-     
+
     }
 
     public String randomString() {

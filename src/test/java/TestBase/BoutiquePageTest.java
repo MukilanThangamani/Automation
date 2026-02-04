@@ -8,7 +8,7 @@ import java.time.Duration;
 public class BoutiquePageTest extends BaseClass{
 
     @Test
-    public void testAddNewBoutique() throws InterruptedException {
+    public void testAddNewBoutiqueFields() throws InterruptedException {
         BoutiquePage bp = new BoutiquePage(driver);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
         bp.clickAddBoutique();

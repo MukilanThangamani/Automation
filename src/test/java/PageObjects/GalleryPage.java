@@ -87,14 +87,12 @@ public class GalleryPage extends BasePage{
         allImage.click();
         Thread.sleep(1000);
 
-
 //        List<WebElement> imageOptions = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("/html/body/div[5]/div/div/div[2]/div/div/div")));
 //        int imageSize = imageOptions.size();
 //        System.out.println("Total images dropdown in gallery:"+imageSize);
 //        Random random = new Random();
 //        WebElement option = imageOptions.get(random.nextInt(imageSize));
 //        option.click();
-//        Thread.sleep(1000);
 
         System.out.println("Add common images button is displayed:" + addCommonImages.isDisplayed());
         Thread.sleep(1000);
@@ -150,7 +148,7 @@ public class GalleryPage extends BasePage{
            WebElement fileInput = wait1.until(
                    ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@type='file']"))
            );
-           fileInput.sendKeys("/Users/apple/Downloads/kur4.jpeg");
+           fileInput.sendKeys("/Users/apple/Downloads/kur2.jpeg");
 
            System.out.println("Upload button is displayed:" + uploadBtn.isDisplayed());
            uploadBtn.click();
