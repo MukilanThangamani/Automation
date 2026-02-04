@@ -19,6 +19,7 @@
             <class name="TestBase.OrderPageTest"/>
             <class name="TestBase.CheckAvailabilityTest"/>
             <class name="TestBase.AppointmentPageTest"/>
+            <class name="TestBase.DesignBoardPageTest"/>
             <class name="TestBase.crmPageTest"/>
             <class name="TestBase.SourcingPageTest"/>
             <class name="TestBase.BillingPageTest"/>

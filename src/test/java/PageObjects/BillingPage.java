@@ -59,7 +59,7 @@ public class BillingPage extends BasePage{
         System.out.println("Billing module button is displayed :"+billingModule.isDisplayed());
         Thread.sleep(1000);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-        billingModule.click();
+       // billingModule.click();
         System.out.println("Estimation button is displayed:"+estimation.isDisplayed());
         Thread.sleep(1000);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
@@ -114,6 +114,14 @@ public class BillingPage extends BasePage{
             productQuantity.sendKeys(quantity);
         }else {}
 
+      //  submit.click();
+    }
+
+    public void submitEstimation() {
         submit.click();
+    }
+
+    public void moduleClick() {
+        billingModule.click();
     }
 }

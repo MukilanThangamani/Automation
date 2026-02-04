@@ -104,7 +104,7 @@ public class CrmPage extends BasePage{
         clickOneBoutique.click();*/
         Thread.sleep(2000);
         System.out.println("Crm button is visible :"+clickCrm.isDisplayed());
-        clickCrm.click();
+       // clickCrm.click();
         Thread.sleep(1000);
         System.out.println("Add customer button is displayed :"+addCustomer.isDisplayed());
         addCustomer.click();
@@ -186,5 +186,9 @@ public class CrmPage extends BasePage{
         subBtn.click();
         Thread.sleep(1000);
         driver.navigate().refresh();
+    }
+
+    public void moduleClick() {
+        clickCrm.click();
     }
 }

@@ -72,7 +72,7 @@ public class TaskSettingPage extends BasePage{
 //        int randomIndex = random.nextInt(roleOptions.size());
 //        WebElement selectRole = roleOptions.get(randomIndex);
 //        selectRole.click();
-        WebElement tsk = driver.findElement(By.xpath("//div[text()='PRHjD']"));
+        WebElement tsk = driver.findElement(By.xpath("//div[text()='prPaR']"));
         tsk.click();
         Thread.sleep(1000);
         System.out.println("Task submit is visible :" + subTask.isDisplayed());
@@ -181,7 +181,7 @@ public class TaskSettingPage extends BasePage{
 //        int randomIndex = random.nextInt(roleOptions.size());
 //        WebElement select = roleOptions.get(randomIndex);
 //        select.click();
-        WebElement tsk = driver.findElement(By.xpath("//div[text()='PRHjD']"));
+        WebElement tsk = driver.findElement(By.xpath("//div[text()='prPaR']"));
         Thread.sleep(1000);
         tsk.click();
         Thread.sleep(1000);
