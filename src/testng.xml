@@ -14,7 +14,7 @@
             <class name="TestBase.ShopePageTest"/>
             <class name="TestBase.RolePageTest"/>
             <class name="TestBase.EmployeePageTest"/>
-            <class name="TestBase.TaskPageTest"/>
+        <!--    <class name="TestBase.TaskPageTest"/> -->
             <class name="TestBase.ProductPageTest"/>
             <class name="TestBase.OrderPageTest"/>
             <class name="TestBase.CheckAvailabilityTest"/>

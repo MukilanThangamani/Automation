@@ -22,6 +22,10 @@ public class EmployeePage extends BasePage {
     }
 
     // Locators
+
+    @FindBy(xpath = "//span[text()='Add Employee']")
+    WebElement addEmployee;
+
     @FindBy(id = "boutique_name")
     WebElement empName;
 
@@ -66,14 +70,6 @@ public class EmployeePage extends BasePage {
         String pagetitle = driver.getTitle();
         System.out.println("The page title is :"+pagetitle);
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-
-       WebElement addEmp =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Add Employee']")));
-        Thread.sleep(2000);
-        System.out.println("Add emp button is displayed : " + addEmp.isDisplayed());
-        Thread.sleep(2000);
-        addEmp.click();
-
-      //  wait.until(ExpectedConditions.visibilityOf(empName));
         System.out.println("Add emp name field is displayed : " + empName.isDisplayed());
         Thread.sleep(2000);
         empName.sendKeys(randomString());
@@ -87,7 +83,7 @@ public class EmployeePage extends BasePage {
         roleDropdown.click();
         Thread.sleep(1000); // Optional, better to wait with WebDriverWait
         Random random = new Random();
-        WebElement selectRole1 = driver.findElement(By.xpath("//div[text()='prPaR']"));
+        WebElement selectRole1 = driver.findElement(By.xpath("//div[text()='Master']"));
         selectRole1.click();
 
         Thread.sleep(1000);
@@ -159,6 +155,10 @@ public class EmployeePage extends BasePage {
         String num = RandomStringUtils.randomNumeric(2);
         String nam = RandomStringUtils.randomAlphabetic(3);
         return nam + "@" + num;
+    }
+
+    public void clickAddEmp() {
+        addEmployee.click();
     }
 
 }

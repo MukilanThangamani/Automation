@@ -56,8 +56,12 @@ public class EmployeeManagement extends BasePage{
     @FindBy(xpath = "//span[text()='Close']")
     WebElement close;
 
+
     @FindBy(xpath = "//span[text()='Next']")
     WebElement nextButton;
+
+    @FindBy(css = "#__next > div > div:nth-child(3) > section > div > div > main > section > div > div.ant-table-wrapper.custom-antd-table.css-198drv2 > div > div > div > div > div > table > tbody > tr:nth-child(1) > td:nth-child(4) > div > div:nth-child(3) > svg > path")
+    WebElement payment;
 
 
     // Action
@@ -90,7 +94,7 @@ public class EmployeeManagement extends BasePage{
         roleDropdown.click();
         Thread.sleep(1000); // Optional, better to wait with WebDriverWait
         Random random = new Random();
-        WebElement selectRole1 = driver.findElement(By.xpath("//div[text()='prPaR']"));
+        WebElement selectRole1 = driver.findElement(By.xpath("//div[text()='Master']"));
         selectRole1.click();
 
         Thread.sleep(1000);
@@ -106,11 +110,7 @@ public class EmployeeManagement extends BasePage{
 
         System.out.println("Gender dropdown is visible: " + genderDropdown.isDisplayed());
         Thread.sleep(2000);
-        genderDropdown.click(); // open dropdown
-        Thread.sleep(1000); // or better: use WebDriverWait
-
-//        List<WebElement> genderOption = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("/html/body/div[7]/div/div/div[2]/div/div/div")));
-//        int randomIdx = random.nextInt(genderOption.size());
+        genderDropdown.click();
         WebElement selectGender = driver.findElement(By.xpath("//div[contains(@class,'ant-select-item-option') and @title='Male']"));
         selectGender.click();
 
@@ -136,4 +136,13 @@ public class EmployeeManagement extends BasePage{
         return nam + "@" + num;
     }
 
+    public void payment() throws InterruptedException {
+        Thread.sleep(1000);
+        System.out.println("Payment icon is visible :"+payment.isDisplayed());
+        payment.click();
+    }
+
+    public void closeBtn() {
+        close.click();
+    }
 }

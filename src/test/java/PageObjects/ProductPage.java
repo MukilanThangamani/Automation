@@ -167,4 +167,6 @@ public class ProductPage extends BasePage {
     public void assertAll() {
         softAssert.assertAll();
     }
+
+
 }
