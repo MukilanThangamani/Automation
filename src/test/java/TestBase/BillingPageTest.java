@@ -27,7 +27,6 @@ public class BillingPageTest extends BaseClass{
         System.out.println("Past invoice tab is present :"+salesOrder);
     }
 
-
     @Test(priority = 4)
     public void testBillingVaidation() throws InterruptedException {
         BillingPage bp = new BillingPage(driver);
