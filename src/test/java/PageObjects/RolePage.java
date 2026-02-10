@@ -49,6 +49,12 @@ public class RolePage extends BasePage {
     @FindBy(id = "roles_roleName")
     WebElement Data1;
 
+    @FindBy(id = "roles_tasks_0_taskName")
+    WebElement inittask;
+
+    @FindBy(id = "roles_tasks_0_chargesPerHour")
+    WebElement initchrg;
+
     @FindBy(xpath = "//span[text()='Submit']")
      WebElement submit;
 
@@ -67,8 +73,19 @@ public class RolePage extends BasePage {
         rolename.sendKeys(roleName);
 
         wait.until(ExpectedConditions.elementToBeClickable(rolesubnit)).click();
-        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//span[text()='Submit']")));
         System.out.println("Role '" + roleName + "' added.");
+    }
+
+    public void addTaskAndCharge(String s, String s1) throws InterruptedException {
+        System.out.println("TaskName field is displayed :"+inittask.isDisplayed());
+        Thread.sleep(1000);
+        inittask.sendKeys(s);
+        System.out.println("Charge field is displayed :"+initchrg.isDisplayed());
+        Thread.sleep(1000);
+        initchrg.sendKeys(s1);
+        Thread.sleep(1000);
+        rolesubnit.click();
+
     }
 
 
@@ -158,4 +175,6 @@ public class RolePage extends BasePage {
         System.out.println("In next button in role page ");
         nxtEmp.click();
     }
+
+
 }

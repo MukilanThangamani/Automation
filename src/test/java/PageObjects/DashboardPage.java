@@ -17,7 +17,7 @@ public class DashboardPage extends BasePage{
         super(driver);
     }
 
-    @FindBy(xpath = "//img[contains(@src, 'management.png')]")
+    @FindBy(css = "#__next > div > div > div > section > div > header > div:nth-child(2) > div:nth-child(4) > svg")
     WebElement Clksetting;
 
 

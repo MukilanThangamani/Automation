@@ -11,7 +11,7 @@ public class HomePageTest extends BaseClass {
     @Test
     public void testHomePageAndClickLogin() throws InterruptedException {
 
-        boolean w = driver.findElement(By.xpath("//span[text()='Explore for Free']")).isDisplayed();
+        boolean w = driver.findElement(By.xpath("//span[text()='Login']")).isDisplayed();
         System.out.println("login button visible:" + w);
 
         LogoPage lo = new LogoPage(driver);

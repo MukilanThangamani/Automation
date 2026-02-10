@@ -13,7 +13,7 @@ public class LogoPage extends BasePage{
     }
 
     //locator
-    @FindBy(xpath = "//span[text()='Explore for Free']")
+    @FindBy(xpath = "//span[text()='Login']")
     WebElement ClkLogin;
 
     //Action

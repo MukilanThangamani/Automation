@@ -11,6 +11,7 @@ public class RolePageTest extends BaseClass {
 
         String roleName = randomString();
         rp.add(roleName);
+        rp.addTaskAndCharge(randomString(),randomAmount());
         rp.verifyRoleInTable(roleName);
         System.out.println(" Role added and verified: " + roleName);
 
