@@ -15,7 +15,7 @@ public class AppointmentPage extends BasePage {
     @FindBy(xpath = "//span[text()='Appointments']")
     WebElement appmodule;
 
-    @FindBy(css = "#__next > div > div > div > section > div > header > div > div:nth-child(4) > button")
+    @FindBy(css = "#__next > div > div > div > section > div > header > div:nth-child(2) > div:nth-child(2) > svg")
     WebElement scheduleApp;
 
     @FindBy(xpath = "//input[@type='tel']")

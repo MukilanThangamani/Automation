@@ -20,7 +20,7 @@ public class RolePage extends BasePage {
     @FindBy(xpath = "//span[text()='Add Role']")
     WebElement addRole;
 
-    @FindBy(xpath = "//label[text()='Role']")
+    @FindBy(id = "roles_roleName")
     WebElement rolename;
 
     @FindBy(id = "roles_tasks_0_taskName")
@@ -177,9 +177,11 @@ public class RolePage extends BasePage {
 
 
 
-    public void moveToNextPage(){
+    public void moveToNextPage() throws InterruptedException {
         System.out.println("Role page tested ** ");
+        Thread.sleep(1000);
         System.out.println("In next button in role page ");
+        Thread.sleep(1000);
         nxtEmp.click();
     }
 

@@ -9,7 +9,7 @@ public class SourcingPageTest extends BaseClass{
     @Test
     public void toTestSourcing() throws InterruptedException {
         SourcingPage sp = new SourcingPage(driver);
-        sp.sourcingDetails("2","100","4");
+        sp.sourcingDetails("2","100","4",randomString());
     }
 
 }

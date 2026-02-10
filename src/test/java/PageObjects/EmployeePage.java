@@ -32,7 +32,7 @@ public class EmployeePage extends BasePage {
     @FindBy(id = "boutique_userRoleId")
     WebElement roleId;
 
-    @FindBy(xpath = "//div[text()='EMPLOYEE']")
+    @FindBy(xpath = "//div[text()='Employee']")
     WebElement selectRole;
 
     @FindBy(id = "boutique_roleId")
@@ -83,7 +83,7 @@ public class EmployeePage extends BasePage {
         roleDropdown.click();
         Thread.sleep(1000); // Optional, better to wait with WebDriverWait
         Random random = new Random();
-        WebElement selectRole1 = driver.findElement(By.xpath("//div[text()='Master']"));
+        WebElement selectRole1 = driver.findElement(By.xpath("//div[text()='DpIDb']"));
         selectRole1.click();
 
         Thread.sleep(1000);
@@ -104,7 +104,7 @@ public class EmployeePage extends BasePage {
 
 //        List<WebElement> genderOption = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("/html/body/div[7]/div/div/div[2]/div/div/div")));
 //        int randomIdx = random.nextInt(genderOption.size());
-        WebElement selectGender = driver.findElement(By.xpath("//div[contains(@class,'ant-select-item-option') and @title='Male']"));
+        WebElement selectGender = driver.findElement(By.xpath("//div[contains(@class,'ant-select-item-option')]//div[normalize-space()='Male']"));
         selectGender.click();
 
         Thread.sleep(1000);
@@ -123,7 +123,7 @@ public class EmployeePage extends BasePage {
 
         Thread.sleep(1000);
       //  WebElement deleteIcon = driver.findElement(By.cssSelector("#__next > div > div:nth-child(2) > section > div > div > main > section > div:nth-child(3) > div > div > div.ant-table-wrapper.custom-antd-table.css-ac2jek > div > div > div > div > div > table > tbody > tr:nth-child(2) > td:nth-child(3) > div > div:nth-child(2) > svg"));
-        WebElement delete =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#__next > div > div > div > section > div > div > main > section > div:nth-child(3) > div > div.ant-table-wrapper.custom-antd-table.css-198drv2 > div > div > div > div > div > table > tbody > tr:nth-child(2) > td:nth-child(3) > div > div:nth-child(2) > svg")));
+        WebElement delete =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#__next > div > div > div > section > div > div > main > section > div:nth-child(3) > div > div.ant-table-wrapper.custom-antd-table.css-198drv2 > div > div > div > div > div > table > tbody > tr:nth-child(2) > td:nth-child(4) > div > div:nth-child(2) > svg")));
         delete.click();
         Thread.sleep(1000);
         System.out.println("CloseButton in delete is displayed:"+close.isDisplayed());

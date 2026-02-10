@@ -7,11 +7,10 @@ import org.testng.annotations.Test;
 
 public class EmployeeManagementTest extends BaseClass{
 
-
-    @Test(priority = 17)
-    public void manageEmployee() throws InterruptedException {
-        EmployeeManagement em = new EmployeeManagement(driver);
-        em.empDetail();
+    @Test(priority = 0)
+    public void verifyModule() throws InterruptedException {
+        EmployeeManagement emp = new EmployeeManagement(driver);
+        emp.moduleClick();
     }
 
     @Test(priority = 1)
@@ -109,6 +108,13 @@ public class EmployeeManagementTest extends BaseClass{
         boolean closeBtn = driver.findElement(By.xpath("//span[text()='Close']")).isDisplayed();
         System.out.println("Verify close button is :"+closeBtn);
     }
+
+    @Test(priority = 17)
+    public void manageEmployee() throws InterruptedException {
+        EmployeeManagement em = new EmployeeManagement(driver);
+        em.empDetail();
+    }
+
 
     @Test(priority = 18)
     public void verifyPayment() throws InterruptedException {

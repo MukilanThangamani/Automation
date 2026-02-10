@@ -123,7 +123,7 @@ public class BoutiquePage extends BasePage {
 
 
     public void address(String shopnum, String address, String landmark, String cities, String pincode, String mobileNum) throws InterruptedException {
-        System.out.println("Start time is displayed : "+starttime.getText());
+      /*  System.out.println("Start time is displayed : "+starttime.getText());
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
         System.out.println("End time is displayed :"+entime.getText());
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
@@ -132,7 +132,7 @@ public class BoutiquePage extends BasePage {
         System.out.println("Interval end time is displayed :"+intervalEndttime.getText());
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
         System.out.println("ShopNUmber field is visible :"+shopNum.getText());
-        //    shopNum.clear();
+        */    shopNum.clear();
         //    shopNum.sendKeys(shopnum);
         Thread.sleep(1000);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));

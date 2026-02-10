@@ -93,7 +93,7 @@ public class RolePageTest extends BaseClass {
     }
 
     @Test(priority = 11)
-    public void nextPage(){
+    public void nextPage() throws InterruptedException {
         RolePage rp3 = new RolePage(driver);
         rp3.moveToNextPage();
     }

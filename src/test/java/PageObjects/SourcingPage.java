@@ -38,6 +38,9 @@ public class SourcingPage extends BasePage{
     @FindBy(xpath = "//span[text()='Save Sourcing']")
     WebElement savebtn;
 
+    @FindBy(id = "sourcing_remarks")
+    WebElement remarks;
+
     @FindBy(xpath = "//button[text()='Close']")
     WebElement close;
 
@@ -59,7 +62,7 @@ public class SourcingPage extends BasePage{
     @FindBy(xpath = "//*[@id=\"rc_select_1\"]")
     WebElement products;
 
-    public void sourcingDetails(String quantity,String amt,String updatequant) throws InterruptedException{
+    public void sourcingDetails(String quantity,String amt,String updatequant,String remark) throws InterruptedException{
         String pagetitle = driver.getTitle();
         System.out.println("The page title is :"+pagetitle);
         System.out.println("Sourcing button is visible :"+sourcingmodbtn.isDisplayed());
@@ -108,6 +111,7 @@ public class SourcingPage extends BasePage{
         boolean isTotalAmount = !driver.findElements(By.xpath("//div[text()='Total Amount is required']")).isEmpty();
         if(isTotalAmount){
             totalamt.sendKeys(amt);
+            remarks.sendKeys(remark);
         }
         savebtn.click();
 

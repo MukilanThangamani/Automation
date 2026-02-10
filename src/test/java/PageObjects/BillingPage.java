@@ -121,7 +121,8 @@ public class BillingPage extends BasePage{
         submit.click();
     }
 
-    public void moduleClick() {
+    public void moduleClick() throws InterruptedException {
+        Thread.sleep(2000);
         billingModule.click();
     }
 }

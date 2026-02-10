@@ -67,7 +67,7 @@ public class OrderPage extends BasePage{
     @FindBy(id="products_0_measurements_Sleeve Length")
     WebElement length;
 
-    @FindBy(id = "products_0_notes")
+    @FindBy(xpath = "//textarea[@placeholder='Type your custom instructions here...']")
     WebElement Notes;
 
     @FindBy(xpath = "//span[text()='Next']")
@@ -167,14 +167,14 @@ public class OrderPage extends BasePage{
         Thread.sleep(1000);
         order.click();
         Thread.sleep(1000);
-       // getClient();
+       /* getClient();
         Thread.sleep(1000);
         System.out.println("Boutiques dropdown is visible :" + boutiques.isDisplayed());
         boutiques.click();
-        Thread.sleep(1000);
+        Thread.sleep(2000);
         System.out.println("Boutique visible :" + clickOneBoutique.isDisplayed());
-        Thread.sleep(1000);
-        clickOneBoutique.click();
+        Thread.sleep(2000);
+        clickOneBoutique.click();*/
         System.out.println("Order button is displayed or not :" + createOrder.isDisplayed());
         createOrder.click();
         Thread.sleep(2000);

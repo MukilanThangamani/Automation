@@ -20,7 +20,7 @@ public class EmployeeManagement extends BasePage{
 
     //Locators
 
-    @FindBy(xpath = "//span[text()='Employee Management']")
+    @FindBy(xpath = "//span[text()='Employees']")
     WebElement empMgmt;
 
     @FindBy(id = "boutique_name")
@@ -29,7 +29,7 @@ public class EmployeeManagement extends BasePage{
     @FindBy(id = "boutique_userRoleId")
     WebElement roleId;
 
-    @FindBy(xpath = "//div[text()='EMPLOYEE']")
+    @FindBy(xpath = "//div[text()='Employee']")
     WebElement selectRole;
 
     @FindBy(id = "boutique_roleId")
@@ -60,15 +60,13 @@ public class EmployeeManagement extends BasePage{
     @FindBy(xpath = "//span[text()='Next']")
     WebElement nextButton;
 
-    @FindBy(css = "#__next > div > div:nth-child(3) > section > div > div > main > section > div > div.ant-table-wrapper.custom-antd-table.css-198drv2 > div > div > div > div > div > table > tbody > tr:nth-child(1) > td:nth-child(4) > div > div:nth-child(3) > svg > path")
+    @FindBy(css = "#__next > div > div > div > section > div > div > main > section > div > div.ant-table-wrapper.custom-antd-table.css-198drv2 > div > div > div > div > div > table > tbody > tr:nth-child(1) > td:nth-child(4) > div > div:nth-child(3) > svg > path")
     WebElement payment;
 
 
     // Action
     public void empDetail() throws InterruptedException {
         System.out.println("In Employee Management page");
-        System.out.println("Employee Management module is displayed:"+empMgmt.isDisplayed());
-        empMgmt.click();
 
         String pagetitle = driver.getTitle();
         System.out.println("The page title is :"+pagetitle);
@@ -94,7 +92,7 @@ public class EmployeeManagement extends BasePage{
         roleDropdown.click();
         Thread.sleep(1000); // Optional, better to wait with WebDriverWait
         Random random = new Random();
-        WebElement selectRole1 = driver.findElement(By.xpath("//div[text()='Master']"));
+        WebElement selectRole1 = driver.findElement(By.xpath("//div[text()='DpIDb']"));
         selectRole1.click();
 
         Thread.sleep(1000);
@@ -111,7 +109,7 @@ public class EmployeeManagement extends BasePage{
         System.out.println("Gender dropdown is visible: " + genderDropdown.isDisplayed());
         Thread.sleep(2000);
         genderDropdown.click();
-        WebElement selectGender = driver.findElement(By.xpath("//div[contains(@class,'ant-select-item-option') and @title='Male']"));
+        WebElement selectGender =  driver.findElement(By.xpath("//div[contains(@class,'ant-select-item-option')]//div[normalize-space()='Male']"));
         selectGender.click();
 
         Thread.sleep(1000);
@@ -144,5 +142,10 @@ public class EmployeeManagement extends BasePage{
 
     public void closeBtn() {
         close.click();
+    }
+
+    public void moduleClick() throws InterruptedException {
+        Thread.sleep(1000);
+        empMgmt.click();
     }
 }
