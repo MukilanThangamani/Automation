@@ -38,7 +38,7 @@ public class GalleryPageTest extends BaseClass{
 
     @Test(priority = 6)
     public void verifyAddFolder(){
-        boolean addFolder = driver.findElement(By.xpath("//*[@id=\"rc-tabs-3-panel-common\"]/div/div[1]/button/span")).isDisplayed();
+        boolean addFolder = driver.findElement(By.xpath("//span[text()='Add Folder']")).isDisplayed();
         System.out.println("Verify add folder button is displayed :"+addFolder);
     }
 

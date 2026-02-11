@@ -23,6 +23,9 @@ public class GalleryPage extends BasePage{
     @FindBy(id = "editFolder_folderName")
     WebElement foldername;
 
+    @FindBy(xpath = "//span[text()='Add Folder']")
+    WebElement addFolder;
+
     @FindBy(xpath = "//span[text()='Update']")
     WebElement update;
 
@@ -32,8 +35,8 @@ public class GalleryPage extends BasePage{
     }
 
     public void clickAddFolder() {
-        System.out.println("FolderName is displayed :"+foldername.isDisplayed());
-        foldername.click();
+        System.out.println("FolderName is displayed :"+addFolder.isDisplayed());
+        addFolder.click();
     }
 
     public void addName(String name) throws InterruptedException {

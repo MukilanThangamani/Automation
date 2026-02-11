@@ -104,64 +104,65 @@ public class EmployeeManagementTest extends BaseClass{
     }
 
     @Test(priority = 16)
-    public void verifyClose(){
+    public void verifyClose() throws InterruptedException {
         boolean closeBtn = driver.findElement(By.xpath("//span[text()='Close']")).isDisplayed();
         System.out.println("Verify close button is :"+closeBtn);
+        EmployeeManagement emp1 = new EmployeeManagement(driver);
+        emp1.closeBtn();
     }
 
     @Test(priority = 17)
-    public void manageEmployee() throws InterruptedException {
-        EmployeeManagement em = new EmployeeManagement(driver);
-        em.empDetail();
-    }
-
-
-    @Test(priority = 18)
     public void verifyPayment() throws InterruptedException {
         EmployeeManagement em1 = new EmployeeManagement(driver);
         em1.payment();
     }
 
-    @Test(priority = 19)
+    @Test(priority = 18)
     public void verifyType(){
         boolean type = driver.findElement(By.id("Advance_type")).isDisplayed();
         System.out.println("Verify type field is displayed :"+type);
     }
 
-    @Test(priority = 20)
+    @Test(priority = 19)
     public void verifyAmount(){
         boolean amt = driver.findElement(By.id("Advance_amount")).isDisplayed();
         System.out.println("Verify amt field is displayed :"+amt);
     }
 
-    @Test(priority = 21)
+    @Test(priority = 20)
     public void verifyDate(){
         boolean date = driver.findElement(By.id("Advance_date")).isDisplayed();
         System.out.println("Verify date field is displayed:"+date);
     }
 
-    @Test(priority = 22)
+    @Test(priority = 21)
     public void verifyRemarks(){
         boolean remarks = driver.findElement(By.id("Advance_remarks")).isDisplayed();
         System.out.println("Verify date field is displayed:"+remarks);
     }
 
-    @Test(priority = 23)
+    @Test(priority = 22)
     public void verifySubmitBtn(){
         boolean submitBtn = driver.findElement(By.xpath("//span[text()='Submit']")).isDisplayed();
         System.out.println("Verify submit button :"+submitBtn);
     }
 
-    @Test(priority = 24)
+    @Test(priority = 23)
     public void verifyCloseBtn(){
         boolean closeBtn = driver.findElement(By.xpath("//span[text()='Close']")).isDisplayed();
         System.out.println("Verify submit button :"+closeBtn);
     }
 
-    @Test(priority = 25)
-    public void close(){
+    @Test(priority = 24)
+    public void close() throws InterruptedException {
         EmployeeManagement em3 = new EmployeeManagement(driver);
         em3.closeBtn();
+    }
+
+    @Test(priority = 25)
+    public void manageEmployee() throws InterruptedException {
+        EmployeeManagement em = new EmployeeManagement(driver);
+        em.empDetail();
     }
 
 

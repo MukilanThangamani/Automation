@@ -137,10 +137,12 @@ public class EmployeeManagement extends BasePage{
     public void payment() throws InterruptedException {
         Thread.sleep(1000);
         System.out.println("Payment icon is visible :"+payment.isDisplayed());
+        Thread.sleep(2000);
         payment.click();
     }
 
-    public void closeBtn() {
+    public void closeBtn() throws InterruptedException {
+        Thread.sleep(1000);
         close.click();
     }
 
@@ -148,4 +150,5 @@ public class EmployeeManagement extends BasePage{
         Thread.sleep(1000);
         empMgmt.click();
     }
+
 }
