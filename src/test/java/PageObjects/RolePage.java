@@ -182,7 +182,8 @@ public class RolePage extends BasePage {
         Thread.sleep(1000);
         System.out.println("In next button in role page ");
         Thread.sleep(1000);
-        nxtEmp.click();
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", nxtEmp);
+       // nxtEmp.click();
     }
 
 }

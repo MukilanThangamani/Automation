@@ -77,32 +77,25 @@ public class SourcingPage extends BasePage{
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
-        List<WebElement> options = wait.until(
-                ExpectedConditions.visibilityOfAllElementsLocatedBy(
-                        By.xpath("/html/body/div[3]/div/div/div[2]/div[1]/div/div")
-                )
-        );
+        WebElement source = driver.findElement(By.xpath("//div[text()='2051 - KLiZx']"));
 
-        Random random = new Random();
-        int randomIndex = random.nextInt(options.size());  // random index from 0 to size-1
-        WebElement randomOption = options.get(randomIndex);
+        System.out.println("Sourcing type is visible :"+source.isDisplayed());
+        source.click();
 
-        randomOption.click();
-
-        System.out.println("Sourcing type is visible :"+sourceclick.isDisplayed());
-        sourceclick.click();
+        WebElement sourcingType = driver.findElement(By.id("sourcing_sourcingType"));
+        sourcingType.click();
 
         Thread.sleep(1500);
 
-        List<WebElement> sourcetype = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("/html/body/div[4]/div/div/div[2]/div/div/div")));
-        WebElement sourceoption = sourcetype.get(randomIndex);
-        sourceoption.click();
+        WebElement prodType = driver.findElement(By.xpath("//div[text()='Fabrics']"));
+        prodType.click();
 
         Thread.sleep(1000);
         System.out.println("Quantity field is visible :"+quant.isDisplayed());
         quant.sendKeys(quantity);
         System.out.println("Total amount is visible :"+totalamt.isDisplayed());
         Thread.sleep(1000);
+
        // totalamt.sendKeys(amt);
         System.out.println("Save sourcing button  is visible :"+savebtn.isDisplayed());
         System.out.println("Save sourcing button  is enabled :"+savebtn.isEnabled());

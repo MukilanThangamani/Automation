@@ -3,6 +3,7 @@ package PageObjects;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -140,7 +141,7 @@ public class EmployeePage extends BasePage {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ant-modal-wrap")));
         System.out.println("Next button is displayed: " + nextButton.isDisplayed());
-        nextButton.click();
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", nextButton);
     }
 
     public String randomString() {

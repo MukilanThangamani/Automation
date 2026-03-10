@@ -49,7 +49,8 @@ public class LoginPage extends BasePage {
     }
 
     public void clickLogin() throws InterruptedException {
-        reject.click();
+        Thread.sleep(1500);
+        //reject.click();
         System.out.println("login button is visible :"+clkLogin.isDisplayed());
         Thread.sleep(1000);
         clkLogin.click();

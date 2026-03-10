@@ -296,10 +296,7 @@ public class OrderPage extends BasePage{
             Thread.sleep(1000);
 
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-            List<WebElement> options = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("/html/body/div[8]/div/div/div[2]/div/div/div")));
-            Random random = new Random();
-            int randomIndex = random.nextInt(options.size());
-            WebElement selectProduct = options.get(randomIndex);
+            WebElement selectProduct = driver.findElement(By.xpath("/html/body/div[7]/div/div/div[2]/div/div/div/div[2]"));
             selectProduct.click();
 
             Thread.sleep(1000);
@@ -349,4 +346,15 @@ public class OrderPage extends BasePage{
         Thread.sleep(5000);
     }
 
+    public void closeModel() throws InterruptedException {
+        WebElement subBtn = driver.findElement(By.cssSelector("body > div:nth-child(17) > div > div.ant-modal-wrap > div > div:nth-child(1) > div > button"));
+        Thread.sleep(1000);
+        subBtn.click();
+    }
+
+    public void clickProduct() throws InterruptedException {
+        WebElement addProduct = driver.findElement(By.xpath("//span[text()='Add Product']"));
+        Thread.sleep(1000);
+        addProduct.click();
+    }
 }

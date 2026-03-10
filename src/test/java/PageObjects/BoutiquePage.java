@@ -1,6 +1,7 @@
 package PageObjects;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -73,9 +74,17 @@ public class BoutiquePage extends BasePage {
 
     // Actions
 
-    public void clickAddBoutique()  {
-        System.out.println("Boutique is visible :"+ClkPlus.isDisplayed());
-        ClkPlus.click();
+    public void clickAddBoutique() throws InterruptedException {
+        WebElement button = driver.findElement(By.xpath("(//button[contains(., 'View Details')])[32]"));
+
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView({block: 'center'});", button);
+
+        button.click();
+
+//        System.out.println("Boutique is visible :"+ClkPlus.isDisplayed());
+//        Thread.sleep(1500);
+//        button.click();
     }
 
 

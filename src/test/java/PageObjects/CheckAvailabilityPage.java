@@ -20,13 +20,13 @@ public class CheckAvailabilityPage extends BasePage{
     @FindBy(xpath = "//span[text()=' Check Availability']")
     WebElement checkmodbtn;
 
-    @FindBy(id = "tasks_0_roleId")
+    @FindBy(id = "tasks_0_taskTypeId")
     WebElement taskType;
 
     @FindBy(xpath = "//div[text()='CkUpE']")
     WebElement selecttask;
 
-    @FindBy(id = "tasks_0_estimatedTimeInMinutes")
+    @FindBy(id = "tasks_0_estimatedTimeInHours")
     WebElement estTime;
 
     @FindBy(id = "deliveryDate")
