@@ -26,6 +26,7 @@
             <class name="TestBase.ExpensePageTest"/>
             <class name="TestBase.EmployeeManagementTest"/>
            <class name="TestBase.GalleryPageTest"/>
+            <class name="TestBase.ReportPageTest"/>
         </classes>
 
     </test>

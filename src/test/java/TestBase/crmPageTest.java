@@ -65,6 +65,54 @@ public class crmPageTest extends BaseClass {
     }
 
     @Test(priority = 9)
+    public void verifyOcassion() throws InterruptedException {
+        CrmPage crmPage3 = new CrmPage(driver);
+        crmPage3.occasion();
+    }
+
+    @Test(priority = 10)
+    public void verifySelect() throws InterruptedException{
+        CrmPage obj = new CrmPage(driver);
+        obj.verifySelect();
+    }
+
+    @Test(priority = 11)
+    public void verifyDate() throws InterruptedException{
+        CrmPage obj1 = new CrmPage(driver);
+        obj1.verifyDate();
+    }
+
+    @Test(priority = 12)
+    public void verifyDeleteIcon(){
+        CrmPage obj1 = new CrmPage(driver);
+        obj1.verifyDelete();
+    }
+
+    @Test(priority = 13)
+    public void verifyAddOccasion(){
+        CrmPage obj2 = new CrmPage(driver);
+        obj2.verifyAddOccasion();
+    }
+
+    @Test(priority = 14)
+    public void verifySaveOccasion(){
+        CrmPage obj3 = new CrmPage(driver);
+        obj3.verifySaveOccasion();
+    }
+
+    @Test(priority = 15)
+    public void verifyClose(){
+        CrmPage obj4 = new CrmPage(driver);
+        obj4.verifyCloseBtn();
+    }
+
+    @Test(priority = 16)
+    public void validateData() throws InterruptedException {
+        CrmPage data = new CrmPage(driver);
+        data.validate("2026-03-13");
+    }
+
+    @Test(priority = 17)
     public void verifySearch() throws InterruptedException {
         CrmPage crmPage2 = new CrmPage(driver);
         crmPage2.search("Hasini");

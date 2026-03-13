@@ -296,7 +296,7 @@ public class OrderPage extends BasePage{
             Thread.sleep(1000);
 
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-            WebElement selectProduct = driver.findElement(By.xpath("/html/body/div[7]/div/div/div[2]/div/div/div/div[2]"));
+            WebElement selectProduct = driver.findElement(By.xpath("(//div[@title='Blouse']//div)[1]"));
             selectProduct.click();
 
             Thread.sleep(1000);
@@ -347,7 +347,7 @@ public class OrderPage extends BasePage{
     }
 
     public void closeModel() throws InterruptedException {
-        WebElement subBtn = driver.findElement(By.cssSelector("body > div:nth-child(17) > div > div.ant-modal-wrap > div > div:nth-child(1) > div > button"));
+        WebElement subBtn = driver.findElement(By.xpath("//button[@aria-label='Close']"));
         Thread.sleep(1000);
         subBtn.click();
     }
