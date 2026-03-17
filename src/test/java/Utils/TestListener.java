@@ -1,0 +1,39 @@
+package Utils;
+
+import org.openqa.selenium.WebDriver;
+import org.testng.*;
+import com.aventstack.extentreports.*;
+import TestBase.BaseClass;
+
+public class TestListener implements ITestListener {
+
+    public static ExtentReports extent = ExtendManager.getInstance();
+    public static ThreadLocal<ExtentTest> test = new ThreadLocal<>();
+
+    @Override
+    public void onTestStart(ITestResult result) {
+        test.set(extent.createTest(result.getMethod().getMethodName()));
+    }
+
+    @Override
+    public void onTestSuccess(ITestResult result) {
+        test.get().pass("Test Passed ✅");
+    }
+
+    @Override
+    public void onTestFailure(ITestResult result) {
+
+        Object currentClass = result.getInstance();
+        WebDriver driver = ((BaseClass) currentClass).getDriver();
+
+        String path = ScreenShotUtil.capture(driver, result.getMethod().getMethodName());
+
+        test.get().fail(result.getThrowable())
+                .addScreenCaptureFromPath(path);
+    }
+
+    @Override
+    public void onFinish(ITestContext context) {
+        extent.flush();
+    }
+}
