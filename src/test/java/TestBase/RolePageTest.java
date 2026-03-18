@@ -1,6 +1,7 @@
 package TestBase;
 
 import PageObjects.RolePage;
+import Utils.TestListener;
 import org.testng.annotations.Test;
 
 public class RolePageTest extends BaseClass {
@@ -10,7 +11,9 @@ public class RolePageTest extends BaseClass {
         RolePage rp = new RolePage(driver);
 
         String roleName = randomString();
+        TestListener.test.get().pass("Enter role name :");
         rp.add(roleName);
+        TestListener.test.get().pass("Enter task name and charge  :");
         rp.addTaskAndCharge(randomString(),randomAmount());
         rp.verifyRoleInTable(roleName);
         System.out.println(" Role added and verified: " + roleName);

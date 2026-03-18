@@ -1,6 +1,7 @@
 package TestBase;
 
 import PageObjects.BoutiquePage;
+import Utils.TestListener;
 import org.testng.annotations.Test;
 import java.time.Duration;
 
@@ -10,6 +11,7 @@ public class ShopePageTest extends BaseClass {
     public void verifyAllShopFields() throws InterruptedException {
         BoutiquePage bm = new BoutiquePage(driver);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+        TestListener.test.get().pass("Shop Details :");
        bm.enterShopName("The Atelier Edi");
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
        bm.enterLegalName("Looms");
