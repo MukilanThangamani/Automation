@@ -13,7 +13,7 @@ public class ExtendManager {
 
             ExtentSparkReporter spark = new ExtentSparkReporter("test-output/ExtentReport.html");
 
-            spark.config().setReportName("Boutique Automation Report");
+            spark.config().setReportName("Fabriplay Automation Report");
             spark.config().setDocumentTitle("Test Results");
 
             extent = new ExtentReports();

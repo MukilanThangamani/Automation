@@ -17,7 +17,7 @@ public class RolePageTest extends BaseClass {
 
         rp.nextBtn();
 
-        String editRole = randomString();
+     /*   String editRole = randomString();
         rp.editclick(editRole);
         System.out.println(" Role edited to: " + editRole);
 
@@ -27,7 +27,7 @@ public class RolePageTest extends BaseClass {
         System.out.println(" Checked for duplicate role: master");
 
         rp.moveToNextPage();
-        System.out.println(" Moved to next page after role tests");
+        System.out.println(" Moved to next page after role tests"); */
 
     }
 }

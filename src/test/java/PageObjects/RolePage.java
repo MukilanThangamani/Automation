@@ -168,8 +168,6 @@ public class RolePage extends BasePage {
       //  moveToNextPage(); // always move forward
     }
 
-
-
     public void moveToNextPage(){
         System.out.println("Role page tested ** ");
         System.out.println("In next button in role page ");

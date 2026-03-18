@@ -5,6 +5,9 @@ import org.testng.*;
 import com.aventstack.extentreports.*;
 import TestBase.BaseClass;
 
+import java.awt.*;
+import java.io.File;
+
 public class TestListener implements ITestListener {
 
     public static ExtentReports extent = ExtendManager.getInstance();
@@ -35,5 +38,13 @@ public class TestListener implements ITestListener {
     @Override
     public void onFinish(ITestContext context) {
         extent.flush();
+        try {
+            File report = new File("test-output/ExtentReport.html");
+            Desktop.getDesktop().browse(report.toURI());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
+
+
 }
