@@ -13,6 +13,10 @@ public class BaseClass {
 
     public static WebDriver driver;
 
+    public static WebDriver getDriver() {
+        return driver;
+    }
+
     @BeforeSuite(alwaysRun = true)
     public void setUpSuite() throws InterruptedException {
         WebDriverManager.chromedriver().setup();

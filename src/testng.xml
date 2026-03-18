@@ -3,6 +3,10 @@
 
 <suite name="Boutique Management Test Suite" parallel="false">
 
+    <listeners>
+        <listener class-name="Utils.TestListener"/>
+    </listeners>
+
     <test name="UI Automation Tests">
 
         <classes>
