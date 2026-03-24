@@ -45,22 +45,4 @@ public class GalleryPage extends BasePage{
         update.click();
     }
 
-<<<<<<< HEAD
-           WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(10));
-           WebElement fileInput = wait1.until(
-                   ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@type='file']"))
-           );
-           fileInput.sendKeys("/Users/apple/Downloads/ski4.jpeg");
-
-           System.out.println("Upload button is displayed:" + uploadBtn.isDisplayed());
-           uploadBtn.click();
-           Thread.sleep(1000);
-
-           System.out.println("Filter by category is displayed:" + filter.isDisplayed());
-           Thread.sleep(1000);
-
-       }
-    }
-=======
 }
->>>>>>> master

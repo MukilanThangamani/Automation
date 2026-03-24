@@ -19,8 +19,11 @@ public class OrderPage extends BasePage{
     }
 
     //locators:
-    @FindBy(xpath = "//span[text()=' Orders']")
-    WebElement order;
+    @FindBy(xpath = "//span[normalize-space(text())='Orders & Outsourcing']")
+    WebElement orderAndOutsourcing;
+
+    @FindBy(xpath = "//span[normalize-space(text())='Orders']")
+    WebElement orders;
 
     @FindBy(xpath = "//h3[text()='The Atelier Edits']" )
     WebElement boutiques;
@@ -163,9 +166,11 @@ public class OrderPage extends BasePage{
     public void orderModuleClient(String number,String name,String add) throws InterruptedException {
         naame = name;
         num=number;
-        System.out.println("Order button is displayed or not :" + order.isDisplayed());
+        System.out.println("Order button is displayed or not :" + orderAndOutsourcing.isDisplayed());
         Thread.sleep(1000);
-        order.click();
+        orderAndOutsourcing.click();
+        Thread.sleep(1000);
+        orders.click();
         Thread.sleep(1000);
        /* getClient();
         Thread.sleep(1000);

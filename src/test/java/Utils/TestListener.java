@@ -46,10 +46,4 @@ public class TestListener implements ITestListener {
             e.printStackTrace();
         }
     }
-
-
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> master

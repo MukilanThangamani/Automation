@@ -6,7 +6,6 @@ import org.testng.annotations.Test;
 
 public class ExpensePageTest extends BaseClass{
 
-<<<<<<< HEAD
     @Test(priority = 1)
     public void verifyExpenseModule(){
         ExpensePage ep = new ExpensePage(driver);
@@ -38,10 +37,6 @@ public class ExpensePageTest extends BaseClass{
     }
 
     @Test(priority = 6)
-=======
-
-    @Test
->>>>>>> master
     public void testExpense() throws InterruptedException{
         ExpensePage ep = new ExpensePage(driver);
         ep.addCategory(randomString());

@@ -35,64 +35,12 @@ public class RolePage extends BasePage {
     @FindBy(xpath = "//span[text()='Next']")
     WebElement nxtEmp;
 
-<<<<<<< HEAD
-    @FindBy(xpath = "//span[text()='Previous']")
-    WebElement previousToRole;
-
-    @FindBy(xpath = "//button[contains(@class,'MuiIconButton-root')])[5]")
-    WebElement firstIcon;
-
-    @FindBy(xpath = "//input[@name='roleName']")
-    WebElement r1;
-
-    @FindBy(xpath = "//button[text()='Submit']")
-    WebElement s1;
-
-    @FindBy(css="#__next > div > div > div > section > div > div > main > section > div:nth-child(3) > div > div > div.ant-table-wrapper.custom-antd-table.css-198drv2 > div > div > div > div > div > table > tbody > tr:nth-child(1) > td:nth-child(2) > div")
-    WebElement firstEdit;
-
-    @FindBy(id = "roles_roleName")
-    WebElement Data1;
-
-    @FindBy(id = "roles_tasks_0_taskName")
-    WebElement inittask;
-
-    @FindBy(id = "roles_tasks_0_chargesPerHour")
-    WebElement initchrg;
-
-    @FindBy(xpath = "//span[text()='Submit']")
-     WebElement submit;
-
-
-    //  Method to add a role (without verifying immediately)
-
-=======
->>>>>>> master
     public void add(String roleName) throws InterruptedException {
         addRole.click();
         Thread.sleep(1000);
         rolesubmit.click();
         Thread.sleep(1000);
         rolename.sendKeys(roleName);
-<<<<<<< HEAD
-
-        wait.until(ExpectedConditions.elementToBeClickable(rolesubnit)).click();
-        System.out.println("Role '" + roleName + "' added.");
-    }
-
-    public void addTaskAndCharge(String s, String s1) throws InterruptedException {
-        System.out.println("TaskName field is displayed :"+inittask.isDisplayed());
-        Thread.sleep(1000);
-        inittask.sendKeys(s);
-        System.out.println("Charge field is displayed :"+initchrg.isDisplayed());
-        Thread.sleep(1000);
-        initchrg.sendKeys(s1);
-        Thread.sleep(1000);
-        rolesubnit.click();
-
-    }
-
-=======
         Thread.sleep(1000);
     }
 
@@ -147,7 +95,6 @@ public class RolePage extends BasePage {
 //        System.out.println("Role '" + roleName + "' added.");
 //    }
 
->>>>>>> master
 
 
     //  Final verification after all roles added
@@ -228,23 +175,15 @@ public class RolePage extends BasePage {
 //      //  moveToNextPage(); // always move forward
 //    }
 
-<<<<<<< HEAD
-    public void moveToNextPage(){
-=======
 
 
     public void moveToNextPage() throws InterruptedException {
->>>>>>> master
         System.out.println("Role page tested ** ");
         Thread.sleep(1000);
         System.out.println("In next button in role page ");
         Thread.sleep(1000);
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", nxtEmp);
-       // nxtEmp.click();
+        // nxtEmp.click();
     }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> master
 }

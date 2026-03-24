@@ -1,23 +1,18 @@
 package TestBase;
 
 import PageObjects.EmployeePage;
-<<<<<<< HEAD
 import Utils.TestListener;
-=======
 import org.openqa.selenium.By;
->>>>>>> master
+import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 
 public class EmployeePageTest extends BaseClass{
 
-    @Test(priority = 17)
+    @Test(priority = 30)
     public void testAddEmployee() throws InterruptedException {
         EmployeePage ep = new EmployeePage(driver);
-<<<<<<< HEAD
         TestListener.test.get().pass("Enter employee details :");
           String[] names = {randomString(), randomString()};
-=======
->>>>>>> master
           ep.empDetail();
           ep.nxtBtnEmp();
     }
@@ -114,8 +109,91 @@ public class EmployeePageTest extends BaseClass{
 
     @Test(priority = 16)
     public void verifyClose(){
-        boolean closeBtn = driver.findElement(By.xpath("//span[text()='Close']")).isDisplayed();
-        System.out.println("Verify close button is :"+closeBtn);
+        WebElement clo = driver.findElement(By.xpath("//span[text()='Close']"));
+        System.out.println("Verify close button is :"+clo.isDisplayed());
+        clo.click();
     }
+
+    @Test(priority = 17)
+    public void verifyOutsourcingEmp(){
+        boolean outsourcing = driver.findElement(By.xpath("//div[normalize-space(text())='Outsourcing Employees']")).isDisplayed();
+        System.out.println("Verify outsourcing employee is visible:"+outsourcing);
+    }
+
+    @Test(priority = 18)
+    public void clickOnOutsourcing() throws InterruptedException {
+        EmployeePage ep1 = new EmployeePage(driver);
+        ep1.clickOutsourcing();
+    }
+
+    @Test(priority = 19)
+    public void verifySearchField(){
+        boolean search = driver.findElement(By.xpath("(//input[@placeholder='Search...'])[2]")).isDisplayed();
+        System.out.println("Verify search field :"+search);
+    }
+
+    @Test(priority = 20)
+    public void verifyAddOutsourcingButton(){
+        boolean addoutsourcing = driver.findElement(By.xpath("//span[normalize-space(text())='Add Outsourcing Employee']")).isDisplayed();
+        System.out.println("Verify outsourcing employee is displayed:"+addoutsourcing);
+    }
+
+    @Test(priority = 21)
+    public void verifyMobileHeading() throws InterruptedException {
+        boolean mobileNum = driver.findElement(By.xpath("//th[normalize-space(text())='Mobile Number']")).isDisplayed();
+        System.out.println("Verify mobile header :"+mobileNum);
+    }
+
+    @Test(priority = 22)
+    public void clickOnAddButton() throws InterruptedException {
+        EmployeePage ep1 = new EmployeePage(driver);
+        ep1.clickOnAddOutsourcing();
+    }
+
+    @Test(priority = 23)
+    public void verifyName(){
+        boolean name = driver.findElement(By.xpath("(//label[normalize-space(text())='Name']/following::input)[1]")).isDisplayed();
+        System.out.println("Verify name field is displayed :"+name);
+    }
+
+    @Test(priority = 24)
+    public void verifyMobile(){
+        boolean mobile = driver.findElement(By.id("mobileNumber")).isDisplayed();
+        System.out.println("Verify Employee Mobile number field :"+mobile);
+    }
+
+    @Test(priority = 25)
+    public void verifyRole(){
+        boolean role = driver.findElement(By.id("employeeRoleId")).isDisplayed();
+        System.out.println("Verify role field is visible:"+role);
+    }
+
+    @Test(priority = 26)
+    public void verifyAddress(){
+        boolean address = driver.findElement(By.id("address")).isDisplayed();
+        System.out.println("Verify address field :"+address);
+    }
+
+    @Test(priority = 27)
+    public void verifySubmitButton(){
+        boolean submit = driver.findElement(By.xpath("//span[normalize-space(text())='Submit']")).isDisplayed();
+        System.out.println("Verify submit button :"+submit);
+    }
+
+    @Test(priority = 28)
+    public void verifyCloseButton(){
+        boolean close = driver.findElement(By.xpath("//span[normalize-space(text())='Close']")).isDisplayed();
+        System.out.println("Verify close button :"+close);
+    }
+
+    @Test(priority = 29)
+    public void verifyData() throws InterruptedException {
+        EmployeePage ep2 = new EmployeePage(driver);
+        ep2.enterData(randomString(),phoneRandom(),randomString());
+    }
+
+
+
+
 
 }

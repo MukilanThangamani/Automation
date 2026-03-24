@@ -24,6 +24,9 @@ public class EmployeePage extends BasePage {
 
     // Locators
 
+    @FindBy(xpath = "//div[normalize-space(text())='Employees']")
+    WebElement employees;
+
     @FindBy(xpath = "//span[text()='Add Employee']")
     WebElement addEmployee;
 
@@ -63,6 +66,26 @@ public class EmployeePage extends BasePage {
     @FindBy(xpath = "//span[text()='Next']")
     WebElement nextButton;
 
+    @FindBy(xpath = "//div[normalize-space(text())='Outsourcing Employees']")
+    WebElement outsourcing;
+
+    @FindBy(xpath = "//span[normalize-space(text())='Add Outsourcing Employee']")
+    WebElement addOutsourcing;
+
+    @FindBy(xpath = "(//label[normalize-space(text())='Name']/following::input)[1]")
+    WebElement name;
+
+    @FindBy(id = "mobileNumber")
+    WebElement empmob;
+
+    @FindBy(id = "address")
+    WebElement empaddress;
+
+    @FindBy(xpath = "//span[normalize-space(text())='Submit']")
+    WebElement submitOutsourcing;
+
+    @FindBy(xpath = "//input[@aria-controls='employeeRoleId_list']")
+    WebElement empRoleList;
 
     // Action
 
@@ -71,6 +94,10 @@ public class EmployeePage extends BasePage {
         String pagetitle = driver.getTitle();
         System.out.println("The page title is :"+pagetitle);
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        employees.click();
+        Thread.sleep(1000);
+        addEmployee.click();
+        Thread.sleep(1000);
         System.out.println("Add emp name field is displayed : " + empName.isDisplayed());
         Thread.sleep(2000);
         empName.sendKeys(randomString());
@@ -83,12 +110,7 @@ public class EmployeePage extends BasePage {
         Thread.sleep(2000);
         roleDropdown.click();
         Thread.sleep(1000); // Optional, better to wait with WebDriverWait
-        Random random = new Random();
-<<<<<<< HEAD
-        WebElement selectRole1 = driver.findElement(By.xpath("//div[text()='BHyyM']"));
-=======
-        WebElement selectRole1 = driver.findElement(By.xpath("//div[text()='DpIDb']"));
->>>>>>> master
+        Random random = new Random();WebElement selectRole1 = driver.findElement(By.xpath("//div[text()='DpIDb']"));
         selectRole1.click();
 
         Thread.sleep(1000);
@@ -107,8 +129,6 @@ public class EmployeePage extends BasePage {
         genderDropdown.click(); // open dropdown
         Thread.sleep(1000); // or better: use WebDriverWait
 
-//        List<WebElement> genderOption = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("/html/body/div[7]/div/div/div[2]/div/div/div")));
-//        int randomIdx = random.nextInt(genderOption.size());
         WebElement selectGender = driver.findElement(By.xpath("//div[contains(@class,'ant-select-item-option')]//div[normalize-space()='Male']"));
         selectGender.click();
 
@@ -127,25 +147,39 @@ public class EmployeePage extends BasePage {
         subEmp.click();
 
         Thread.sleep(1000);
-      //  WebElement deleteIcon = driver.findElement(By.cssSelector("#__next > div > div:nth-child(2) > section > div > div > main > section > div:nth-child(3) > div > div > div.ant-table-wrapper.custom-antd-table.css-ac2jek > div > div > div > div > div > table > tbody > tr:nth-child(2) > td:nth-child(3) > div > div:nth-child(2) > svg"));
-        WebElement delete =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#__next > div > div > div > section > div > div > main > section > div:nth-child(3) > div > div.ant-table-wrapper.custom-antd-table.css-198drv2 > div > div > div > div > div > table > tbody > tr:nth-child(2) > td:nth-child(4) > div > div:nth-child(2) > svg")));
-        delete.click();
-        Thread.sleep(1000);
-        System.out.println("CloseButton in delete is displayed:"+close.isDisplayed());
-        Thread.sleep(1000);
-        System.out.println("Delete button is visible :"+deleteBtn.isDisplayed());
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-        deleteBtn.click();
-        Thread.sleep(1000);
     }
-
-    // Java
 
     public void nxtBtnEmp() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ant-modal-wrap")));
         System.out.println("Next button is displayed: " + nextButton.isDisplayed());
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", nextButton);
+    }
+
+    public void clickOutsourcing() throws InterruptedException {
+        System.out.println("Outsourcing Employee is displayed :"+outsourcing.isDisplayed());
+        Thread.sleep(1000);
+        outsourcing.click();
+    }
+
+    public void clickOnAddOutsourcing() throws InterruptedException {
+        Thread.sleep(1000);
+        addOutsourcing.click();
+    }
+
+    public void enterData(String empname, String Mobile ,String add) throws InterruptedException {
+        name.sendKeys(empname);
+        Thread.sleep(1000);
+        empmob.sendKeys(Mobile);
+        Thread.sleep(1000);
+        empRoleList.click();
+        Thread.sleep(1000);
+        WebElement role = driver.findElement(By.xpath("//div[normalize-space(text())='DpIDb']"));
+        role.click();
+        Thread.sleep(1000);
+        empaddress.sendKeys(add);
+        Thread.sleep(1000);
+        submitOutsourcing.click();
     }
 
     public String randomString() {

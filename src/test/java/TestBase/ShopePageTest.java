@@ -1,11 +1,8 @@
 package TestBase;
 
 import PageObjects.BoutiquePage;
-<<<<<<< HEAD
 import Utils.TestListener;
-=======
 import org.openqa.selenium.By;
->>>>>>> master
 import org.testng.annotations.Test;
 import java.time.Duration;
 
@@ -85,6 +82,12 @@ public class ShopePageTest extends BaseClass {
     }
 
     @Test(priority = 13)
+    public void verifyWhatsappNum(){
+        boolean whatsapp = driver.findElement(By.id("boutique_whatsappPhone")).isDisplayed();
+        System.out.println("Verify whatsapp number field :"+whatsapp);
+    }
+
+    @Test(priority = 14)
     public void verifyAllShopFields() throws InterruptedException {
         BoutiquePage bm = new BoutiquePage(driver);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));

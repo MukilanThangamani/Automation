@@ -18,8 +18,5 @@ public class ScreenShotUtil {
 
         return path;
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> master
+

@@ -55,11 +55,7 @@ public class LoginPage extends BasePage {
         Thread.sleep(1000);
         clkLogin.click();
         Thread.sleep(1000);
-<<<<<<< HEAD
-      //  cross.click();
-=======
-       // cross.click();
->>>>>>> master
+        // cross.click();
     }
 
 

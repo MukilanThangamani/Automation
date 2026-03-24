@@ -92,11 +92,7 @@ public class EmployeeManagement extends BasePage{
         roleDropdown.click();
         Thread.sleep(1000); // Optional, better to wait with WebDriverWait
         Random random = new Random();
-<<<<<<< HEAD
-        WebElement selectRole1 = driver.findElement(By.xpath("//div[text()='BHyyM']"));
-=======
         WebElement selectRole1 = driver.findElement(By.xpath("//div[text()='DpIDb']"));
->>>>>>> master
         selectRole1.click();
 
         Thread.sleep(1000);

@@ -53,7 +53,7 @@ public class SourcingPage extends BasePage{
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
-        WebElement source = driver.findElement(By.xpath("//div[text()='2051 - KLiZx']"));
+        WebElement source = driver.findElement(By.xpath("//div[@title='2077 - lBzJP']//div[1]"));
 
         System.out.println("Sourcing type is visible :"+source.isDisplayed());
         source.click();

@@ -2,6 +2,7 @@ package TestBase;
 import PageObjects.OrderPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class OrderPageTest extends BaseClass{
@@ -13,11 +14,7 @@ public class OrderPageTest extends BaseClass{
         op.dashboard();
         op.orderModuleClient(phoneRandom(),randomString(),randomString());
         System.out.println("*** All over ***");
-<<<<<<< HEAD
-        op.ProductDetail(randomString(),"18/03/2026",randomNumber(),randomLength(),"Wait for your delivery");
-=======
-        op.ProductDetail(randomString(),"17/03/2026",randomNumber(),randomLength(),"Wait for your delivery");
->>>>>>> master
+        op.ProductDetail(randomString(),"24/03/2026",randomNumber(),randomLength(),"Wait for your delivery");
         op.paymentDetails(randomLength());
         System.out.println("***Order successfully created***");
     }
@@ -39,7 +36,7 @@ public class OrderPageTest extends BaseClass{
     @Test(priority = 3)
     public void verifyProductSpecification(){
         WebElement prodSpecification = driver.findElement(By.xpath("//strong[text()=' Product Specification']"));
-        System.out.println("TProduct specification is displayed :"+prodSpecification.isDisplayed());
+        System.out.println("Product specification is displayed :"+prodSpecification.isDisplayed());
     }
 
     @Test(priority = 4)
@@ -102,6 +99,79 @@ public class OrderPageTest extends BaseClass{
         op1.closeModel();
     }
 
+    @Test(priority = 15)
+    public void verifySaveAllButton(){
+        WebElement saveAll = driver.findElement(By.xpath("//span[normalize-space(text())='Save All']"));
+        System.out.println("Verify save all button is visible :"+saveAll.isDisplayed());
+        saveAll.click();
+    }
 
+    @Test(priority = 16)
+    public void verifyOutsourcing(){
+        WebElement outsourcing = driver.findElement(By.xpath("//span[normalize-space(text())='Outsourcing']"));
+        System.out.println("Outsourcing module is visible:"+outsourcing.isDisplayed());
+        outsourcing.click();
+    }
+
+    @Test(priority = 17)
+    public void verifyTitle(){
+        boolean outSourcing = driver.findElement(By.xpath("//h2[normalize-space(text())='Outsourcing']")).isDisplayed();
+        System.out.println("Verify outsourcing title is displayed :"+outSourcing);
+        Assert.assertTrue(outSourcing,"OutSourcing title is not displayed");
+    }
+
+    @Test(priority = 18)
+    public void verifyGivenStatus(){
+        boolean givenStatus = driver.findElement(By.xpath("//span[@title='Given']")).isDisplayed();
+        System.out.println("Verify status dropdown is displayed :"+givenStatus);
+    }
+
+    @Test(priority = 19)
+    public void verifySearchField(){
+        boolean search = driver.findElement(By.xpath("//input[@placeholder='Search...']")).isDisplayed();
+        System.out.println("Verify search field is displayed:"+search);
+    }
+
+    @Test(priority = 20)
+    public void verifyOrderNo(){
+        boolean orderNo = driver.findElement(By.xpath("//th[normalize-space(text())='Order Number']")).isDisplayed();
+        System.out.println("Verify order number is visible :"+orderNo);
+    }
+
+    @Test(priority = 21)
+    public void verifyProduct(){
+        boolean prod = driver.findElement(By.xpath("//th[normalize-space(text())='Product']")).isDisplayed();
+        System.out.println("Verifuy product detail is displayed :"+prod);
+    }
+
+    @Test(priority = 22)
+    public void verifyGivenDate(){
+        boolean givenDate = driver.findElement(By.xpath("//th[normalize-space(text())='Given Date']")).isDisplayed();
+        System.out.println("Verify given date is displayed :"+givenDate);
+    }
+
+    @Test(priority = 23)
+    public void verifyExpecDate(){
+        boolean expectDate = driver.findElement(By.xpath("//th[normalize-space(text())='Expected Date']")).isDisplayed();
+        System.out.println("Verify expected date is displayed :"+expectDate);
+    }
+
+    @Test(priority = 24)
+    public void verifyNote(){
+        boolean notes = driver.findElement(By.xpath("//th[normalize-space(text())='Notes']")).isDisplayed();
+        System.out.println("Verify notes is displayed :"+notes);
+    }
+
+    @Test(priority = 25)
+    public void verifystatus(){
+        boolean status = driver.findElement(By.xpath("//th[normalize-space(text())='Status']")).isDisplayed();
+        System.out.println("Verify status is displayed:"+status);
+    }
+
+    @Test(priority = 26)
+    public void verifyAction(){
+        boolean action = driver.findElement(By.xpath("//th[normalize-space(text())='Actions']")).isDisplayed();
+        System.out.println("Verify action is displayed:"+action);
+    }
 
 }

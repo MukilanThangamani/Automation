@@ -118,4 +118,29 @@ public class crmPageTest extends BaseClass {
         crmPage2.search("Hasini");
     }
 
+    @Test(priority = 18)
+    public void verifySearchField(){
+        boolean search = driver.findElement(By.xpath("//input[@placeholder='Search...']")).isDisplayed();
+        System.out.println("Verify search field :"+search);
+    }
+
+    @Test(priority = 19)
+    public void verifyUpload(){
+        boolean uploadBtn = driver.findElement(By.xpath("(//button[@type='button']//span)[3]")).isDisplayed();
+        System.out.println("Verify upload button:"+uploadBtn);
+    }
+
+    @Test(priority = 20)
+    public void verifyAddClient(){
+        boolean addClient = driver.findElement(By.xpath("//span[normalize-space(text())='Add Client']")).isDisplayed();
+        System.out.println("Verify add client button :"+addClient);
+    }
+
+    @Test(priority = 21)
+    public void verifyDownloadExcel(){
+        boolean downloadExcel = driver.findElement(By.xpath("//span[normalize-space(text())='Download Excel']")).isDisplayed();
+        System.out.println("Verify downloadExcel button is visible:"+downloadExcel);
+    }
+
+
 }

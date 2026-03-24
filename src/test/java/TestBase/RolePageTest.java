@@ -1,11 +1,7 @@
 package TestBase;
 
 import PageObjects.RolePage;
-<<<<<<< HEAD
-import Utils.TestListener;
-=======
 import org.openqa.selenium.By;
->>>>>>> master
 import org.testng.annotations.Test;
 
 public class RolePageTest extends BaseClass {
@@ -14,30 +10,6 @@ public class RolePageTest extends BaseClass {
     public void testAddRole() throws InterruptedException {
         RolePage rp = new RolePage(driver);
 
-<<<<<<< HEAD
-        String roleName = randomString();
-        TestListener.test.get().pass("Enter role name :");
-        rp.add(roleName);
-        TestListener.test.get().pass("Enter task name and charge  :");
-        rp.addTaskAndCharge(randomString(),randomAmount());
-        rp.verifyRoleInTable(roleName);
-        System.out.println(" Role added and verified: " + roleName);
-
-        rp.nextBtn();
-
-     /*   String editRole = randomString();
-        rp.editclick(editRole);
-        System.out.println(" Role edited to: " + editRole);
-
-
-        Thread.sleep(1000);
-        rp.toFindDuplicate("master");
-        System.out.println(" Checked for duplicate role: master");
-
-        rp.moveToNextPage();
-        System.out.println(" Moved to next page after role tests"); */
-
-=======
 //        rp.add(roleName);
 //        rp.verifyRoleInTable(roleName);
 //        System.out.println(" Role added and verified: " + roleName);
@@ -55,7 +27,6 @@ public class RolePageTest extends BaseClass {
 //
 //        rp.moveToNextPage();
 //        System.out.println(" Moved to next page after role tests");
->>>>>>> master
     }
 
     @Test(priority = 1)

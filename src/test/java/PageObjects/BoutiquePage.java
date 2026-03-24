@@ -97,7 +97,7 @@ public class BoutiquePage extends BasePage {
         Thread.sleep(1200);
         // shopname.clear();
         Thread.sleep(1000);
-     //   shopname.sendKeys(shop);   //->Rem
+        //   shopname.sendKeys(shop);   //->Rem
     }
 
 
@@ -105,7 +105,7 @@ public class BoutiquePage extends BasePage {
         System.out.println("Legal name is displayed :"+legalname.getText());
         //  legalname.clear();
         Thread.sleep(1000);
-   //     legalname.sendKeys(legal);  //->Rem
+        //     legalname.sendKeys(legal);  //->Rem
         Thread.sleep(1000);
     }
 
@@ -122,7 +122,7 @@ public class BoutiquePage extends BasePage {
     public void enterGst(String gstnum) {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
         System.out.println("GstNumber field is displayed :"+gstNUmber.getText());
-       // System.out.println("Leave days field is displayed :"+leaveDays.isDisplayed());
+        // System.out.println("Leave days field is displayed :"+leaveDays.isDisplayed());
         //   gstNUmber.clear();
         //->Rem   gstNUmber.sendKeys(gstnum);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
@@ -132,11 +132,7 @@ public class BoutiquePage extends BasePage {
 
 
     public void address(String shopnum, String address, String landmark, String cities, String pincode, String mobileNum) throws InterruptedException {
-<<<<<<< HEAD
-      /*  System.out.println("Start time is displayed : "+starttime.isDisplayed());
-=======
       /*  System.out.println("Start time is displayed : "+starttime.getText());
->>>>>>> master
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
         System.out.println("End time is displayed :"+entime.getText());
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
@@ -144,17 +140,10 @@ public class BoutiquePage extends BasePage {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
         System.out.println("Interval end time is displayed :"+intervalEndttime.getText());
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-<<<<<<< HEAD
-        System.out.println("ShopNUmber field is visible :"+shopNum.isDisplayed());
-            shopNum.clear();
-           shopNum.sendKeys(shopnum);
-        Thread.sleep(1000);*/
-=======
         System.out.println("ShopNUmber field is visible :"+shopNum.getText());
         */    shopNum.clear();
         //    shopNum.sendKeys(shopnum);
         Thread.sleep(1000);
->>>>>>> master
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
         System.out.println("ShopAddress field is visible :"+addr.getText());
         //   addr.clear();
