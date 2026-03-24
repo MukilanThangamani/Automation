@@ -1,6 +1,7 @@
 package PageObjects;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -73,9 +74,17 @@ public class BoutiquePage extends BasePage {
 
     // Actions
 
-    public void clickAddBoutique()  {
-        System.out.println("Boutique is visible :"+ClkPlus.isDisplayed());
-        ClkPlus.click();
+    public void clickAddBoutique() throws InterruptedException {
+        WebElement button = driver.findElement(By.xpath("(//button[contains(., 'View Details')])[32]"));
+
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView({block: 'center'});", button);
+
+        button.click();
+
+//        System.out.println("Boutique is visible :"+ClkPlus.isDisplayed());
+//        Thread.sleep(1500);
+//        button.click();
     }
 
 
@@ -83,7 +92,7 @@ public class BoutiquePage extends BasePage {
         System.out.println("** In Shop detail Page  ** ");
         WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOf(shopname));
-        System.out.println("shop is displayed :"+shopname.isDisplayed());
+        System.out.println("shop is displayed :"+shopname.getText());
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
         Thread.sleep(1200);
         // shopname.clear();
@@ -93,7 +102,7 @@ public class BoutiquePage extends BasePage {
 
 
     public void enterLegalName(String legal) throws InterruptedException {
-        System.out.println("Legal name is displayed :"+legalname.isDisplayed());
+        System.out.println("Legal name is displayed :"+legalname.getText());
         //  legalname.clear();
         Thread.sleep(1000);
    //     legalname.sendKeys(legal);  //->Rem
@@ -104,7 +113,7 @@ public class BoutiquePage extends BasePage {
     public void enterNickName(String nick) {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
 
-        System.out.println("Nickname field is displayed :"+nickname.isDisplayed());
+        System.out.println("Nickname field is displayed :"+nickname.getText());
         //  nickname.clear();
         //   nickname.sendKeys(nick);
     }
@@ -112,54 +121,65 @@ public class BoutiquePage extends BasePage {
 
     public void enterGst(String gstnum) {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-        System.out.println("GstNumber field is displayed :"+gstNUmber.isDisplayed());
+        System.out.println("GstNumber field is displayed :"+gstNUmber.getText());
        // System.out.println("Leave days field is displayed :"+leaveDays.isDisplayed());
         //   gstNUmber.clear();
         //->Rem   gstNUmber.sendKeys(gstnum);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-        System.out.println("TimeZone field is displayed :"+timeZone.isDisplayed());
+        System.out.println("TimeZone field is displayed :"+timeZone.getText());
 
     }
 
 
     public void address(String shopnum, String address, String landmark, String cities, String pincode, String mobileNum) throws InterruptedException {
+<<<<<<< HEAD
       /*  System.out.println("Start time is displayed : "+starttime.isDisplayed());
+=======
+      /*  System.out.println("Start time is displayed : "+starttime.getText());
+>>>>>>> master
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-        System.out.println("End time is displayed :"+entime.isDisplayed());
+        System.out.println("End time is displayed :"+entime.getText());
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-        System.out.println("Interval start time is displayed :"+intervalStrttime.isDisplayed());
+        System.out.println("Interval start time is displayed :"+intervalStrttime.getText());
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-        System.out.println("Interval end time is displayed :"+intervalEndttime.isDisplayed());
+        System.out.println("Interval end time is displayed :"+intervalEndttime.getText());
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+<<<<<<< HEAD
         System.out.println("ShopNUmber field is visible :"+shopNum.isDisplayed());
             shopNum.clear();
            shopNum.sendKeys(shopnum);
         Thread.sleep(1000);*/
+=======
+        System.out.println("ShopNUmber field is visible :"+shopNum.getText());
+        */    shopNum.clear();
+        //    shopNum.sendKeys(shopnum);
+        Thread.sleep(1000);
+>>>>>>> master
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-        System.out.println("ShopAddress field is visible :"+addr.isDisplayed());
+        System.out.println("ShopAddress field is visible :"+addr.getText());
         //   addr.clear();
         Thread.sleep(1000);
         //  addr.sendKeys(address);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-        System.out.println("ShopLandmark field is visible :"+land.isDisplayed());
+        System.out.println("ShopLandmark field is visible :"+land.getText());
         //    land.clear();
         Thread.sleep(1000);
         //  land.sendKeys(landmark);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-        System.out.println("ShopCity field is visible :"+city.isDisplayed());
+        System.out.println("ShopCity field is visible :"+city.getText());
         //    city.clear();
         Thread.sleep(1000);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-        System.out.println("State field is displayed :"+state.isDisplayed());
+        System.out.println("State field is displayed :"+state.getText());
         //      city.sendKeys(cities);
         Thread.sleep(1000);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-        System.out.println("ShopPin field is visible :"+pin.isDisplayed());
+        System.out.println("ShopPin field is visible :"+pin.getText());
         //    pin.clear();
         Thread.sleep(1000);
         //      pin.sendKeys(pincode);
         Thread.sleep(1000);
-        System.out.println("ShopMobileNumber field is visible :"+mobile.isDisplayed());
+        System.out.println("ShopMobileNumber field is visible :"+mobile.getText());
         //   mobile.clear();
         Thread.sleep(1000);
         //     mobile.sendKeys(mobileNum);

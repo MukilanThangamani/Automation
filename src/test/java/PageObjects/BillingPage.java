@@ -84,12 +84,9 @@ public class BillingPage extends BasePage{
         System.out.println("Add product functionality to be implemented");
         producttype.click();
         Thread.sleep(1000);
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 
-        List<WebElement> productOptions = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("/html/body/div[2]/div/div/div[2]/div/div/div")));
-        Random random = new Random();
-        int randomIndex = random.nextInt(productOptions.size());
-        WebElement selectProduct = productOptions.get(randomIndex);
+        WebElement selectProduct = driver.findElement(By.xpath("//div[text()='Skirt']"));
         selectProduct.click();
 
         System.out.println("Product quantity field is displayed:"+productQuantity.isDisplayed());
@@ -121,7 +118,8 @@ public class BillingPage extends BasePage{
         submit.click();
     }
 
-    public void moduleClick() {
+    public void moduleClick() throws InterruptedException {
+        Thread.sleep(2000);
         billingModule.click();
     }
 }

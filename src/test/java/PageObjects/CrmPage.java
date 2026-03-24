@@ -89,8 +89,29 @@ public class CrmPage extends BasePage{
     @FindBy(xpath = "//input[@placeholder='Search...']")
     WebElement search;
 
-    @FindBy(xpath = "//*[@id=\"__next\"]/div/div[2]/section/div/div/main/section/div/div/div[2]/div/div[1]/span/span/span[2]/button")
-    WebElement searchIcon;
+    @FindBy(xpath = "//div[normalize-space(text())='Occasions']")
+    WebElement occasion;
+
+    @FindBy(xpath = "(//input[@role='combobox'])[2]")
+    WebElement selectOccasion;
+
+    @FindBy(xpath = "//input[@placeholder='Date']")
+    WebElement selectDate;
+
+    @FindBy(xpath = "(//div[text()='Occasion 1']/following-sibling::div)[1]")
+    WebElement deleteIcon;
+
+    @FindBy(xpath = "//span[normalize-space(text())='Add Occasion']")
+    WebElement addOccasion;
+
+    @FindBy(xpath = "//button[@type='submit']//span[1]")
+    WebElement saveOccasion;
+
+    @FindBy(xpath = "//span[normalize-space(text())='Close']")
+    WebElement closeOccasion;
+
+    @FindBy(xpath = "//div[normalize-space(text())='Birthday']")
+    WebElement selectBirthday;
 
     //Action
     public void clickCrm(String name,String phone,String other,String address,String prefer) throws InterruptedException {
@@ -149,9 +170,7 @@ public class CrmPage extends BasePage{
         Thread.sleep(1000);
 
         WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(20));
-//        List<WebElement> options = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("/html/body/div[6]/div/div/div[2]/div/div/div")));
-//        Random random = new Random();
-//        int randomIndex = random.nextInt(options.size());
+
         WebElement selectProduct = driver.findElement(By.xpath("//div[text()='Skirt']"));
         selectProduct.click();
         ms1.sendKeys(measu1);
@@ -162,8 +181,49 @@ public class CrmPage extends BasePage{
         save.click();
         System.out.println("Close button is visible :"+close.isDisplayed());
         Thread.sleep(1000);
-        close.click();
+       // close.click();
     }
+
+    public void occasion() throws InterruptedException {
+        System.out.println("Verify occasion tab is displayed :"+occasion.isDisplayed());
+        Thread.sleep(1000);
+        occasion.click();
+    }
+
+    public void verifySelect() {
+        System.out.println("Verify select occasion is displayed :"+selectOccasion.isDisplayed());
+    }
+
+    public void verifyDate() {
+        System.out.println("Verify select date is displayed :"+selectDate.isDisplayed());
+    }
+
+    public void verifyDelete() {
+        System.out.println("Verify delete icon is displayed :"+deleteIcon.isDisplayed());
+    }
+
+    public void verifyAddOccasion() {
+        System.out.println("Verify add occasion button is displayed :"+addOccasion.isDisplayed());
+    }
+
+    public void verifySaveOccasion() {
+        System.out.println("Verify add occasion button is displayed :"+saveOccasion.isDisplayed());
+    }
+
+    public void verifyCloseBtn() {
+        System.out.println("Verify add occasion button is displayed :"+closeOccasion.isDisplayed());
+    }
+
+    public void validate(String date) throws InterruptedException {
+        selectOccasion.click();
+        Thread.sleep(2000);
+        selectBirthday.click();
+        Thread.sleep(2000);
+        selectDate.sendKeys(date);
+        Thread.sleep(1000);
+        saveOccasion.click();
+    }
+
     public void search(String name) throws InterruptedException {
         driver.navigate().refresh();
         search.sendKeys(name);
@@ -191,4 +251,6 @@ public class CrmPage extends BasePage{
     public void moduleClick() {
         clickCrm.click();
     }
+
+
 }

@@ -48,4 +48,8 @@ public class TestListener implements ITestListener {
     }
 
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> master

@@ -20,7 +20,7 @@ public class EmployeeManagement extends BasePage{
 
     //Locators
 
-    @FindBy(xpath = "//span[text()='Employee Management']")
+    @FindBy(xpath = "//span[text()='Employees']")
     WebElement empMgmt;
 
     @FindBy(id = "boutique_name")
@@ -29,7 +29,7 @@ public class EmployeeManagement extends BasePage{
     @FindBy(id = "boutique_userRoleId")
     WebElement roleId;
 
-    @FindBy(xpath = "//div[text()='EMPLOYEE']")
+    @FindBy(xpath = "//div[text()='Employee']")
     WebElement selectRole;
 
     @FindBy(id = "boutique_roleId")
@@ -56,15 +56,17 @@ public class EmployeeManagement extends BasePage{
     @FindBy(xpath = "//span[text()='Close']")
     WebElement close;
 
+
     @FindBy(xpath = "//span[text()='Next']")
     WebElement nextButton;
+
+    @FindBy(xpath = "//table//tbody//tr[1]//*[name()='svg' and @data-testid='PaymentsIcon']")
+    WebElement payment;
 
 
     // Action
     public void empDetail() throws InterruptedException {
         System.out.println("In Employee Management page");
-        System.out.println("Employee Management module is displayed:"+empMgmt.isDisplayed());
-        empMgmt.click();
 
         String pagetitle = driver.getTitle();
         System.out.println("The page title is :"+pagetitle);
@@ -90,7 +92,11 @@ public class EmployeeManagement extends BasePage{
         roleDropdown.click();
         Thread.sleep(1000); // Optional, better to wait with WebDriverWait
         Random random = new Random();
+<<<<<<< HEAD
         WebElement selectRole1 = driver.findElement(By.xpath("//div[text()='BHyyM']"));
+=======
+        WebElement selectRole1 = driver.findElement(By.xpath("//div[text()='DpIDb']"));
+>>>>>>> master
         selectRole1.click();
 
         Thread.sleep(1000);
@@ -106,12 +112,8 @@ public class EmployeeManagement extends BasePage{
 
         System.out.println("Gender dropdown is visible: " + genderDropdown.isDisplayed());
         Thread.sleep(2000);
-        genderDropdown.click(); // open dropdown
-        Thread.sleep(1000); // or better: use WebDriverWait
-
-//        List<WebElement> genderOption = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("/html/body/div[7]/div/div/div[2]/div/div/div")));
-//        int randomIdx = random.nextInt(genderOption.size());
-        WebElement selectGender = driver.findElement(By.xpath("//div[contains(@class,'ant-select-item-option') and @title='Male']"));
+        genderDropdown.click();
+        WebElement selectGender =  driver.findElement(By.xpath("//div[contains(@class,'ant-select-item-option')]//div[normalize-space()='Male']"));
         selectGender.click();
 
         Thread.sleep(1000);
@@ -134,6 +136,23 @@ public class EmployeeManagement extends BasePage{
         String num = RandomStringUtils.randomNumeric(2);
         String nam = RandomStringUtils.randomAlphabetic(3);
         return nam + "@" + num;
+    }
+
+    public void payment() throws InterruptedException {
+        Thread.sleep(1000);
+        System.out.println("Payment icon is visible :"+payment.isDisplayed());
+        Thread.sleep(2000);
+        payment.click();
+    }
+
+    public void closeBtn() throws InterruptedException {
+        Thread.sleep(1000);
+        close.click();
+    }
+
+    public void moduleClick() throws InterruptedException {
+        Thread.sleep(1000);
+        empMgmt.click();
     }
 
 }

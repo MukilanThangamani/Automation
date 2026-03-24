@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 public class BillingPageTest extends BaseClass{
 
     @Test(priority = 1)
-    public void verifySalesOrder(){
+    public void verifySalesOrder() throws InterruptedException {
         BillingPage billing = new BillingPage(driver);
         billing.moduleClick();
         boolean salesOrder = driver.findElement(By.xpath("//div[text()='Sales Orders']")).isDisplayed();

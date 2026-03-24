@@ -26,9 +26,6 @@ public class SourcingPage extends BasePage{
     @FindBy(id = "sourcing_productId")
     WebElement prodclick;
 
-    @FindBy(id = "sourcing_sourcingType")
-    WebElement sourceclick;
-
     @FindBy(id = "sourcing_quantity")
     WebElement quant;
 
@@ -38,28 +35,10 @@ public class SourcingPage extends BasePage{
     @FindBy(xpath = "//span[text()='Save Sourcing']")
     WebElement savebtn;
 
-    @FindBy(xpath = "//button[text()='Close']")
-    WebElement close;
+    @FindBy(id = "sourcing_remarks")
+    WebElement remarks;
 
-    @FindBy(xpath = "//*[@id=\"__next\"]/div/section/div/div/main/section/div[2]/table/tbody/tr/td[5]/div/div/span[2]")
-    WebElement strtl;
-
-    @FindBy(xpath = "//div[text()='In-progress']")
-    WebElement toInPro;
-
-    @FindBy(xpath = "//*[@id=\"__next\"]/div/section/div/div/main/section/div[2]/div[1]/div[2]/div[2]/div/span[2]")
-    WebElement topStart;
-
-    @FindBy(xpath = "//button[text()='Download Excel']")
-    WebElement download;
-
-    @FindBy(xpath = "#__next > div > section > div > div > main > section > div.MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation1.MuiTableContainer-root.table-container-style.css-13xy2my > table > tbody > tr > td.MuiTableCell-root.MuiTableCell-body.MuiTableCell-sizeMedium.css-wjwotp > div > svg")
-    WebElement edit;
-
-    @FindBy(xpath = "//*[@id=\"rc_select_1\"]")
-    WebElement products;
-
-    public void sourcingDetails(String quantity,String amt,String updatequant) throws InterruptedException{
+    public void sourcingDetails(String quantity,String amt,String updatequant,String remark) throws InterruptedException{
         String pagetitle = driver.getTitle();
         System.out.println("The page title is :"+pagetitle);
         System.out.println("Sourcing button is visible :"+sourcingmodbtn.isDisplayed());
@@ -74,32 +53,25 @@ public class SourcingPage extends BasePage{
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
-        List<WebElement> options = wait.until(
-                ExpectedConditions.visibilityOfAllElementsLocatedBy(
-                        By.xpath("/html/body/div[3]/div/div/div[2]/div[1]/div/div")
-                )
-        );
+        WebElement source = driver.findElement(By.xpath("//div[text()='2051 - KLiZx']"));
 
-        Random random = new Random();
-        int randomIndex = random.nextInt(options.size());  // random index from 0 to size-1
-        WebElement randomOption = options.get(randomIndex);
+        System.out.println("Sourcing type is visible :"+source.isDisplayed());
+        source.click();
 
-        randomOption.click();
-
-        System.out.println("Sourcing type is visible :"+sourceclick.isDisplayed());
-        sourceclick.click();
+        WebElement sourcingType = driver.findElement(By.id("sourcing_sourcingType"));
+        sourcingType.click();
 
         Thread.sleep(1500);
 
-        List<WebElement> sourcetype = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("/html/body/div[4]/div/div/div[2]/div/div/div")));
-        WebElement sourceoption = sourcetype.get(randomIndex);
-        sourceoption.click();
+        WebElement prodType = driver.findElement(By.xpath("//div[text()='Fabrics']"));
+        prodType.click();
 
         Thread.sleep(1000);
         System.out.println("Quantity field is visible :"+quant.isDisplayed());
         quant.sendKeys(quantity);
         System.out.println("Total amount is visible :"+totalamt.isDisplayed());
         Thread.sleep(1000);
+
        // totalamt.sendKeys(amt);
         System.out.println("Save sourcing button  is visible :"+savebtn.isDisplayed());
         System.out.println("Save sourcing button  is enabled :"+savebtn.isEnabled());
@@ -108,8 +80,10 @@ public class SourcingPage extends BasePage{
         boolean isTotalAmount = !driver.findElements(By.xpath("//div[text()='Total Amount is required']")).isEmpty();
         if(isTotalAmount){
             totalamt.sendKeys(amt);
+            remarks.sendKeys(remark);
         }
         savebtn.click();
 
     }
+    
 }

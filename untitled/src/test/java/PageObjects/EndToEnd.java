@@ -37,8 +37,6 @@ public class EndToEnd {
         WebElement rej = driver.findElement(By.xpath("//button[text()='Reject']"));
         rej.click();
 
-        WebElement cross = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'ant-modal')]//div[text()='Timezone Missing!']/ancestor::div[contains(@class,'ant-modal')]//button[@aria-label='Close']")));
-        cross.click();
 
         WebElement ord = driver.findElement(By.xpath("//span[text()=' Orders']"));
         ord.click();

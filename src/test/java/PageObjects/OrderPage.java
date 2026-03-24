@@ -67,7 +67,7 @@ public class OrderPage extends BasePage{
     @FindBy(id="products_0_measurements_Sleeve Length")
     WebElement length;
 
-    @FindBy(id = "products_0_notes")
+    @FindBy(xpath = "//textarea[@placeholder='Type your custom instructions here...']")
     WebElement Notes;
 
     @FindBy(xpath = "//span[text()='Next']")
@@ -167,14 +167,14 @@ public class OrderPage extends BasePage{
         Thread.sleep(1000);
         order.click();
         Thread.sleep(1000);
-       // getClient();
+       /* getClient();
         Thread.sleep(1000);
         System.out.println("Boutiques dropdown is visible :" + boutiques.isDisplayed());
         boutiques.click();
-        Thread.sleep(1000);
+        Thread.sleep(2000);
         System.out.println("Boutique visible :" + clickOneBoutique.isDisplayed());
-        Thread.sleep(1000);
-        clickOneBoutique.click();
+        Thread.sleep(2000);
+        clickOneBoutique.click();*/
         System.out.println("Order button is displayed or not :" + createOrder.isDisplayed());
         createOrder.click();
         Thread.sleep(2000);
@@ -296,10 +296,7 @@ public class OrderPage extends BasePage{
             Thread.sleep(1000);
 
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-            List<WebElement> options = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("/html/body/div[8]/div/div/div[2]/div/div/div")));
-            Random random = new Random();
-            int randomIndex = random.nextInt(options.size());
-            WebElement selectProduct = options.get(randomIndex);
+            WebElement selectProduct = driver.findElement(By.xpath("(//div[@title='Blouse']//div)[1]"));
             selectProduct.click();
 
             Thread.sleep(1000);
@@ -349,4 +346,15 @@ public class OrderPage extends BasePage{
         Thread.sleep(5000);
     }
 
+    public void closeModel() throws InterruptedException {
+        WebElement subBtn = driver.findElement(By.xpath("//button[@aria-label='Close']"));
+        Thread.sleep(1000);
+        subBtn.click();
+    }
+
+    public void clickProduct() throws InterruptedException {
+        WebElement addProduct = driver.findElement(By.xpath("//span[text()='Add Product']"));
+        Thread.sleep(1000);
+        addProduct.click();
+    }
 }

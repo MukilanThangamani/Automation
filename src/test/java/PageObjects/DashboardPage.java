@@ -17,7 +17,11 @@ public class DashboardPage extends BasePage{
         super(driver);
     }
 
+<<<<<<< HEAD
     @FindBy(xpath = "//*[@id=\"__next\"]/div/div/div/section/div/header/div[2]/div[5]")
+=======
+    @FindBy(css = "#__next > div > div > div > section > div > header > div:nth-child(2) > div:nth-child(5) > svg")
+>>>>>>> master
     WebElement Clksetting;
 
 

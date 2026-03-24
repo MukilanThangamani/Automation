@@ -19,6 +19,7 @@
             <class name="TestBase.RolePageTest"/>
             <class name="TestBase.EmployeePageTest"/>
         <!--    <class name="TestBase.TaskPageTest"/> -->
+<<<<<<< HEAD
             <!--    <class name="TestBase.ProductPageTest"/>
                <class name="TestBase.OrderPageTest"/>
                <class name="TestBase.CheckAvailabilityTest"/>
@@ -31,6 +32,21 @@
                <class name="TestBase.EmployeeManagementTest"/>
               <class name="TestBase.GalleryPageTest"/> -->
            </classes>
+=======
+            <class name="TestBase.ProductPageTest"/>
+            <class name="TestBase.OrderPageTest"/>
+            <class name="TestBase.CheckAvailabilityTest"/>
+            <class name="TestBase.AppointmentPageTest"/>
+            <class name="TestBase.DesignBoardPageTest"/>
+            <class name="TestBase.crmPageTest"/>
+            <class name="TestBase.SourcingPageTest"/>
+            <class name="TestBase.BillingPageTest"/>
+            <class name="TestBase.ExpensePageTest"/>
+            <class name="TestBase.EmployeeManagementTest"/>
+           <class name="TestBase.GalleryPageTest"/>
+            <class name="TestBase.ReportPageTest"/>
+        </classes>
+>>>>>>> master
 
        </test>
 
