@@ -5,8 +5,6 @@ import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.BeforeSuite;
-
-import javax.swing.plaf.PanelUI;
 import java.time.Duration;
 
 public class BaseClass {

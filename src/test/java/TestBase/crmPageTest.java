@@ -3,11 +3,7 @@ package TestBase;
 import PageObjects.CrmPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
-
-import java.time.Duration;
 
 public class crmPageTest extends BaseClass {
 
@@ -109,7 +105,7 @@ public class crmPageTest extends BaseClass {
     @Test(priority = 16)
     public void validateData() throws InterruptedException {
         CrmPage data = new CrmPage(driver);
-        data.validate("2026-03-13");
+        data.validate("2026-03-28");
     }
 
     @Test(priority = 17)

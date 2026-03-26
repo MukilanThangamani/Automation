@@ -29,7 +29,7 @@ public class AppointmentPageTest extends BaseClass{
     public void verifyAppointmentGroupTestcases() throws InterruptedException {
         AppointmentPage ap = new AppointmentPage(driver);
 
-        ap.clientDetails(phoneRandom(),randomString(),"River street ,karapakkam,induslnd bank","Style consultation","24/03/2026 17:30","Style consulting in boutique");
+        ap.clientDetails(phoneRandom(),randomString(),"River street ,karapakkam,induslnd bank","Style consultation","26/03/2026 17:00","Style consulting in boutique");
         ap.updateAppointment("Update appointment");
     }   // 17/10/2025 05:00
 
