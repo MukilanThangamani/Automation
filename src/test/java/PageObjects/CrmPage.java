@@ -92,7 +92,7 @@ public class CrmPage extends BasePage{
     @FindBy(xpath = "//div[normalize-space(text())='Occasions']")
     WebElement occasion;
 
-    @FindBy(xpath = "(//input[@role='combobox'])[2]")
+    @FindBy(id = "dynamic_form_nest_item_occasions_0_occasion")
     WebElement selectOccasion;
 
     @FindBy(xpath = "//input[@placeholder='Date']")
@@ -215,6 +215,7 @@ public class CrmPage extends BasePage{
     }
 
     public void validate(String date) throws InterruptedException {
+        Thread.sleep(2000);
         selectOccasion.click();
         Thread.sleep(2000);
         selectBirthday.click();

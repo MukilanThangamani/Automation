@@ -75,7 +75,7 @@ public class EmployeePage extends BasePage {
     @FindBy(xpath = "(//label[normalize-space(text())='Name']/following::input)[1]")
     WebElement name;
 
-    @FindBy(id = "mobileNumber")
+    @FindBy(id = "phone")
     WebElement empmob;
 
     @FindBy(id = "address")

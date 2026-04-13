@@ -45,6 +45,9 @@ public class BillingPage extends BasePage{
     @FindBy(id = "products_0_pricePerUnit")
     WebElement pricePerUnit;
 
+    @FindBy(xpath = "(//textarea[contains(@class,'ant-input css-1w0sqha')])[3]")
+    WebElement notes;
+
     @FindBy(id = "products_0_productAmount")
     WebElement productAmount;
 
@@ -80,7 +83,7 @@ public class BillingPage extends BasePage{
         clientAddress.sendKeys(address);
     }
 
-    public void addProduct(String quantity,String price) throws InterruptedException {
+    public void addProduct(String quantity,String price,String note) throws InterruptedException {
         System.out.println("Add product functionality to be implemented");
         producttype.click();
         Thread.sleep(1000);
@@ -96,7 +99,10 @@ public class BillingPage extends BasePage{
         System.out.println("Price per unit field is displayed :"+pricePerUnit.isDisplayed());
         Thread.sleep(1000);
         pricePerUnit.click();
+        Thread.sleep(1000);
         pricePerUnit.sendKeys(price);
+        Thread.sleep(1000);
+        notes.sendKeys(note);
 
         System.out.println("Product amount field is displayed:"+productAmount.isDisplayed());
         Thread.sleep(1000);

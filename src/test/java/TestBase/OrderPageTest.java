@@ -14,7 +14,7 @@ public class OrderPageTest extends BaseClass{
         op.dashboard();
         op.orderModuleClient(phoneRandom(),randomString(),randomString());
         System.out.println("*** All over ***");
-        op.ProductDetail(randomString(),"28/03/2026",randomNumber(),randomLength(),"Wait for your delivery");
+        op.ProductDetail(randomString(),"17/04/2026",randomNumber(),randomLength(),"Wait for your delivery");
         op.paymentDetails(randomLength());
         System.out.println("***Order successfully created***");
     }
@@ -95,8 +95,8 @@ public class OrderPageTest extends BaseClass{
 
     @Test(priority = 14)
     public void closeModel() throws InterruptedException {
-        OrderPage op1 = new OrderPage(driver);
-        op1.closeModel();
+        OrderPage obj = new OrderPage(driver);
+        obj.closeTab();
     }
 
     @Test(priority = 15)
@@ -141,7 +141,7 @@ public class OrderPageTest extends BaseClass{
     @Test(priority = 21)
     public void verifyProduct(){
         boolean prod = driver.findElement(By.xpath("//th[normalize-space(text())='Product']")).isDisplayed();
-        System.out.println("Verifuy product detail is displayed :"+prod);
+        System.out.println("Verify product detail is displayed :"+prod);
     }
 
     @Test(priority = 22)

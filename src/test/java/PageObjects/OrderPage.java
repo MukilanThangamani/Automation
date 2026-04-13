@@ -134,6 +134,8 @@ public class OrderPage extends BasePage{
         System.out.println("Appointments count :"+appointmentcount);
         Thread.sleep(1000);
 
+
+
     }
 
     public void getClient(){
@@ -351,15 +353,16 @@ public class OrderPage extends BasePage{
         Thread.sleep(5000);
     }
 
-    public void closeModel() throws InterruptedException {
-        WebElement subBtn = driver.findElement(By.xpath("//button[@aria-label='Close']"));
-        Thread.sleep(1000);
-        subBtn.click();
-    }
-
     public void clickProduct() throws InterruptedException {
         WebElement addProduct = driver.findElement(By.xpath("//span[text()='Add Product']"));
         Thread.sleep(1000);
         addProduct.click();
+    }
+
+    public void closeTab() throws InterruptedException {
+        WebElement closeModal = driver.findElement(By.xpath("//span[@aria-label='Close']"));
+        System.out.println("Verify close modal is visible:"+closeModal.isDisplayed());
+        Thread.sleep(1000);
+        driver.navigate().refresh();
     }
 }

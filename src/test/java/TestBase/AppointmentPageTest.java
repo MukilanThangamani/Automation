@@ -2,7 +2,6 @@ package TestBase;
 
 import PageObjects.AppointmentPage;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 
 public class AppointmentPageTest extends BaseClass{
@@ -29,7 +28,7 @@ public class AppointmentPageTest extends BaseClass{
     public void verifyAppointmentGroupTestcases() throws InterruptedException {
         AppointmentPage ap = new AppointmentPage(driver);
 
-        ap.clientDetails(phoneRandom(),randomString(),"River street ,karapakkam,induslnd bank","Style consultation","26/03/2026 17:00","Style consulting in boutique");
+        ap.clientDetails(phoneRandom(),randomString(),"River street ,karapakkam,induslnd bank","Style consultation","13/04/2026 17:00","Style consulting in boutique");
         ap.updateAppointment("Update appointment");
     }   // 17/10/2025 05:00
 
