@@ -22,6 +22,9 @@ public class InventoryPage extends BasePage{
     @FindBy(id = "itemGroupName")
     WebElement itemgroupname;
 
+    @FindBy(xpath = "(//input[@class='ant-select-selection-search-input'])[1]")
+    WebElement status;
+
     @FindBy(id = "unit")
     WebElement unit;
 
@@ -42,6 +45,30 @@ public class InventoryPage extends BasePage{
 
     @FindBy(xpath = "//span[normalize-space(text())='Submit']")
     WebElement submit;
+
+   @FindBy(xpath = "//span[normalize-space(text())='Add']")
+   WebElement add;
+
+   @FindBy(xpath = "//input[@placeholder='Select date']")
+   WebElement date;
+
+   @FindBy(id = "referenceNumber")
+   WebElement  ref;
+
+   @FindBy(id = "quantityAdded")
+   WebElement quantadd;
+
+   @FindBy(id = "description")
+   WebElement getDescription;
+
+   @FindBy(xpath = "//span[normalize-space(text())='Convert to Adjusted']")
+   WebElement convertAdjust;
+
+   @FindBy(xpath = "//input[@type='search']")
+   WebElement reason;
+
+   @FindBy(xpath = "//div[@title='From Purchase order']//div[1]")
+   WebElement selectReason;
 
     public void inventoryClick() {
         System.out.println("Inventory module is visible "+inventory.isDisplayed());
@@ -91,5 +118,24 @@ public class InventoryPage extends BasePage{
         // Submit
         submit.click();
         Thread.sleep(1000);
+    }
+
+
+    public void fillAdjustment(String selectdate, String reference, String added, String descrip) throws InterruptedException {
+       add.click();
+       Thread.sleep(1000);
+       date.sendKeys(selectdate);
+       Thread.sleep(1000);
+       ref.sendKeys(reference);
+       Thread.sleep(1000);
+       quantadd.sendKeys(added);
+       Thread.sleep(1000);
+       reason.click();
+        Thread.sleep(1000);
+       selectReason.click();
+       Thread.sleep(1000);
+       getDescription.sendKeys(descrip);
+       Thread.sleep(1000);
+       convertAdjust.click();
     }
 }
