@@ -293,9 +293,8 @@ public class PurchasePageTest extends BaseClass{
 
     @Test(priority = 42)
     public void verifyPurchaseStatus(){
-        WebElement status = driver.findElement(By.xpath("(//input[@type='search'])[1]"));
-        System.out.println("Verify status header  is visible :"+status.isDisplayed());
-        status.click();
+        PurchasePage pp2 = new PurchasePage(driver);
+        pp2.purchaseStaus();
     }
 
     @Test(priority = 43)

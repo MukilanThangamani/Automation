@@ -1,5 +1,6 @@
 package PageObjects;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -47,6 +48,9 @@ public class PurchasePage extends BasePage{
     @FindBy(xpath = "//span[normalize-space(text())='Save']")
     WebElement savePurchase;
 
+    @FindBy(xpath = "(//span[normalize-space(text())='Bills']/following::input)[1]")
+    WebElement purchaseStatus;
+
     public void addVendor(String vendorname, String compname, String displayname, String mobile, String mail, String address, String number, String vendorstate) throws InterruptedException {
         submitvendor.click();
         Thread.sleep(1000);
@@ -76,5 +80,10 @@ public class PurchasePage extends BasePage{
         Thread.sleep(1000);
         deliveryDate.sendKeys(delivery);
         savePurchase.click();
+    }
+
+    public void purchaseStaus() {
+        purchaseStatus.click();
+        System.out.println("Verify status header  is visible :"+purchaseStatus.isDisplayed());
     }
 }
