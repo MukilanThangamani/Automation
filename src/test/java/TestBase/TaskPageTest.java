@@ -9,8 +9,8 @@ public class TaskPageTest extends BaseClass {
 
     @Test(priority = 1)
     public void testTaskSettings() throws InterruptedException {
-         TaskPage tp = new TaskPage(driver);
-         tp.moduleClick();
+        TaskPage tp = new TaskPage(driver);
+        tp.moduleClick();
     }
 
     @Test(priority = 2)
@@ -76,7 +76,7 @@ public class TaskPageTest extends BaseClass {
 
     @Test(priority = 12)
     public void verifyTask(){
-      boolean task = driver.findElement(By.xpath("(//input[@class='ant-select-selection-search-input'])[2]")).isDisplayed();
+        boolean task = driver.findElement(By.xpath("(//input[@class='ant-select-selection-search-input'])[2]")).isDisplayed();
         System.out.println("Verify task dropdown is visible :"+task);
     }
 

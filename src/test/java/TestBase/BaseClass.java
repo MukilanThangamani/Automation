@@ -22,7 +22,7 @@ public class BaseClass {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
         driver.manage().window().maximize();
         driver.get("https://www.fabriplay.com");
-       // driver.get("https://stage.fabriplay.com/");
+        // driver.get("https://stage.fabriplay.com/");
     }
 
     public String randomString() {

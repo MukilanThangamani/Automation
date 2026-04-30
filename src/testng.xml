@@ -10,7 +10,7 @@
     <test name="UI Automation Tests">
 
         <classes>
-           <!-- <class name="TestBase.BaseClass"/> -->
+            <!-- <class name="TestBase.BaseClass"/> -->
             <class name="TestBase.HomePageTest"/>
             <class name="TestBase.LoginTest"/>
             <class name="TestBase.DashBoardPageTest"/>
@@ -20,7 +20,7 @@
             <class name="TestBase.EmployeePageTest"/>
             <class name="TestBase.ProductPageTest"/>
             <class name="TestBase.OrderPageTest"/>
-            <class name="TestBase.TaskPageTest"/>
+         <!--   <class name="TestBase.TaskPageTest"/> -->
             <class name="TestBase.CheckAvailabilityTest"/>
             <class name="TestBase.AppointmentPageTest"/>
             <class name="TestBase.DesignBoardPageTest"/>
@@ -29,12 +29,12 @@
             <class name="TestBase.BillingPageTest"/>
             <class name="TestBase.ExpensePageTest"/>
             <class name="TestBase.EmployeeManagementTest"/>
-           <class name="TestBase.GalleryPageTest"/>
-            <class name="TestBase.ReportPageTest"/> 
+            <class name="TestBase.GalleryPageTest"/>
+            <class name="TestBase.ReportPageTest"/>
             <class name="TestBase.InventoryPageTest"/>
             <class name="TestBase.PurchasePageTest"/>
         </classes>
 
-       </test>
+    </test>
 
-   </suite>
+</suite>

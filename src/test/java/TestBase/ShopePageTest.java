@@ -92,15 +92,15 @@ public class ShopePageTest extends BaseClass {
         BoutiquePage bm = new BoutiquePage(driver);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
         TestListener.test.get().pass("Shop Details :");
-       bm.enterShopName("The Atelier Edi");
+        bm.enterShopName("The Atelier Edi");
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-       bm.enterLegalName("Looms");
+        bm.enterLegalName("Looms");
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-       bm.enterNickName("Maison");
+        bm.enterNickName("Maison");
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-       bm.enterGst("HDJH373893HD");
-       driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-       bm.address("G-8","1/321,chennai","Chennai","Tamilnadu","636 012","7483947383");
+        bm.enterGst("HDJH373893HD");
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+        bm.address("G-8","1/321,chennai","Chennai","Tamilnadu","636 012","7483947383");
         bm.nextInB();
     }
 }

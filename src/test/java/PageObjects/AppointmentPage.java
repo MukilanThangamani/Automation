@@ -26,7 +26,7 @@ public class AppointmentPage extends BasePage {
 
     @FindBy(id = "address")
     WebElement address;
-  
+
     @FindBy(id = "reference")
     WebElement ref;
 

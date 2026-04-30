@@ -17,7 +17,7 @@ public class InventoryPageTest extends BaseClass {
 
     @Test(priority = 2)
     public void verifyStatus() {
-       boolean groupTitle = driver.findElement(By.xpath("//h3[normalize-space(text())='Groups']")).isDisplayed();
+        boolean groupTitle = driver.findElement(By.xpath("//h3[normalize-space(text())='Groups']")).isDisplayed();
         System.out.println("Group title is displayed :"+groupTitle);
     }
 

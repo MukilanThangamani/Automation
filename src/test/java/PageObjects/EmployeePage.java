@@ -118,8 +118,8 @@ public class EmployeePage extends BasePage {
         Thread.sleep(1000);
         mobNum.sendKeys(phoneRandom());
         Thread.sleep(1000);
-      //  mobNum1.click();
-      //  mobNum1.sendKeys(phoneRandom());
+        //  mobNum1.click();
+        //  mobNum1.sendKeys(phoneRandom());
         Thread.sleep(1000);
         pass.click();
         pass.sendKeys(randomAlphaAnumeric());

@@ -12,9 +12,9 @@ public class EmployeePageTest extends BaseClass{
     public void testAddEmployee() throws InterruptedException {
         EmployeePage ep = new EmployeePage(driver);
         TestListener.test.get().pass("Enter employee details :");
-          String[] names = {randomString(), randomString()};
-          ep.empDetail();
-          ep.nxtBtnEmp();
+        String[] names = {randomString(), randomString()};
+        ep.empDetail();
+        ep.nxtBtnEmp();
     }
 
     @Test(priority = 1)

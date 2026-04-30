@@ -72,7 +72,7 @@ public class SourcingPage extends BasePage{
         System.out.println("Total amount is visible :"+totalamt.isDisplayed());
         Thread.sleep(1000);
 
-       // totalamt.sendKeys(amt);
+        // totalamt.sendKeys(amt);
         System.out.println("Save sourcing button  is visible :"+savebtn.isDisplayed());
         System.out.println("Save sourcing button  is enabled :"+savebtn.isEnabled());
         savebtn.click();
@@ -85,5 +85,5 @@ public class SourcingPage extends BasePage{
         savebtn.click();
 
     }
-    
+
 }

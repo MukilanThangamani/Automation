@@ -8,8 +8,8 @@ public class GalleryPageTest extends BaseClass{
 
     @Test(priority = 1)
     public void testGalleryPage() throws InterruptedException {
-      GalleryPage gp = new GalleryPage(driver);
-      gp.moduleClick();
+        GalleryPage gp = new GalleryPage(driver);
+        gp.moduleClick();
     }
 
     @Test(priority = 2)

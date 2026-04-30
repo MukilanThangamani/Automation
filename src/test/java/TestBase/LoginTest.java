@@ -50,7 +50,7 @@ public class LoginTest extends BaseClass {
         TestListener.test.get().pass("Enter Phone number:");
         loginPage.setPhonenumber("6369188818");
         TestListener.test.get().pass("Enter password:");
-        loginPage.setPassword("Mukilan@2003");
+        loginPage.setPassword("Test@123");
         TestListener.test.get().pass("Click login button");
         loginPage.clickLogin();
     }

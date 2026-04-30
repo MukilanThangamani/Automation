@@ -48,7 +48,7 @@ public class PurchasePage extends BasePage{
     @FindBy(xpath = "//span[normalize-space(text())='Save']")
     WebElement savePurchase;
 
-    @FindBy(xpath = "(//span[normalize-space(text())='Bills']/following::input)[1]")
+    @FindBy(xpath = "(//input[@type='search'])[1]")
     WebElement purchaseStatus;
 
     public void addVendor(String vendorname, String compname, String displayname, String mobile, String mail, String address, String number, String vendorstate) throws InterruptedException {

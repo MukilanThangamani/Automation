@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="FabriplayCRM_FullSuite" parallel="none" verbose="1">
+
+    <test name="Boutique_Tests_TC001_TC017">
+        <classes>
+            <class name="Tests.BoutiqueTest"/>
+        </classes>
+    </test>
+
+       <test name="Roles_Tests_TC018_TC028">
+           <classes>
+               <class name="Tests.RoleTest"/>
+           </classes>
+       </test>
+
+    <!--   <test name="Task_Tests_TC029_TC043">
+           <classes>
+               <class name="Tests.TaskTest"/>
+           </classes>
+       </test>
+
+       <test name="Employee_Tests_TC044_TC073">
+           <classes>
+               <class name="Tests.EmployeeTest"/>
+           </classes>
+       </test>
+
+       <test name="ProductType_Tests_TC074_TC098">
+           <classes>
+               <class name="Tests.ProductTest"/>
+           </classes>
+       </test> -->
+
+</suite>

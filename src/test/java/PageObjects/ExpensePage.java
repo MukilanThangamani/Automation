@@ -55,7 +55,7 @@ public class ExpensePage extends BasePage{
 
         System.out.println("Expense module button is displayed :"+expenseMod.isDisplayed());
         Thread.sleep(1000);
-       // expenseMod.click();
+        // expenseMod.click();
         Thread.sleep(1000);
         System.out.println("Add category button is displayed :"+addCategory.isDisplayed());
         addCategory.click();
@@ -103,7 +103,7 @@ public class ExpensePage extends BasePage{
         System.out.println("ExpenseAmount field is displayed :"+expenseAmount.isDisplayed());
         expenseAmount.click();
         Thread.sleep(1000);
-       // expenseAmount.sendKeys(amt);
+        // expenseAmount.sendKeys(amt);
         Thread.sleep(1000);
         System.out.println("Payment status dropdown is displayed :"+paymentStatus.isDisplayed());
         paymentStatus.click();

@@ -125,13 +125,13 @@ public class CrmPage extends BasePage{
         clickOneBoutique.click();*/
         Thread.sleep(2000);
         System.out.println("Crm button is visible :"+clickCrm.isDisplayed());
-       // clickCrm.click();
+        // clickCrm.click();
         Thread.sleep(1000);
         System.out.println("Add customer button is displayed :"+addCustomer.isDisplayed());
         addCustomer.click();
         Thread.sleep(1000);
         System.out.println("client name field is visible :"+clientname.isDisplayed());
-       // clientname.sendKeys(name);
+        // clientname.sendKeys(name);
         Thread.sleep(1000);
         System.out.println("Phone number field is visible :"+tele.isDisplayed());
         tele.sendKeys(phone);
@@ -152,7 +152,7 @@ public class CrmPage extends BasePage{
         preference.sendKeys(prefer);
 
         System.out.println("Submit in client detail :"+subBtn.isDisplayed());
-       // close.click();
+        // close.click();
         subBtn.submit();  //--> uncomment this for final execution
 
         boolean isClientName = !driver.findElements(By.xpath("//div[text()='Name is required']")).isEmpty();
@@ -181,7 +181,7 @@ public class CrmPage extends BasePage{
         save.click();
         System.out.println("Close button is visible :"+close.isDisplayed());
         Thread.sleep(1000);
-       // close.click();
+        // close.click();
     }
 
     public void occasion() throws InterruptedException {
@@ -229,7 +229,7 @@ public class CrmPage extends BasePage{
         driver.navigate().refresh();
         search.sendKeys(name);
         Thread.sleep(1000);
-      //  searchIcon.click();
+        //  searchIcon.click();
         driver.navigate().refresh();
     }
 

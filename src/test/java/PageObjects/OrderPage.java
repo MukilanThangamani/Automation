@@ -39,7 +39,7 @@ public class OrderPage extends BasePage{
 
     @FindBy(id = "clientName")
     WebElement clientName;
-    
+
     @FindBy(id = "address")
     WebElement address;
 
@@ -94,13 +94,13 @@ public class OrderPage extends BasePage{
     @FindBy(xpath = "//span[text()='Dashboard']")
     WebElement dashboard;
 
-    @FindBy(xpath = "//div[text()='Today’s Delivery']//following-sibling::div[@class='count']")
+    @FindBy(xpath = "//div[text()='Deliveries To date']//following-sibling::div[@class='count']")
     WebElement todaysDelivery;
 
-    @FindBy(xpath = "//div[text()='Bills Pending']//following-sibling::div[@class='count']")
+    @FindBy(xpath = "//div[text()='Bills Pending To Date']//following-sibling::div[@class='count']")
     WebElement billspending;
 
-    @FindBy(xpath = "//div[text()='Appointments']//following-sibling::div[@class='count']")
+    @FindBy(xpath = "//div[text()=\"Today's Appointments\"]//following-sibling::div[@class='count']")
     WebElement appointments;
 
     String naame,num;

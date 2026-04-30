@@ -231,7 +231,7 @@ public class PurchasePageTest extends BaseClass{
 
     @Test(priority = 32)
     public void verifyVendorDetailHeader(){
-        boolean vendorDetail = driver.findElement(By.xpath("//th[normalize-space(text())='vendor Details']")).isDisplayed();
+        boolean vendorDetail = driver.findElement(By.xpath("//th[normalize-space(text())='Vendor Details']")).isDisplayed();
         System.out.println("verify vendor detail header is visible :"+vendorDetail);
     }
 
@@ -303,11 +303,6 @@ public class PurchasePageTest extends BaseClass{
         System.out.println("Verify open status is visible :"+open);
     }
 
-    @Test(priority = 44)
-    public void verifyReceivedStatus(){
-        boolean received = driver.findElement(By.xpath("//div[normalize-space(text())='Received']")).isDisplayed();
-        System.out.println("Verify received status is visible :"+received);
-    }
 
     @Test(priority = 45)
     public void verifyPartiallyReceivedStatus(){

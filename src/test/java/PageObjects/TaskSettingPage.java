@@ -65,7 +65,7 @@ public class TaskSettingPage extends BasePage{
         chrg.sendKeys(charge);
         Thread.sleep(1000);
         role.click();
-      //  selectRandomAntDropdownOption();
+        //  selectRandomAntDropdownOption();
 //        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(20));
 //        List<WebElement> roleOptions = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("/html/body/div[6]/div/div/div[2]/div[1]/div/div")));
 //        Random random = new Random();
@@ -82,9 +82,9 @@ public class TaskSettingPage extends BasePage{
 
     public void selectRandomAntDropdownOption() {
 
-       WebDriverWait wait =  new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebDriverWait wait =  new WebDriverWait(driver, Duration.ofSeconds(10));
 
-       Random random = new Random();
+        Random random = new Random();
         By optionsLocator = By.xpath(
                 "//div[contains(@class,'ant-select-item-option') and @role='option']"
         );

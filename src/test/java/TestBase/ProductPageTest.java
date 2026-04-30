@@ -31,7 +31,7 @@ public class ProductPageTest extends BaseClass {
             pp.verifyProductInList(prod[i], 1);
         }
 
-      //  pp.backButton();
+        //  pp.backButton();
         softAssert.assertAll();
 
     }
@@ -70,7 +70,7 @@ public class ProductPageTest extends BaseClass {
 
     @Test(priority = 6)
     public void verifyGenderField(){
-       boolean gender = driver.findElement(By.xpath("(//span[@class='ant-select-selection-search']/following-sibling::span)[2]")).isDisplayed();
+        boolean gender = driver.findElement(By.xpath("(//span[@class='ant-select-selection-search']/following-sibling::span)[2]")).isDisplayed();
         System.out.println("Verify gender field is present :"+gender);
     }
 
@@ -96,7 +96,7 @@ public class ProductPageTest extends BaseClass {
     public void verifyNotes(){
         boolean notes = driver.findElement(By.xpath("(//label[normalize-space(text())='New Product Type']/following::input)[2]")).isDisplayed();
         System.out.println("Verify predefined notes :"+notes);
-      // Assert.assertTrue(notes,"Predefined notes field is NOT displayed");
+        // Assert.assertTrue(notes,"Predefined notes field is NOT displayed");
     }
 
     @Test(priority = 11)
