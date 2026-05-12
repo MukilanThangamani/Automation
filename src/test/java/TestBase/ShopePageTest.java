@@ -3,6 +3,10 @@ package TestBase;
 import PageObjects.BoutiquePage;
 import Utils.TestListener;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import java.time.Duration;
 
@@ -88,19 +92,279 @@ public class ShopePageTest extends BaseClass {
     }
 
     @Test(priority = 14)
-    public void verifyAllShopFields() throws InterruptedException {
+    public void emptyBoutiqueName() throws InterruptedException {
         BoutiquePage bm = new BoutiquePage(driver);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-        TestListener.test.get().pass("Shop Details :");
-        bm.enterShopName("The Atelier Edi");
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-        bm.enterLegalName("Looms");
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-        bm.enterNickName("Maison");
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-        bm.enterGst("HDJH373893HD");
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-        bm.address("G-8","1/321,chennai","Chennai","Tamilnadu","636 012","7483947383");
+//        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+//        TestListener.test.get().pass("Shop Details :");
+//        bm.enterShopName("The Atelier Edi");
+//        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+//        bm.enterLegalName("Looms");
+//        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+//        bm.enterNickName("Maison");
+//        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+//        bm.enterGst("HDJH373893HD");
+//        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+//        bm.address("G-8","1/321,chennai","Chennai","Tamilnadu","636 012","7483947383");
+        bm.setName("");
+        bm.setLegalName("Looms");
+        bm.setDisplayName("Blush Theo");
+        bm.setGst("HDJH373893HD");
+        bm.setShopNumber("G-8");
+        bm.setAddress("1/321,chennai");
+        bm.setCity("Tamilnadu");
+        bm.setPincode("636012");
+        bm.setMobileNum("83737 37373");
+        bm.clickSubmit();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement toast = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[normalize-space(text())='Name is required']")));
+        Assert.assertTrue(toast.getText().contains("Name is required"), "Error message not displayed");
+
+    }
+
+    @Test(priority = 15)
+    public void emptyLegalName() throws InterruptedException {
+        BoutiquePage bm = new BoutiquePage(driver);
+
+        bm.setName("The Atelier Edits");
+        bm.setLegalName("");
+        bm.setDisplayName("Blush Theo");
+        bm.setGst("HDJH373893HD");
+        bm.setShopNumber("G-8");
+        bm.setAddress("1/321,chennai");
+        bm.setCity("Tamilnadu");
+        bm.setPincode("636012");
+        bm.setMobileNum("83737 37373");
+        bm.clickSubmit();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement toast = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[normalize-space(text())='Legal Name is required']")));
+        Assert.assertTrue(toast.getText().contains("Legal Name is required"), "Error message not displayed");
+
+    }
+
+    @Test(priority = 16)
+    public void emptyDisplayName() throws InterruptedException {
+        BoutiquePage bm = new BoutiquePage(driver);
+
+        bm.setName("The Atelier Edits");
+        bm.setLegalName("Looms");
+        bm.setDisplayName("");
+        bm.setGst("HDJH373893HD");
+        bm.setShopNumber("G-8");
+        bm.setAddress("1/321,chennai");
+        bm.setCity("Tamilnadu");
+        bm.setPincode("636012");
+        bm.setMobileNum("83737 37373");
+        bm.clickSubmit();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement toast = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[normalize-space(text())='Nick Name is required']")));
+        Assert.assertTrue(toast.getText().contains("Nick Name is required"), "Error message not displayed");
+    }
+
+    @Test(priority = 17)
+    public void emptyGSTName() throws InterruptedException {
+        BoutiquePage bm = new BoutiquePage(driver);
+
+        bm.setName("The Atelier Edits");
+        bm.setLegalName("Looms");
+        bm.setDisplayName("Blush Theo");
+        bm.setGst("");
+        bm.setShopNumber("G-8");
+        bm.setAddress("1/321,chennai");
+        bm.setCity("Tamilnadu");
+        bm.setPincode("636012");
+        bm.setMobileNum("83737 37373");
+        bm.clickSubmit();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement toast = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[normalize-space(text())='GST Number is required']")));
+        Assert.assertTrue(toast.getText().contains("GST Number is required"), "Error message not displayed");
+    }
+
+    @Test(priority = 18)
+    public void emptyShopName() throws InterruptedException {
+        BoutiquePage bm = new BoutiquePage(driver);
+
+        bm.setName("The Atelier Edits");
+        bm.setLegalName("Looms");
+        bm.setDisplayName("Blush Theo");
+        bm.setGst("HDJH373893HD");
+        bm.setShopNumber("");
+        bm.setAddress("1/321,chennai");
+        bm.setCity("Tamilnadu");
+        bm.setPincode("636012");
+        bm.setMobileNum("83737 37373");
+        bm.clickSubmit();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement toast = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[normalize-space(text())='Shop Number required']")));
+        Assert.assertTrue(toast.getText().contains("Shop Number required"), "Error message not displayed");
+    }
+
+    @Test(priority = 19)
+    public void emptyAddressName() throws InterruptedException {
+        BoutiquePage bm = new BoutiquePage(driver);
+
+        bm.setName("The Atelier Edits");
+        bm.setLegalName("Looms");
+        bm.setDisplayName("Blush Theo");
+        bm.setGst("HDJH373893HD");
+        bm.setShopNumber("G-8");
+        bm.setAddress("");
+        bm.setCity("Tamilnadu");
+        bm.setPincode("636012");
+        bm.setMobileNum("83737 37373");
+        bm.clickSubmit();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement toast = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[normalize-space(text())='Area, Street, Sector, Village is required']")));
+        Assert.assertTrue(toast.getText().contains("Area, Street, Sector, Village is required"), "Error message not displayed");
+
+    }
+
+    @Test(priority = 20)
+    public void emptyCityName() throws InterruptedException {
+        BoutiquePage bm = new BoutiquePage(driver);
+
+        bm.setName("The Atelier Edits");
+        bm.setLegalName("Looms");
+        bm.setDisplayName("Blush Theo");
+        bm.setGst("HDJH373893HD");
+        bm.setShopNumber("G-8");
+        bm.setAddress("1/321,chennai");
+        bm.setCity("");
+        bm.setPincode("636012");
+        bm.setMobileNum("83737 37373");
+        bm.clickSubmit();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement toast = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[normalize-space(text())='City is required']")));
+        Assert.assertTrue(toast.getText().contains("City is required"), "Error message not displayed");
+    }
+
+    @Test(priority = 21)
+    public void emptyPINCodeName() throws InterruptedException {
+        BoutiquePage bm = new BoutiquePage(driver);
+
+        bm.setName("The Atelier Edits");
+        bm.setLegalName("Looms");
+        bm.setDisplayName("Blush Theo");
+        bm.setGst("HDJH373893HD");
+        bm.setShopNumber("G-8");
+        bm.setAddress("1/321,chennai");
+        bm.setCity("Tamilnadu");
+        bm.setPincode("");
+        bm.setMobileNum("83737 37373");
+        bm.clickSubmit();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement toast = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[normalize-space(text())='PIN Code is required']")));
+        Assert.assertTrue(toast.getText().contains("PIN Code is required"), "Error message not displayed");
+    }
+
+    @Test(priority = 22)
+    public void invalidCharactersName() throws InterruptedException {
+        BoutiquePage bm = new BoutiquePage(driver);
+
+        bm.setName("The Atelier Edits");
+        bm.setLegalName("Looms");
+        bm.setDisplayName("Blush Theo");
+        bm.setGst("HDJH373893HD");
+        bm.setShopNumber("G-8");
+        bm.setAddress("1/321,chennai");
+        bm.setCity("Tamilnadu");
+        bm.setPincode("sdf");
+        bm.setMobileNum("83737 37373");
+        bm.clickSubmit();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement toast = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[normalize-space(text())='Only numbers are allowed']")));
+        Assert.assertTrue(toast.getText().contains("Only numbers are allowed"), "Error message not displayed");
+    }
+
+    @Test(priority = 23)
+    public void emptyMobileNumName() throws InterruptedException {
+        BoutiquePage bm = new BoutiquePage(driver);
+
+        bm.setName("The Atelier Edits");
+        bm.setLegalName("Looms");
+        bm.setDisplayName("Blush Theo");
+        bm.setGst("HDJH373893HD");
+        bm.setShopNumber("G-8");
+        bm.setAddress("1/321,chennai");
+        bm.setCity("Tamilnadu");
+        bm.setPincode("848383");
+        bm.setMobileNum("");
+        bm.clickSubmit();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement toast = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[normalize-space(text())='Mobile Number is required']")));
+        Assert.assertTrue(toast.getText().contains("Mobile Number is required"), "Error message not displayed");
+    }
+
+    @Test(priority = 24)
+    public void invalidMobile() throws InterruptedException {
+        BoutiquePage bm = new BoutiquePage(driver);
+
+        bm.setName("The Atelier Edits");
+        bm.setLegalName("Looms");
+        bm.setDisplayName("Blush Theo");
+        bm.setGst("HDJH373893HD");
+        bm.setShopNumber("G-8");
+        bm.setAddress("1/321,chennai");
+        bm.setCity("Tamilnadu");
+        bm.setPincode("848383");
+        bm.setMobileNum("8373");
+        bm.clickSubmit();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement toast = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[normalize-space(text())='Please enter a valid 10-digit phone number.']")));
+        Assert.assertTrue(toast.getText().contains("Please enter a valid 10-digit phone number."), "Error message not displayed");
+
+    }
+
+    @Test(priority = 25)
+    public void emptyShopDetail() throws InterruptedException {
+        BoutiquePage bm = new BoutiquePage(driver);
+
+        bm.setName("");
+        bm.setLegalName("");
+        bm.setDisplayName("");
+        bm.setGst("");
+        bm.setShopNumber("");
+        bm.setAddress("");
+        bm.setCity("");
+        bm.setPincode("");
+        bm.setMobileNum("");
+        bm.clickSubmit();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement toast = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[normalize-space(text())='PIN Code is required']")));
+        Assert.assertTrue(toast.getText().contains("PIN Code is required"), "Error message not displayed");
+    }
+
+    @Test(priority = 26)
+    public void validShopDetail() throws InterruptedException {
+        BoutiquePage bm = new BoutiquePage(driver);
+
+        bm.setName("The Atelier Edits");
+        bm.setLegalName("Looms");
+        bm.setDisplayName("Blush Theo");
+        bm.setGst("HDJH373893HD");
+        bm.setShopNumber("G-8");
+        bm.setAddress("1/321,chennai");
+        bm.setCity("Tamilnadu");
+        bm.setPincode("848383");
+        bm.setMobileNum("83737 37373");
+        bm.clickSubmit();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement toast = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space(text())='Boutique updated successfully!']")));
+        Assert.assertTrue(toast.getText().contains("Boutique updated successfully!"), "Error message not displayed");
+
         bm.nextInB();
     }
+
 }

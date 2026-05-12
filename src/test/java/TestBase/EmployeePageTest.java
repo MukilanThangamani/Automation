@@ -1,14 +1,20 @@
 package TestBase;
 
 import PageObjects.EmployeePage;
+import PageObjects.LoginPage;
 import Utils.TestListener;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import java.time.Duration;
 
 public class EmployeePageTest extends BaseClass{
 
-    @Test(priority = 30)
+    @Test(priority = 35)
     public void testAddEmployee() throws InterruptedException {
         EmployeePage ep = new EmployeePage(driver);
         TestListener.test.get().pass("Enter employee details :");
@@ -187,12 +193,98 @@ public class EmployeePageTest extends BaseClass{
     }
 
     @Test(priority = 29)
-    public void verifyData() throws InterruptedException {
+    public void emptyNameValidationTest() throws Exception {
         EmployeePage ep2 = new EmployeePage(driver);
-        ep2.enterData(randomString(),phoneRandom(),randomString());
+
+        ep2.setName("");
+        ep2.setMobile("9875937594");
+        ep2.selectRole();
+        ep2.setAddress(randomString());
+        ep2.clickSubmit();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement toast = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[normalize-space(text())='Name is required']")));
+        Assert.assertTrue(toast.getText().contains("Name is required"), "Error message not displayed");
+
+    }
+
+    @Test(priority = 30)
+    public void invalidMobileNumberTest() throws Exception {
+        EmployeePage ep2 = new EmployeePage(driver);
+
+        ep2.setName("Mukilan");
+        ep2.setMobile("123");
+        ep2.selectRole();
+        ep2.setAddress("Chennai");
+        ep2.clickSubmit();
+        Thread.sleep(1000);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement toast = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[normalize-space(text())='Please enter a valid 10-digit phone number.']")));
+        Assert.assertTrue(toast.getText().contains("Please enter a valid 10-digit phone number."), "Error message not displayed");
+        WebElement close = driver.findElement(By.xpath("//span[normalize-space(text())='Close']"));
+        close.click();
+    }
+
+    @Test(priority = 31)
+    public void emptyRoleValidationTest() throws Exception {
+        EmployeePage ep2 = new EmployeePage(driver);
+         WebElement addOutsource = driver.findElement(By.xpath("//span[normalize-space(text())='Add Outsourcing Employee']"));
+         addOutsource.click();
+        ep2.setName("Mukilan");
+        Thread.sleep(1000);
+        ep2.setMobile("9876543210");
+        Thread.sleep(1000);
+        ep2.setAddress("Chennai");
+        Thread.sleep(1000);
+        ep2.clickSubmit();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement toast = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[normalize-space(text())='Role is required']")));
+        Assert.assertTrue(toast.getText().contains("Role is required"), "Error message not displayed");
     }
 
 
+    @Test(priority = 32)
+    public void mobileNumberWithOneTest() throws Exception {
+        EmployeePage ep2 = new EmployeePage(driver);
+
+        ep2.setName("Mukilan");
+        ep2.setMobile("9");
+        ep2.selectRole();
+        ep2.setAddress("Chennai");
+        ep2.clickSubmit();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement toast = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[normalize-space(text())='Invalid phone number for selected country']")));
+        Assert.assertTrue(toast.getText().contains("Invalid phone number for selected country"), "Error message not displayed");
+    }
+
+
+    @Test(priority = 33)
+    public void submitModalTest() {
+        EmployeePage ep2 = new EmployeePage(driver);
+        ep2.clickSubmit();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement toast = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[normalize-space(text())='Invalid phone number for selected country']")));
+        Assert.assertTrue(toast.getText().contains("Invalid phone number for selected country"), "Error message not displayed");
+    }
+
+
+    @Test(priority = 34)
+    public void addEmployeeWithValidDataTest() throws Exception {
+        EmployeePage ep2 = new EmployeePage(driver);
+
+        ep2.setName(randomString());
+        ep2.setMobile(phoneRandom());
+        ep2.selectRole();
+        ep2.setAddress("Chennai");
+        ep2.clickSubmit();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement toast = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space(text())='Outsourcing employee created successfully']")));
+        Assert.assertTrue(toast.getText().contains("Outsourcing employee created successfully"), "Error message not displayed");
+    }
 
 
 

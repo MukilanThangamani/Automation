@@ -11,7 +11,7 @@ public class DesignBoardPage extends BasePage {
     }
 
     public void clickDesignBoard() {
-        WebElement design = driver.findElement(By.xpath("//span[text()=' Design board']"));
+        WebElement design = driver.findElement(By.xpath("//span[normalize-space(text())='Design Board']"));
         design.click();
     }
 

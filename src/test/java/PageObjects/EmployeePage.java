@@ -2,10 +2,7 @@ package PageObjects;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -87,6 +84,9 @@ public class EmployeePage extends BasePage {
     @FindBy(xpath = "//input[@aria-controls='employeeRoleId_list']")
     WebElement empRoleList;
 
+    @FindBy(xpath = "//div[normalize-space(text())='PRHjDunSBn']")
+    WebElement roleOption;
+
     // Action
 
     public void empDetail() throws InterruptedException {
@@ -110,7 +110,8 @@ public class EmployeePage extends BasePage {
         Thread.sleep(2000);
         roleDropdown.click();
         Thread.sleep(1000); // Optional, better to wait with WebDriverWait
-        Random random = new Random();WebElement selectRole1 = driver.findElement(By.xpath("//div[text()='DpIDb']"));
+        Random random = new Random();
+        WebElement selectRole1 = driver.findElement(By.xpath("//div[normalize-space(text())='PRHjDunSBn']"));
         selectRole1.click();
 
         Thread.sleep(1000);
@@ -167,6 +168,53 @@ public class EmployeePage extends BasePage {
         addOutsourcing.click();
     }
 
+    public void setName(String Name) throws InterruptedException {
+
+        WebElement element = driver.findElement(By.xpath("(//label[normalize-space(text())='Name']/following::input)[1]"));
+
+        element.sendKeys(Keys.COMMAND + "a");
+        element.sendKeys(Keys.DELETE);
+
+        Thread.sleep(500);
+
+        element.sendKeys(Name);
+    }
+
+    public void setMobile(String mobile) throws InterruptedException {
+
+        WebElement element = driver.findElement(By.id("phone"));
+
+        element.sendKeys(Keys.COMMAND + "a");
+        element.sendKeys(Keys.DELETE);
+
+        Thread.sleep(500);
+
+        element.sendKeys(mobile);
+    }
+
+    public void selectRole() {
+
+        driver.findElement(By.xpath("//input[@id='employeeRoleId']/ancestor::div[contains(@class,'ant-select-selector')]")).click();
+
+        driver.findElement(By.xpath("//div[normalize-space(text())='PRHjDunSBn']")).click();
+    }
+
+    public void setAddress(String address) throws InterruptedException {
+
+        WebElement element = driver.findElement(By.id("address"));
+
+        element.sendKeys(Keys.COMMAND + "a");
+        element.sendKeys(Keys.DELETE);
+
+        Thread.sleep(500);
+
+        element.sendKeys(address);
+    }
+
+    public void clickSubmit() {
+        driver.findElement(By.xpath("//span[normalize-space(text())='Submit']")).click();
+    }
+
     public void enterData(String empname, String Mobile ,String add) throws InterruptedException {
         name.sendKeys(empname);
         Thread.sleep(1000);
@@ -174,7 +222,7 @@ public class EmployeePage extends BasePage {
         Thread.sleep(1000);
         empRoleList.click();
         Thread.sleep(1000);
-        WebElement role = driver.findElement(By.xpath("//div[normalize-space(text())='DpIDb']"));
+        WebElement role = driver.findElement(By.xpath("//div[normalize-space(text())='PRHjDunSBn']"));
         role.click();
         Thread.sleep(1000);
         empaddress.sendKeys(add);

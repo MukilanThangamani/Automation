@@ -9,7 +9,7 @@ public class DesignBoardPageTest extends  BaseClass{
     @Test(priority = 1)
     public void verifyDesignModule(){
         DesignBoardPage dp = new DesignBoardPage(driver);
-        boolean design = driver.findElement(By.xpath("//span[text()=' Design board']")).isDisplayed();
+        boolean design = driver.findElement(By.xpath("//span[normalize-space(text())='Design Board']")).isDisplayed();
         System.out.println("DesignBoard Module is displayed :"+design);
         dp.clickDesignBoard();
     }

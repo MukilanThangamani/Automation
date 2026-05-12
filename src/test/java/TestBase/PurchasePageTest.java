@@ -299,7 +299,7 @@ public class PurchasePageTest extends BaseClass{
 
     @Test(priority = 43)
     public void verifyOpenStatus(){
-        boolean open = driver.findElement(By.xpath("//div[normalize-space(text())='Open']")).isDisplayed();
+        boolean open = driver.findElement(By.xpath("//div[normalize-space(text())='Created']")).isDisplayed();
         System.out.println("Verify open status is visible :"+open);
     }
 

@@ -42,13 +42,16 @@ public class PurchasePage extends BasePage{
     @FindBy(id = "vendor")
     WebElement clickVendor;
 
+    @FindBy(xpath = "//div[normalize-space(text())='ZoUrH - LpYaB']")
+    WebElement selectVendor;
+
     @FindBy(xpath = "(//input[@placeholder='Select date'])[2]")
     WebElement deliveryDate;
 
     @FindBy(xpath = "//span[normalize-space(text())='Save']")
     WebElement savePurchase;
 
-    @FindBy(xpath = "(//input[@type='search'])[1]")
+    @FindBy(xpath = "(//span[@class='ant-select-selection-search'])[1]")
     WebElement purchaseStatus;
 
     public void addVendor(String vendorname, String compname, String displayname, String mobile, String mail, String address, String number, String vendorstate) throws InterruptedException {
@@ -77,6 +80,8 @@ public class PurchasePage extends BasePage{
         savePurchase.click();
         Thread.sleep(1000);
         clickVendor.click();
+        Thread.sleep(1000);
+        selectVendor.click();
         Thread.sleep(1000);
         deliveryDate.sendKeys(delivery);
         savePurchase.click();

@@ -91,16 +91,16 @@ public class OrderPage extends BasePage{
     @FindBy(xpath = "//span[text()='Add Product']")
     WebElement addItem;
 
-    @FindBy(xpath = "//span[text()='Dashboard']")
+    @FindBy(xpath = "//span[normalize-space(text())='Dashboard']")
     WebElement dashboard;
 
-    @FindBy(xpath = "//div[text()='Deliveries To date']//following-sibling::div[@class='count']")
+    @FindBy(xpath = "//div[text()='Deliveries To Date']")
     WebElement todaysDelivery;
 
-    @FindBy(xpath = "//div[text()='Bills Pending To Date']//following-sibling::div[@class='count']")
+    @FindBy(xpath = "//div[text()='Bills Pending To Date']")
     WebElement billspending;
 
-    @FindBy(xpath = "//div[text()=\"Today's Appointments\"]//following-sibling::div[@class='count']")
+    @FindBy(xpath = "//div[@class='small-card appointments']//div[1]")
     WebElement appointments;
 
     String naame,num;
@@ -364,5 +364,7 @@ public class OrderPage extends BasePage{
         System.out.println("Verify close modal is visible:"+closeModal.isDisplayed());
         Thread.sleep(1000);
         driver.navigate().refresh();
+        Thread.sleep(1000);
+        orderAndOutsourcing.click();
     }
 }

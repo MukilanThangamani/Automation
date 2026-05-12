@@ -4,7 +4,11 @@ import PageObjects.DashboardPage;
 import Utils.TestListener;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
+
+import java.time.Duration;
 
 public class DashBoardPageTest extends BaseClass{
 
@@ -35,8 +39,8 @@ public class DashBoardPageTest extends BaseClass{
 
     @Test(priority = 5)
     public void verifyFilterType(){
-        WebElement filter = driver.findElement(By.xpath("(//input[@class='ant-select-selection-search-input'])[3]"));
-        TestListener.test.get().pass("Verify filter fropdown is visible :"+filter.isDisplayed());
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement filter = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@aria-controls='rc_select_24_list']")));
         filter.click();
     }
 

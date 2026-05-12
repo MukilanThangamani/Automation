@@ -1,13 +1,9 @@
 package PageObjects;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.Test;
 
 import java.time.Duration;
 
@@ -81,140 +77,87 @@ public class BoutiquePage extends BasePage {
         js.executeScript("arguments[0].scrollIntoView({block: 'center'});", button);
 
         button.click();
-
-//        System.out.println("Boutique is visible :"+ClkPlus.isDisplayed());
-//        Thread.sleep(1500);
-//        button.click();
     }
 
+    public void setName(String name) throws InterruptedException {
+        WebElement element = driver.findElement(By.id("boutique_name"));
 
-    public void enterShopName(String shop) throws InterruptedException {
-        System.out.println("** In Shop detail Page  ** ");
-        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.visibilityOf(shopname));
-        System.out.println("shop is displayed :"+shopname.getText());
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-        Thread.sleep(1200);
-        // shopname.clear();
-        Thread.sleep(1000);
-        //   shopname.sendKeys(shop);   //->Rem
-    }
-
-
-    public void enterLegalName(String legal) throws InterruptedException {
-        System.out.println("Legal name is displayed :"+legalname.getText());
-        //  legalname.clear();
-        Thread.sleep(1000);
-        //     legalname.sendKeys(legal);  //->Rem
-        Thread.sleep(1000);
-    }
-
-
-    public void enterNickName(String nick) {
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-
-        System.out.println("Nickname field is displayed :"+nickname.getText());
-        //  nickname.clear();
-        //   nickname.sendKeys(nick);
-    }
-
-
-    public void enterGst(String gstnum) {
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-        System.out.println("GstNumber field is displayed :"+gstNUmber.getText());
-        // System.out.println("Leave days field is displayed :"+leaveDays.isDisplayed());
-        //   gstNUmber.clear();
-        //->Rem   gstNUmber.sendKeys(gstnum);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-        System.out.println("TimeZone field is displayed :"+timeZone.getText());
-
-    }
-
-
-    public void address(String shopnum, String address, String landmark, String cities, String pincode, String mobileNum) throws InterruptedException {
-      /*  System.out.println("Start time is displayed : "+starttime.getText());
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-        System.out.println("End time is displayed :"+entime.getText());
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-        System.out.println("Interval start time is displayed :"+intervalStrttime.getText());
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-        System.out.println("Interval end time is displayed :"+intervalEndttime.getText());
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-        System.out.println("ShopNUmber field is visible :"+shopNum.getText());
-        */    shopNum.clear();
-        //    shopNum.sendKeys(shopnum);
-        Thread.sleep(1000);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-        System.out.println("ShopAddress field is visible :"+addr.getText());
-        //   addr.clear();
-        Thread.sleep(1000);
-        //  addr.sendKeys(address);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-        System.out.println("ShopLandmark field is visible :"+land.getText());
-        //    land.clear();
-        Thread.sleep(1000);
-        //  land.sendKeys(landmark);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-        System.out.println("ShopCity field is visible :"+city.getText());
-        //    city.clear();
-        Thread.sleep(1000);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-        System.out.println("State field is displayed :"+state.getText());
-        //      city.sendKeys(cities);
-        Thread.sleep(1000);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-        System.out.println("ShopPin field is visible :"+pin.getText());
-        //    pin.clear();
-        Thread.sleep(1000);
-        //      pin.sendKeys(pincode);
-        Thread.sleep(1000);
-        System.out.println("ShopMobileNumber field is visible :"+mobile.getText());
-        //   mobile.clear();
-        Thread.sleep(1000);
-        //     mobile.sendKeys(mobileNum);
+        element.sendKeys(Keys.COMMAND + "a");
+        element.sendKeys(Keys.DELETE);
         Thread.sleep(500);
+        element.sendKeys(name);
     }
 
-    public WebElement getStartTimeField() {
-        return driver.findElement(By.xpath("//label[contains(text(),'Shop Working Hours')]/following-sibling::div//input[@type='time'][1]"));
+    public void setLegalName(String legal) throws InterruptedException {
+        WebElement element = driver.findElement(By.id("boutique_legalName"));
+
+        element.sendKeys(Keys.COMMAND + "a");
+        element.sendKeys(Keys.DELETE);
+        Thread.sleep(500);
+        element.sendKeys(legal);
     }
 
-    public WebElement getEndTimeField() {
-        return driver.findElement(By.xpath("//label[contains(text(),'Shop Working Hours')]/following-sibling::div//input[@type='time'][2]"));
+    public void setDisplayName(String nick) throws InterruptedException {
+        WebElement element = driver.findElement(By.id("boutique_nickName"));
+
+        element.sendKeys(Keys.COMMAND + "a");
+        element.sendKeys(Keys.DELETE);
+        Thread.sleep(500);
+        element.sendKeys(nick);
     }
 
-    public void setTime(WebElement timeField, String timeValue) {
-        timeField.clear();  // Clear existing time
-        timeField.sendKeys(timeValue);  // Set new time
+    public void setGst(String gst) throws InterruptedException {
+        WebElement element = driver.findElement(By.id("boutique_gstNumber"));
+
+        element.sendKeys(Keys.COMMAND + "a");
+        element.sendKeys(Keys.DELETE);
+        Thread.sleep(500);
+        element.sendKeys(gst);
     }
 
+    public void setShopNumber(String shopNum) throws InterruptedException {
+        WebElement element = driver.findElement(By.id("boutique_shopNumber"));
 
-    public void nxt() {
-        try {
-            // Wait for and click the Submit button
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-            System.out.println("Submit button visible: " + sub.isDisplayed());
+        element.sendKeys(Keys.COMMAND + "a");
+        element.sendKeys(Keys.DELETE);
+        Thread.sleep(500);
+        element.sendKeys(shopNum);
+    }
 
-            System.out.println("Current URL after submit: " + driver.getCurrentUrl());
+    public void setAddress(String addr) throws InterruptedException {
+        WebElement element = driver.findElement(By.id("boutique_address"));
 
-            System.out.println("Current URL after refresh: " + driver.getCurrentUrl());
+        element.sendKeys(Keys.COMMAND + "a");
+        element.sendKeys(Keys.DELETE);
+        Thread.sleep(500);
+        element.sendKeys(addr);
+    }
 
-            WebElement viewDetail = wait.until(ExpectedConditions.visibilityOfElementLocated(
-                    By.xpath("//div[normalize-space(text())='Maison']/ancestor::div[contains(@class,'MuiPaper-root')]//button[normalize-space()='View Details']")
-            ));
+    public void setCity(String city) throws InterruptedException {
+        WebElement element = driver.findElement(By.id("boutique_city"));
 
-            System.out.println("View Detail button is displayed: " + viewDetail.isDisplayed());
+        element.sendKeys(Keys.COMMAND + "a");
+        element.sendKeys(Keys.DELETE);
+        Thread.sleep(500);
+        element.sendKeys(city);
+    }
 
-            WebElement nextButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
-                    By.xpath("//button[normalize-space()='Next']")
-            ));
-            nextButton.click();
+    public void setPincode(String pincode) throws InterruptedException {
+        WebElement element = driver.findElement(By.id("boutique_pincode"));
 
-        }
-        catch (Exception e) {
-            System.out.println("Exception occurred in nxt(): " + e.getMessage());
-            e.printStackTrace();
-        }
+        element.sendKeys(Keys.COMMAND + "a");
+        element.sendKeys(Keys.DELETE);
+        Thread.sleep(500);
+        element.sendKeys(pincode);
+    }
+
+    public void setMobileNum(String mobile) throws InterruptedException {
+        WebElement element = driver.findElement(By.id("boutique_phone"));
+
+        element.sendKeys(Keys.COMMAND + "a");
+        element.sendKeys(Keys.DELETE);
+        Thread.sleep(500);
+        element.sendKeys(mobile);
     }
 
 
@@ -227,5 +170,13 @@ public class BoutiquePage extends BasePage {
         System.out.println("Next button is visible in boutique page :"+nextButton.isDisplayed());
         nextButton.click();
     }
+
+
+    public void clickSubmit() {
+        WebElement submit = driver.findElement(By.xpath("//span[normalize-space(text())='Submit']"));
+        submit.click();
+    }
+
+
 
 }
