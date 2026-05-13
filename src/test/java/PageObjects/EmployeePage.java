@@ -24,7 +24,7 @@ public class EmployeePage extends BasePage {
     @FindBy(xpath = "//div[normalize-space(text())='Employees']")
     WebElement employees;
 
-    @FindBy(xpath = "//span[text()='Add Employee']")
+    @FindBy(xpath = "//span[normalize-space(text())='Add Employee']")
     WebElement addEmployee;
 
     @FindBy(id = "boutique_name")
@@ -57,7 +57,7 @@ public class EmployeePage extends BasePage {
     @FindBy(xpath = "//span[text()='Submit']")
     WebElement subEmp;
 
-    @FindBy(xpath = "//span[text()='Close']")
+    @FindBy(xpath = "//button[@sx='[object Object]']")
     WebElement close;
 
     @FindBy(xpath = "//span[text()='Next']")
@@ -245,7 +245,103 @@ public class EmployeePage extends BasePage {
     }
 
     public void clickAddEmp() {
+        employees.click();
         addEmployee.click();
     }
 
+    public void enterName(String name) throws InterruptedException {
+        WebElement element = driver.findElement(By.id("boutique_name"));
+
+        element.sendKeys(Keys.COMMAND + "a");
+        element.sendKeys(Keys.DELETE);
+
+        Thread.sleep(500);
+
+        element.sendKeys(name);
+    }
+
+    public void enterMob(String mobile) throws InterruptedException {
+        WebElement element = driver.findElement(By.id("boutique_phone"));
+
+        element.sendKeys(Keys.COMMAND + "a");
+        element.sendKeys(Keys.DELETE);
+
+        Thread.sleep(500);
+
+        element.sendKeys(mobile);
+    }
+
+    public void enterEmergencyNum(String emergencyMobile) throws InterruptedException {
+        WebElement element = driver.findElement(By.id("boutique_emergencyPhone"));
+
+        element.sendKeys(Keys.COMMAND + "a");
+        element.sendKeys(Keys.DELETE);
+
+        Thread.sleep(500);
+
+        element.sendKeys(emergencyMobile);
+    }
+
+    public void enterPassword(String password) throws InterruptedException {
+        WebElement element = driver.findElement(By.id("boutique_password"));
+
+        element.sendKeys(Keys.COMMAND + "a");
+        element.sendKeys(Keys.DELETE);
+
+        Thread.sleep(500);
+
+        element.sendKeys(password);
+    }
+
+    public void selectGender(String gender) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        // ✅ Click the actual dropdown container (not input)
+        WebElement dropdown = wait.until(ExpectedConditions.elementToBeClickable(
+                By.xpath("//input[@id='boutique_gender']/ancestor::div[contains(@class,'ant-select')]")
+        ));
+        dropdown.click();
+
+        // ✅ Select option by visible text
+        WebElement option = wait.until(ExpectedConditions.elementToBeClickable(
+                By.xpath("//div[contains(@class,'ant-select-item-option')]//div[text()='" + gender + "']")
+        ));
+        option.click();
+    }
+
+    public void selectUser(String role) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        // ✅ Click actual dropdown container
+        WebElement dropdown = wait.until(ExpectedConditions.elementToBeClickable(
+                By.xpath("//input[@id='boutique_userRoleId']/ancestor::div[contains(@class,'ant-select')]")
+        ));
+        dropdown.click();
+
+        // ✅ Select option by visible text
+        WebElement option = wait.until(ExpectedConditions.elementToBeClickable(
+                By.xpath("//div[contains(@class,'ant-select-item-option')]//div[text()='" + role + "']")
+        ));
+        option.click();
+    }
+
+    public void chooseRole(String roleName) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        // ✅ Click proper dropdown container
+        WebElement dropdown = wait.until(ExpectedConditions.elementToBeClickable(
+                By.xpath("//input[@id='boutique_roleId']/ancestor::div[contains(@class,'ant-select')]")
+        ));
+        dropdown.click();
+
+        // ✅ Select role dynamically
+        WebElement option = wait.until(ExpectedConditions.elementToBeClickable(
+                By.xpath("//div[contains(@class,'ant-select-item-option')]//div[normalize-space()='" + roleName + "']")
+        ));
+        option.click();
+    }
+
+    public void closeModal() {
+        close.click();
+    }
 }

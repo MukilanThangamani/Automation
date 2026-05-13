@@ -2,7 +2,13 @@ package TestBase;
 
 import PageObjects.RolePage;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import java.time.Duration;
 
 public class RolePageTest extends BaseClass {
 
@@ -75,6 +81,125 @@ public class RolePageTest extends BaseClass {
     }
 
     @Test(priority = 11)
+    public void emptyRoleTest() throws InterruptedException {
+        RolePage rp2 = new RolePage(driver);
+        rp2.clickAddRole();
+        rp2.enterRole("");
+        rp2.enterTask(randomString());
+        rp2.enterCharge(randomString());
+        rp2.submit();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement toast = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[normalize-space(text())='Role is required']")));
+        Assert.assertTrue(toast.getText().contains("Role is required"), "Error message not displayed");
+    }
+
+    @Test(priority = 12)
+    public void emptyTaskName() throws InterruptedException {
+        RolePage rp2 = new RolePage(driver);
+
+        rp2.enterRole(randomString());
+        rp2.enterTask("");
+        rp2.enterCharge(randomString());
+        rp2.submit();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement toast = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[normalize-space(text())='Task Name is required']")));
+        Assert.assertTrue(toast.getText().contains("Task Name is required"), "Error message not displayed");
+    }
+
+    @Test(priority = 13)
+    public void emptyChargeTest() throws InterruptedException {
+        RolePage rp2 = new RolePage(driver);
+
+        rp2.enterRole(randomString());
+        rp2.enterTask(randomString());
+        rp2.enterCharge("");
+        rp2.submit();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement toast = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[normalize-space(text())='Charges per hour is required']")));
+        Assert.assertTrue(toast.getText().contains("Charges per hour is required"), "Error message not displayed");
+    }
+
+    @Test(priority = 14)
+    public void invalidChargeTest() throws InterruptedException {
+        RolePage rp2 = new RolePage(driver);
+
+        rp2.enterRole(randomString());
+        rp2.enterTask(randomString());
+        rp2.enterCharge("fgh");
+        rp2.submit();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement toast = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[normalize-space(text())='Numbers only allowed']")));
+        Assert.assertTrue(toast.getText().contains("Numbers only allowed"), "Error message not displayed");
+    }
+
+    @Test(priority = 15)
+    public void validTest() throws InterruptedException {
+        RolePage rp2 = new RolePage(driver);
+
+        rp2.enterRole(randomString());
+        rp2.enterTask(randomString());
+        rp2.enterCharge("120");
+        rp2.submit();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement toast = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space(text())='Role added successfully!']")));
+        Assert.assertTrue(toast.getText().contains("Role added successfully!"), "Error message not displayed");
+    }
+
+    @Test(priority = 16)
+    public void emptyBufferTime() throws InterruptedException {
+        RolePage rp2 = new RolePage(driver);
+        rp2.clickAddRole();
+        rp2.enterRole(randomString());
+        rp2.enterTask(randomString());
+        rp2.enterCharge("120");
+        rp2.clickCheckBox();
+        rp2.bufferTime("");
+        rp2.bufferRush("2");
+        rp2.submit();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement toast = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[normalize-space(text())='Please enter Buffer time for Idle']")));
+        Assert.assertTrue(toast.getText().contains("Please enter Buffer time for Idle"), "Error message not displayed");
+    }
+
+    @Test(priority = 17)
+    public void emptyRushTime() throws InterruptedException {
+        RolePage rp2 = new RolePage(driver);
+
+        rp2.enterRole(randomString());
+        rp2.enterTask(randomString());
+        rp2.enterCharge("120");
+        rp2.bufferTime("2");
+        rp2.bufferRush("");
+        rp2.submit();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement toast = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[normalize-space(text())='Please enter Buffer time for Rush']")));
+        Assert.assertTrue(toast.getText().contains("Please enter Buffer time for Rush"), "Error message not displayed");
+    }
+
+    @Test(priority = 18)
+    public void validBufferTime() throws InterruptedException {
+        RolePage rp2 = new RolePage(driver);
+
+        rp2.enterRole(randomString());
+        rp2.enterTask(randomString());
+        rp2.enterCharge("120");
+        rp2.bufferTime("2");
+        rp2.bufferRush("2");
+        rp2.submit();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement toast = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space(text())='Role added successfully!']")));
+        Assert.assertTrue(toast.getText().contains("Role added successfully!"), "Error message not displayed");
+    }
+
+    @Test(priority = 19)
     public void nextPage() throws InterruptedException {
         RolePage rp3 = new RolePage(driver);
         rp3.moveToNextPage();

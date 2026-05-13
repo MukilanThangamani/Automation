@@ -28,6 +28,9 @@ public class RolePage extends BasePage {
     @FindBy(xpath = "//span[text()='Next']")
     WebElement nxtEmp;
 
+    @FindBy(id = "roles_tasks_0_isBufferRequired")
+    WebElement checkbox;
+
     public void add(String roleName) throws InterruptedException {
         addRole.click();
         Thread.sleep(1000);
@@ -46,6 +49,59 @@ public class RolePage extends BasePage {
 
     public void submit() {
         rolesubmit.submit();
+    }
+
+    public void clickAddRole() {
+        addRole.click();
+    }
+
+    public void enterRole(String s) throws InterruptedException {
+        WebElement element = driver.findElement(By.id("roles_roleName"));
+
+        element.sendKeys(Keys.COMMAND + "a");
+        element.sendKeys(Keys.DELETE);
+        Thread.sleep(500);
+        element.sendKeys(s);
+    }
+
+    public void enterTask(String task) throws InterruptedException {
+        WebElement element = driver.findElement(By.xpath("(//label[normalize-space(text())='Task Name']/following::input)[1]"));
+
+        element.sendKeys(Keys.COMMAND + "a");
+        element.sendKeys(Keys.DELETE);
+        Thread.sleep(500);
+        element.sendKeys(task);
+    }
+
+    public void enterCharge(String charge) throws InterruptedException {
+        WebElement element = driver.findElement(By.xpath("(//label[normalize-space(text())='Charges / Hour']/following::input)[1]"));
+
+        element.sendKeys(Keys.COMMAND + "a");
+        element.sendKeys(Keys.DELETE);
+        Thread.sleep(500);
+        element.sendKeys(charge);
+    }
+
+    public void clickCheckBox() {
+      checkbox.click();
+    }
+
+    public void bufferTime(String buffer) throws InterruptedException {
+        WebElement element = driver.findElement(By.id("roles_tasks_0_bufferTime"));
+        element.click();
+        element.sendKeys(Keys.COMMAND + "a");
+        element.sendKeys(Keys.DELETE);
+        Thread.sleep(500);
+        element.sendKeys(buffer);
+    }
+
+    public void bufferRush(String rush) throws InterruptedException {
+        WebElement element = driver.findElement(By.id("roles_tasks_0_bufferTimeForRush"));
+        element.click();
+        element.sendKeys(Keys.COMMAND + "a");
+        element.sendKeys(Keys.DELETE);
+        Thread.sleep(500);
+        element.sendKeys(rush);
     }
 
     public void moveToNextPage() throws InterruptedException {
