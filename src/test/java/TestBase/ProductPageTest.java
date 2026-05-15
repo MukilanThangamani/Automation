@@ -3,15 +3,18 @@ package TestBase;
 import PageObjects.ProductPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import org.testng.Assert;
 
 import javax.swing.*;
+import java.time.Duration;
 
 public class ProductPageTest extends BaseClass {
 
-    @Test(priority = 16)
+    @Test(priority = 20)
     public void testProductTypes() throws InterruptedException {
         ProductPage pp = new ProductPage(driver);
         SoftAssert softAssert = new SoftAssert();
@@ -134,13 +137,53 @@ public class ProductPageTest extends BaseClass {
         closeBtn.click();
     }
 
+    @Test(priority = 16)
+    public void emptyProductTypeTest() {
+        ProductPage pp = new ProductPage(driver);
+        pp.clickAddProduct();
+        pp.selectGender();
+        pp.selectProductType();
+        pp.enterNewProductType("");
+        pp.clickSubmit();
+        pp.clickClose();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement toast = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[normalize-space(text())='New Product Type is required']")));
+        Assert.assertTrue(toast.getText().contains("New Product Type is required"), "Error message not displayed");
+    }
+
     @Test(priority = 17)
+    public void genderNotSelectedTest() throws InterruptedException {
+        ProductPage pp = new ProductPage(driver);
+        pp.clickAddProduct();
+        Thread.sleep(1000);
+        pp.clickSubmit();
+        Thread.sleep(1000);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement toast = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[normalize-space(text())='Gender is required']")));
+        Assert.assertTrue(toast.getText().contains("Gender is required"), "Error message not displayed");
+    }
+
+    @Test(priority = 18)
+    public void verifyPredefinedNotes(){
+        WebElement notes = driver.findElement(By.xpath("(//label[normalize-space(text())='New Product Type']/following::input)[2]"));
+        System.out.println("Predefined field is present :"+notes);
+    }
+
+    @Test(priority = 19)
+    public void verifyAddBtn(){
+        ProductPage pp = new ProductPage(driver);
+        WebElement notes = driver.findElement(By.xpath("//span[normalize-space(text())='Add Notes']"));
+        System.out.println("Add notes button is present :"+notes);
+        pp.clickClose();
+    }
+
+    @Test(priority = 21)
     public void verifyPrevious(){
         WebElement previous = driver.findElement(By.xpath("//span[normalize-space(text())='Previous']"));
         System.out.println("Verify previous button :"+previous.isDisplayed());
     }
 
-    @Test(priority = 18)
+    @Test(priority = 22)
     public void verifyDone(){
         boolean done = driver.findElement(By.xpath("//span[normalize-space(text())='Done']")).isDisplayed();
         System.out.println("Verify done button :"+done);

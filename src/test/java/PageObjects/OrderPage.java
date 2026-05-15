@@ -25,6 +25,9 @@ public class OrderPage extends BasePage{
     @FindBy(xpath = "//span[normalize-space(text())='Orders']")
     WebElement orders;
 
+    @FindBy(xpath = "//div[normalize-space(text())='Current']")
+    WebElement currentTab;
+
     @FindBy(xpath = "//h3[text()='The Atelier Edits']" )
     WebElement boutiques;
 
@@ -105,6 +108,8 @@ public class OrderPage extends BasePage{
 
     String naame,num;
 
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+
     public void dashboard() throws InterruptedException {
         String pagetitle = driver.getTitle();
         System.out.println("The page title is :"+pagetitle);
@@ -133,9 +138,6 @@ public class OrderPage extends BasePage{
         String appointmentcount = appointments.getText();
         System.out.println("Appointments count :"+appointmentcount);
         Thread.sleep(1000);
-
-
-
     }
 
     public void getClient(){
@@ -164,24 +166,13 @@ public class OrderPage extends BasePage{
         }
     }
 
+    public void clickCurrentTab() {
+        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.elementToBeClickable(currentTab)).click();
+    }
+
     //Action
     public void orderModuleClient(String number,String name,String add) throws InterruptedException {
-        naame = name;
-        num=number;
-        System.out.println("Order button is displayed or not :" + orderAndOutsourcing.isDisplayed());
-        Thread.sleep(1000);
-        orderAndOutsourcing.click();
-        Thread.sleep(1000);
-        orders.click();
-        Thread.sleep(1000);
-       /* getClient();
-        Thread.sleep(1000);
-        System.out.println("Boutiques dropdown is visible :" + boutiques.isDisplayed());
-        boutiques.click();
-        Thread.sleep(2000);
-        System.out.println("Boutique visible :" + clickOneBoutique.isDisplayed());
-        Thread.sleep(2000);
-        clickOneBoutique.click();*/
         System.out.println("Order button is displayed or not :" + createOrder.isDisplayed());
         createOrder.click();
         Thread.sleep(2000);
@@ -366,5 +357,101 @@ public class OrderPage extends BasePage{
         driver.navigate().refresh();
         Thread.sleep(1000);
         orderAndOutsourcing.click();
+    }
+
+    public void clientMob(String mobile) throws InterruptedException {
+        WebElement element = driver.findElement(By.id("phone"));
+
+        element.sendKeys(Keys.COMMAND + "a");
+        element.sendKeys(Keys.DELETE);
+
+        Thread.sleep(500);
+
+        element.sendKeys(mobile);
+    }
+
+    public void clientname(String name) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        WebElement el = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("clientName")));
+
+        el.click();
+
+        el.sendKeys(Keys.chord(Keys.CONTROL, "a")); // select all
+        el.sendKeys(Keys.DELETE);
+
+        el.sendKeys(name);
+    }
+
+    public void nextBtn() {
+        WebElement nextInClient = driver.findElement(By.xpath("//span[normalize-space(text())='Next']"));
+        nextInClient.click();
+    }
+
+    public void selectProductType() {
+        prodType.click();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        WebElement selectProduct = driver.findElement(By.xpath("(//div[@title='Blouse']//div)[1]"));
+        selectProduct.click();
+    }
+
+    public void enterProductName(String prodName) throws InterruptedException {
+        WebElement element = driver.findElement(By.id("products_0_productName"));
+
+        element.sendKeys(Keys.COMMAND + "a");
+        element.sendKeys(Keys.DELETE);
+
+        Thread.sleep(500);
+
+        element.sendKeys(prodName);
+    }
+
+    public void enterDeliveryDate(String deliveryDate) throws InterruptedException {
+        WebElement element = driver.findElement(By.id("products_0_deliveryDate"));
+
+        element.sendKeys(Keys.COMMAND + "a");
+        element.sendKeys(Keys.DELETE);
+
+        Thread.sleep(500);
+
+        element.sendKeys(deliveryDate);
+    }
+
+    public void selectSourcingType() {
+      WebElement selectType = driver.findElement(By.xpath("(//label[normalize-space(text())='Sourcing Type']/following::input)[1]"));
+      selectType.click();
+      WebElement sourceOption = driver.findElement(By.xpath("//div[normalize-space(text())='Trims']"));
+      sourceOption.click();
+    }
+
+    public void enterQuantity(String quantity) throws InterruptedException {
+        WebElement element = driver.findElement(By.id("sourcing_0_quantity"));
+
+        element.sendKeys(Keys.COMMAND + "a");
+        element.sendKeys(Keys.DELETE);
+
+        Thread.sleep(500);
+
+        element.sendKeys(quantity);
+    }
+
+    public void enterTotalAmt(String amount) throws InterruptedException {
+        WebElement element = driver.findElement(By.id("sourcing_0_total"));
+
+        element.sendKeys(Keys.COMMAND + "a");
+        element.sendKeys(Keys.DELETE);
+
+        Thread.sleep(500);
+
+        element.sendKeys(amount);
+    }
+
+    public void clickSave() {
+        WebElement saveBtn = driver.findElement(By.xpath("//span[normalize-space(text())='Save All']"));
+        saveBtn.click();
+    }
+
+    public void clickCreateOrder() {
+         createOrder.click();
     }
 }

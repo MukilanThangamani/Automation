@@ -40,7 +40,7 @@ public class EmployeeManagementTest extends BaseClass{
     @Test(priority = 5)
     public void empDetails(){
         EmployeePage ep = new EmployeePage(driver);
-        ep.clickAddEmp();
+        ep.clickEmp();
     }
 
     @Test(priority = 6)

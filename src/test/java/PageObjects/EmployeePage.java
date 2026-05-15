@@ -344,4 +344,8 @@ public class EmployeePage extends BasePage {
     public void closeModal() {
         close.click();
     }
+
+    public void clickEmp() {
+        addEmployee.click();
+    }
 }

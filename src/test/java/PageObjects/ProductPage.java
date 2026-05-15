@@ -37,8 +37,11 @@ public class ProductPage extends BasePage {
     @FindBy(xpath = "//span[text()='Done']")
     WebElement DoneButton;
 
-    @FindBy(xpath = "//span[text()='Close']")
-    WebElement close;
+    @FindBy(id = "newProductType")
+    WebElement newProductTypeInput;
+
+    @FindBy(xpath = "//span[normalize-space(text())='Add Notes']")
+    WebElement addNotesBtn;
 
     SoftAssert softAssert = new SoftAssert();
 
@@ -74,11 +77,6 @@ public class ProductPage extends BasePage {
         Thread.sleep(500);
         WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(20));
 
-        Random random = new Random();
-//        List<WebElement> genderOption = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("/html/body/div[5]/div/div/div[2]/div/div/div")));
-//        int randomIdx = random.nextInt(genderOption.size());
-//        WebElement selectGender = genderOption.get(randomIdx);
-//        selectGender.click();
         WebElement selectGender = driver.findElement(By.xpath("//div[contains(@class,'ant-select-item-option') and @title='Female']"));
         selectGender.click();
 
@@ -168,5 +166,57 @@ public class ProductPage extends BasePage {
         softAssert.assertAll();
     }
 
+    public void selectGender() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
+        WebElement dropdown = wait.until(ExpectedConditions.elementToBeClickable(
+                By.xpath("(//span[@class='ant-select-selection-item'])[2]")
+        ));
+        dropdown.click();
+
+        // ✅ Step 2: Wait for dropdown options and select
+        WebElement option = wait.until(ExpectedConditions.elementToBeClickable(
+                By.xpath("//div[@title='Male']//div[1]")
+        ));
+        option.click();
+    }
+
+    public void selectProductType() {
+        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+        WebElement dropdown = wait.until(ExpectedConditions.elementToBeClickable(
+                By.xpath("//span[normalize-space(text())='Others']")
+        ));
+        dropdown.click();
+
+        wait.until(ExpectedConditions.elementToBeClickable(
+                By.xpath("//div[normalize-space(text())='Others']")
+        )).click();
+    }
+
+    public void enterNewProductType(String value) {
+        newProductTypeInput.click();
+        newProductTypeInput.sendKeys(Keys.COMMAND + "a");
+        newProductTypeInput.sendKeys(Keys.DELETE);
+        newProductTypeInput.sendKeys(value);
+    }
+
+    public void addNotes(String note) {
+        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+        WebElement notesInput = driver.findElement(By.xpath("(//label[normalize-space(text())='New Product Type']/following::input)[2]"));
+        notesInput.sendKeys(note);
+        addNotesBtn.click();
+    }
+
+    public void clickAddProduct() {
+        prodBtn.click();
+    }
+
+    public void clickSubmit() {
+        subInProd.click();
+    }
+
+    public void clickClose() {
+        WebElement closeBtn = driver.findElement(By.xpath("//span[normalize-space(text())='Close']"));
+        closeBtn.click();
+    }
 }
