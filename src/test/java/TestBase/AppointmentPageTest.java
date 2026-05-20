@@ -129,7 +129,7 @@ public class AppointmentPageTest extends BaseClass{
         ap.enterAddress(randomString());
         ap.selectReference();
         ap.enterPurpose("");
-        ap.enterDeliveryDate("20/05/2026 12:30");
+        ap.enterDeliveryDate("20/05/2026 17:30");
         ap.clickSubmit();
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));

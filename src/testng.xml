@@ -15,13 +15,13 @@
             <class name="TestBase.LoginTest"/>
             <class name="TestBase.DashBoardPageTest"/>
             <class name="TestBase.BoutiquePageTest"/>
-      <!--      <class name="TestBase.ShopePageTest"/>
+            <class name="TestBase.ShopePageTest"/>
             <class name="TestBase.RolePageTest"/>
             <class name="TestBase.EmployeePageTest"/>
             <class name="TestBase.ProductPageTest"/>
             <class name="TestBase.OrderPageTest"/>
             <class name="TestBase.TaskPageTest"/>
-            <class name="TestBase.CheckAvailabilityTest"/>  -->
+            <class name="TestBase.CheckAvailabilityTest"/>
             <class name="TestBase.AppointmentPageTest"/>
             <class name="TestBase.DesignBoardPageTest"/>
             <class name="TestBase.crmPageTest"/>

@@ -1,6 +1,7 @@
 package PageObjects;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -24,7 +25,7 @@ public class ExpensePage extends BasePage{
     @FindBy(id = "name")
     WebElement categoryName;
 
-    @FindBy(xpath = "//span[text()='Create']")
+    @FindBy(xpath = "//span[normalize-space(text())='Create']")
     WebElement create;
 
     @FindBy(xpath = "//span[text()='Add Expense']")
@@ -47,6 +48,9 @@ public class ExpensePage extends BasePage{
 
     @FindBy(id = "paymentStatus")
     WebElement paymentStatus;
+
+    @FindBy(xpath = "//span[normalize-space(text())='Close']")
+    WebElement closeBtn;
 
     //Action
     public void addCategory(String s) throws InterruptedException {
@@ -129,5 +133,77 @@ public class ExpensePage extends BasePage{
 
     public void moduleClick() {
         expenseMod.click();
+    }
+
+    public void clickAddCategory() {
+        addCategory.click();
+    }
+
+    public void enterCategory(String category) throws InterruptedException {
+        WebElement element = driver.findElement(By.id("name"));
+
+        element.sendKeys(Keys.COMMAND + "a");
+        element.sendKeys(Keys.DELETE);
+        Thread.sleep(500);
+        element.sendKeys(category);
+    }
+
+    public void clickCreate() {
+        create.click();
+    }
+
+    public void clickAddExpense() {
+        addexpense.click();
+    }
+
+
+    public void selectExpenseCategory() throws InterruptedException {
+
+        expenseCategory.click();
+        Thread.sleep(1000);
+
+        WebElement selectedCategory = driver.findElement(By.xpath("//div[normalize-space(text())='SbTek']"));
+        selectedCategory.click();
+    }
+
+    public void selectPayment() throws InterruptedException {
+        paymentMethod.click();
+
+        Thread.sleep(1000);
+
+        WebElement selectedPayment = driver.findElement(By.xpath("//div[normalize-space(text())='Credit Card']"));
+        selectedPayment.click();
+    }
+
+    public void enterExpenseDate(String date) throws InterruptedException {
+        WebElement element = driver.findElement(By.id("expenseDate"));
+
+        element.sendKeys(Keys.COMMAND + "a");
+        element.sendKeys(Keys.DELETE);
+        Thread.sleep(500);
+        element.sendKeys(date);
+    }
+
+    public void enterExpenseAmount(String amount) throws InterruptedException {
+        WebElement element = driver.findElement(By.id("expenseAmount"));
+
+        element.sendKeys(Keys.COMMAND + "a");
+        element.sendKeys(Keys.DELETE);
+        Thread.sleep(500);
+        element.sendKeys(amount);
+    }
+
+    public void selectStatus() throws InterruptedException {
+        Random random = new Random();
+        paymentStatus.click();
+        Thread.sleep(1000);
+
+
+        WebElement status = driver.findElement(By.xpath("//div[normalize-space(text())='Paid']"));
+        status.click();
+    }
+
+    public void clickClose() {
+      closeBtn.click();
     }
 }

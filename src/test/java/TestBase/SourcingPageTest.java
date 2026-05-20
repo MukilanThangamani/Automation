@@ -23,8 +23,11 @@ public class SourcingPageTest extends BaseClass{
     public void emptyProductType() throws InterruptedException {
         SourcingPage sp = new SourcingPage(driver);
         sp.clickModule();
+        Thread.sleep(1000);
         sp.clickAddSourcing();
+        Thread.sleep(1000);
         sp.enterQuantity("2");
+        Thread.sleep(1000);
         sp.enterAmount("");
         sp.saveBtn();
         sp.closeBtn();
@@ -37,9 +40,12 @@ public class SourcingPageTest extends BaseClass{
     public void emptySelectType() throws InterruptedException {
         SourcingPage sp = new SourcingPage(driver);
         sp.clickAddSourcing();
+        Thread.sleep(1000);
         sp.selectproduct();
         sp.enterQuantity("2");
+        Thread.sleep(1000);
         sp.enterAmount("2");
+        Thread.sleep(1000);
         sp.saveBtn();
         sp.closeBtn();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -51,9 +57,11 @@ public class SourcingPageTest extends BaseClass{
     public void emptyQuantity() throws InterruptedException {
         SourcingPage sp = new SourcingPage(driver);
         sp.clickAddSourcing();
+        Thread.sleep(1000);
         sp.selectproduct();
         sp.selectSourceType();
         sp.enterQuantity("");
+        Thread.sleep(1000);
         sp.enterAmount("2");
         sp.saveBtn();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
