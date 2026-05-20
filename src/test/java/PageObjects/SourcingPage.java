@@ -1,6 +1,7 @@
 package PageObjects;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -37,6 +38,19 @@ public class SourcingPage extends BasePage{
 
     @FindBy(id = "sourcing_remarks")
     WebElement remarks;
+
+    @FindBy(id = "sourcing_sourcingType")
+    WebElement sourceType;
+
+    @FindBy(xpath = "//div[text()='Fabrics']")
+    WebElement sourceOption;
+
+    @FindBy(xpath = "//span[normalize-space(text())='Close']")
+    WebElement closeBtn;
+
+    public void clickModule() {
+        sourcingmodbtn.click();
+    }
 
     public void sourcingDetails(String quantity,String amt,String updatequant,String remark) throws InterruptedException{
         String pagetitle = driver.getTitle();
@@ -86,4 +100,49 @@ public class SourcingPage extends BasePage{
 
     }
 
+    public void selectSourceType() throws InterruptedException {
+        sourceType.click();
+        Thread.sleep(500);
+        sourceOption.click();
+    }
+
+    public void enterQuantity(String quan) throws InterruptedException {
+        WebElement element = driver.findElement(By.id("sourcing_quantity"));
+
+        element.sendKeys(Keys.COMMAND + "a");
+        element.sendKeys(Keys.DELETE);
+        Thread.sleep(500);
+        element.sendKeys(quan);
+    }
+
+    public void enterAmount(String amount) throws InterruptedException {
+        WebElement element = driver.findElement(By.id("sourcing_total"));
+
+        element.sendKeys(Keys.COMMAND + "a");
+        element.sendKeys(Keys.DELETE);
+        Thread.sleep(500);
+        element.sendKeys(amount);
+    }
+
+    public void saveBtn() {
+        savebtn.click();
+    }
+
+    public void closeBtn() {
+        closeBtn.click();
+    }
+
+    public void selectproduct() {
+        prodclick.click();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        WebElement source = driver.findElement(By.xpath("//div[@title='2077 - lBzJP']//div[1]"));
+
+        System.out.println("Sourcing type is visible :"+source.isDisplayed());
+        source.click();
+    }
+
+    public void clickAddSourcing() {
+        addBtn.click();
+    }
 }

@@ -1,6 +1,7 @@
 package PageObjects;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -229,7 +230,6 @@ public class CrmPage extends BasePage{
         driver.navigate().refresh();
         search.sendKeys(name);
         Thread.sleep(1000);
-        //  searchIcon.click();
         driver.navigate().refresh();
     }
 
@@ -253,5 +253,48 @@ public class CrmPage extends BasePage{
         clickCrm.click();
     }
 
+    public void setName(String name) throws InterruptedException {
+        WebElement element = driver.findElement(By.id("clientName"));
+
+        element.sendKeys(Keys.COMMAND + "a");
+        element.sendKeys(Keys.DELETE);
+        Thread.sleep(500);
+        element.sendKeys(name);
+    }
+
+    public void emptyMobileField(String mobNum) throws InterruptedException {
+        WebElement element = driver.findElement(By.id("phone"));
+
+        element.sendKeys(Keys.COMMAND + "a");
+        element.sendKeys(Keys.DELETE);
+        Thread.sleep(500);
+        element.sendKeys(mobNum);
+    }
+
+    public void addClient() {
+        addCustomer.click();
+    }
+
+    public void submit() {
+       subBtn.click();
+    }
+
+    public void enterAddress(String clientAddr) throws InterruptedException {
+        WebElement element = driver.findElement(By.id("address"));
+
+        element.sendKeys(Keys.COMMAND + "a");
+        element.sendKeys(Keys.DELETE);
+        Thread.sleep(500);
+        element.sendKeys(clientAddr);
+    }
+
+    public void enterPreference(String preference) throws InterruptedException {
+        WebElement element = driver.findElement(By.id("preference"));
+
+        element.sendKeys(Keys.COMMAND + "a");
+        element.sendKeys(Keys.DELETE);
+        Thread.sleep(500);
+        element.sendKeys(preference);
+    }
 
 }

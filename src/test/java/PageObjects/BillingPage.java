@@ -1,6 +1,7 @@
 package PageObjects;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -127,5 +128,67 @@ public class BillingPage extends BasePage{
     public void moduleClick() throws InterruptedException {
         Thread.sleep(2000);
         billingModule.click();
+    }
+
+    public void clickEstimation() {
+        estimation.click();
+        createEstimation.click();
+    }
+
+    public void enterMobile(String mobile) throws InterruptedException {
+        WebElement element = driver.findElement(By.id("phone"));
+
+        element.sendKeys(Keys.COMMAND + "a");
+        element.sendKeys(Keys.DELETE);
+        Thread.sleep(500);
+        element.sendKeys(mobile);
+    }
+
+    public void enterName(String name) throws InterruptedException {
+        WebElement element = driver.findElement(By.id("clientName"));
+
+        element.sendKeys(Keys.COMMAND + "a");
+        element.sendKeys(Keys.DELETE);
+        Thread.sleep(500);
+        element.sendKeys(name);
+    }
+
+    public void enterAddress(String address) throws InterruptedException {
+        WebElement element = driver.findElement(By.id("clientAddress"));
+
+        element.sendKeys(Keys.COMMAND + "a");
+        element.sendKeys(Keys.DELETE);
+        Thread.sleep(500);
+        element.sendKeys(address);
+    }
+
+
+    public void enterQuantity(String quantity) throws InterruptedException {
+        WebElement element = driver.findElement(By.id("products_0_productQuantity"));
+
+        element.sendKeys(Keys.COMMAND + "a");
+        element.sendKeys(Keys.DELETE);
+        Thread.sleep(500);
+        element.sendKeys(quantity);
+    }
+
+    public void enterPrice(String price) throws InterruptedException {
+        WebElement element = driver.findElement(By.id("products_0_pricePerUnit"));
+
+        element.sendKeys(Keys.COMMAND + "a");
+        element.sendKeys(Keys.DELETE);
+        Thread.sleep(500);
+        element.sendKeys(price);
+    }
+
+    public void clickSubmit() {
+        submit.click();
+    }
+
+    public void selectProduct() throws InterruptedException {
+        producttype.click();
+        Thread.sleep(1000);
+        WebElement selectProduct = driver.findElement(By.xpath("//div[text()='Skirt']"));
+        selectProduct.click();
     }
 }

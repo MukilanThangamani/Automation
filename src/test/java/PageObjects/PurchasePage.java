@@ -42,7 +42,7 @@ public class PurchasePage extends BasePage{
     @FindBy(id = "vendor")
     WebElement clickVendor;
 
-    @FindBy(xpath = "//div[normalize-space(text())='ZoUrH - LpYaB']")
+    @FindBy(xpath = "//div[normalize-space(text())='gZuCr - gDOUI']")
     WebElement selectVendor;
 
     @FindBy(xpath = "(//input[@placeholder='Select date'])[2]")

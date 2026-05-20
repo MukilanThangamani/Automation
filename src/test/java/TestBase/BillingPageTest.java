@@ -2,8 +2,13 @@ package TestBase;
 
 import PageObjects.BillingPage;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import java.time.Duration;
 
 public class BillingPageTest extends BaseClass{
 
@@ -28,7 +33,7 @@ public class BillingPageTest extends BaseClass{
     }
 
     @Test(priority = 4)
-    public void verifyRecivedStatus(){
+    public void verifyReceivedStatus(){
         boolean received = driver.findElement(By.xpath("//div[normalize-space(text())='Received']")).isDisplayed();
         System.out.println("Received status is present :"+received);
     }
@@ -45,38 +50,150 @@ public class BillingPageTest extends BaseClass{
         System.out.println("Total amount is displayed :"+total);
     }
 
-
     @Test(priority = 7)
-    public void testBillingVaidation() throws InterruptedException {
+    public void emptyMobile() throws InterruptedException {
         BillingPage bp = new BillingPage(driver);
-        bp.navigateToBilling(phoneRandom(),randomString(),randomString());
-        bp.addProduct(randomLength(),randomAmount(),randomString());
+        bp.clickEstimation();
+        bp.enterMobile("");
+        bp.enterQuantity("2");
+        bp.enterPrice("100");
+        bp.clickSubmit();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement toast = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[normalize-space(text())='Mobile Number is required']")));
+        Assert.assertTrue(toast.getText().contains("Mobile Number is required"), "Error message not displayed");
     }
 
     @Test(priority = 8)
+    public void singleMobileNum() throws InterruptedException {
+        BillingPage bp = new BillingPage(driver);
+        bp.enterMobile("8");
+        bp.enterQuantity("2");
+        bp.enterPrice("100");
+        bp.clickSubmit();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement toast = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[normalize-space(text())='Invalid phone number for selected country']")));
+        Assert.assertTrue(toast.getText().contains("Invalid phone number for selected country"), "Error message not displayed");
+    }
+
+    @Test(priority = 9)
+    public void invalidMobileNum() throws InterruptedException {
+        BillingPage bp = new BillingPage(driver);
+        bp.enterMobile("89");
+        bp.enterQuantity("2");
+        bp.enterPrice("100");
+        bp.clickSubmit();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement toast = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[normalize-space(text())='Please enter a valid 10-digit phone number.']")));
+        Assert.assertTrue(toast.getText().contains("Please enter a valid 10-digit phone number."), "Error message not displayed");
+    }
+
+    @Test(priority = 10)
+    public void emptyClient() throws InterruptedException {
+        BillingPage bp = new BillingPage(driver);
+        bp.enterMobile(phoneRandom());
+        bp.enterAddress(randomString());
+        bp.enterQuantity("2");
+        bp.enterPrice("100");
+        bp.clickSubmit();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement toast = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[normalize-space(text())='Client Name is required']")));
+        Assert.assertTrue(toast.getText().contains("Client Name is required"), "Error message not displayed");
+    }
+
+    @Test(priority = 10)
+    public void emptyAddress() throws InterruptedException {
+        BillingPage bp = new BillingPage(driver);
+        bp.enterMobile(phoneRandom());
+        bp.enterAddress("");
+        bp.enterQuantity("2");
+        bp.enterPrice("100");
+        bp.clickSubmit();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement toast = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[normalize-space(text())='Address is required']")));
+        Assert.assertTrue(toast.getText().contains("Address is required"), "Error message not displayed");
+    }
+
+    @Test(priority = 11)
+    public void emptyQuantity() throws InterruptedException {
+        BillingPage bp = new BillingPage(driver);
+        bp.enterMobile(phoneRandom());
+        bp.enterName(randomString());
+        bp.enterAddress(randomString());
+        bp.enterQuantity("");
+        bp.enterPrice("100");
+        bp.clickSubmit();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement toast = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[normalize-space(text())='Quantity is required']")));
+        Assert.assertTrue(toast.getText().contains("Quantity is required"), "Error message not displayed");
+    }
+
+    @Test(priority = 12)
+    public void emptyPrice() throws InterruptedException {
+        BillingPage bp = new BillingPage(driver);
+        bp.enterMobile(phoneRandom());
+        bp.enterQuantity("2");
+        bp.enterPrice("");
+        bp.clickSubmit();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement toast = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[normalize-space(text())='Price is required']")));
+        Assert.assertTrue(toast.getText().contains("Price is required"), "Error message not displayed");
+    }
+
+    @Test(priority = 13)
+    public void emptyProduct() throws InterruptedException {
+        BillingPage bp = new BillingPage(driver);
+        bp.enterMobile(phoneRandom());
+        bp.enterQuantity("2");
+        bp.enterPrice("100");
+        bp.clickSubmit();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement toast = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[normalize-space(text())='Product is required']")));
+        Assert.assertTrue(toast.getText().contains("Product is required"), "Error message not displayed");
+    }
+
+    @Test(priority = 14)
+    public void validEstimation() throws InterruptedException {
+        BillingPage bp = new BillingPage(driver);
+        bp.enterMobile(phoneRandom());
+        bp.selectProduct();
+        bp.enterQuantity("2");
+        bp.enterPrice("100");
+    }
+
+    @Test(priority = 15)
     public void verifyBillFrom(){
         boolean name = driver.findElement(By.id("boutiqueName")).isDisplayed();
         System.out.println("BillFrom is displayed :"+name);
     }
 
-    @Test(priority = 9)
+    @Test(priority = 16)
     public void verifyMobileNumber(){
         boolean mobNum = driver.findElement(By.id("boutiqueMobileNumber")).isDisplayed();
         System.out.println("Mobile Number is displayed :"+mobNum);
     }
 
-    @Test(priority = 10)
+    @Test(priority = 17)
     public void verifyAddress(){
         boolean address = driver.findElement(By.id("boutiqueAddress")).isDisplayed();
         System.out.println("Address field is present :"+address);
     }
 
-    @Test(priority = 11)
+    @Test(priority = 18)
     public void verifySubmit(){
         BillingPage bp2 = new BillingPage(driver);
         bp2.submitEstimation();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement toast = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space(text())='Estimation created successfully!']")));
+        Assert.assertTrue(toast.getText().contains("Estimation created successfully!"), "Error message not displayed");
     }
-
-
 
 }

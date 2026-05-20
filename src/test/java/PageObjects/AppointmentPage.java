@@ -1,9 +1,11 @@
 package PageObjects;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class AppointmentPage extends BasePage {
 
@@ -45,7 +47,7 @@ public class AppointmentPage extends BasePage {
     @FindBy(id = "notes")
     WebElement notes;
 
-    @FindBy(xpath = "//span[text()='Submit']")
+    @FindBy(xpath = "//span[normalize-space(text())='Submit']")
     WebElement subApp;
 
     @FindBy(xpath = "//div[text()='Style consultation']")
@@ -124,4 +126,68 @@ public class AppointmentPage extends BasePage {
         subApp.click();
     }
 
+    WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+
+    public void enterMobileNumber(String mob) throws InterruptedException {
+        WebElement element = driver.findElement(By.id("phone"));
+
+        element.sendKeys(Keys.COMMAND + "a");
+        element.sendKeys(Keys.DELETE);
+        Thread.sleep(1000);
+        element.sendKeys(mob);
+    }
+
+    public void enterClientName(String client) throws InterruptedException {
+        WebElement element = driver.findElement(By.id("clientName"));
+
+        element.sendKeys(Keys.COMMAND + "a");
+        element.sendKeys(Keys.DELETE);
+        Thread.sleep(1000);
+        element.sendKeys(client);
+    }
+
+    public void enterAddress(String address) throws InterruptedException {
+        WebElement element = driver.findElement(By.id("address"));
+
+        element.sendKeys(Keys.COMMAND + "a");
+        element.sendKeys(Keys.DELETE);
+        Thread.sleep(500);
+        element.sendKeys(address);
+    }
+
+
+    public void selectReference() throws InterruptedException {
+        ref.click();
+        Thread.sleep(500);
+        referenceOption.click();
+    }
+
+    public void enterPurpose(String purpose) throws InterruptedException {
+        WebElement element = driver.findElement(By.id("purpose"));
+
+        element.sendKeys(Keys.COMMAND + "a");
+        element.sendKeys(Keys.DELETE);
+        Thread.sleep(500);
+        element.sendKeys(purpose);
+    }
+
+
+    public void enterDeliveryDate(String deliveryDate) throws InterruptedException {
+        WebElement element = driver.findElement(By.id("appointmentTime"));
+
+        element.sendKeys(Keys.COMMAND + "a");
+        element.sendKeys(Keys.DELETE);
+        Thread.sleep(500);
+        element.sendKeys(deliveryDate);
+        Thread.sleep(500);
+        okbtn.click();
+    }
+
+    public void clickSubmit() {
+        subApp.submit();
+    }
+
+    public void clickModule() throws InterruptedException {
+        scheduleApp.click();
+    }
 }
