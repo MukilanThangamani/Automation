@@ -2,6 +2,7 @@ package PageObjects;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -9,7 +10,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
-import java.util.List;
 import java.util.Random;
 
 public class EmployeeManagement extends BasePage{
@@ -151,4 +151,157 @@ public class EmployeeManagement extends BasePage{
         empMgmt.click();
     }
 
+    public void setName(String empname) throws InterruptedException {
+        WebElement element = driver.findElement(By.xpath("(//label[normalize-space(text())='Name']/following::input)[1]"));
+
+        element.sendKeys(Keys.COMMAND + "a");
+        element.sendKeys(Keys.DELETE);
+
+        Thread.sleep(500);
+
+        element.sendKeys(empname);
+    }
+
+    public void clickAddEmployee() {
+        WebElement addEmployee = driver.findElement(By.xpath("//span[normalize-space(text())='Add Employee']"));
+        addEmployee.click();
+    }
+
+    public void setMobile(String number) throws InterruptedException {
+        WebElement element = driver.findElement(By.id("boutique_phone"));
+
+        element.sendKeys(Keys.COMMAND + "a");
+        element.sendKeys(Keys.DELETE);
+
+        Thread.sleep(500);
+
+        element.sendKeys(number);
+    }
+
+    public void chooseRole(String roleName) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        // ✅ Click proper dropdown container
+        WebElement dropdown = wait.until(ExpectedConditions.elementToBeClickable(
+                By.xpath("//input[@id='boutique_roleId']/ancestor::div[contains(@class,'ant-select')]")
+        ));
+        dropdown.click();
+
+        // ✅ Select role dynamically
+        WebElement option = wait.until(ExpectedConditions.elementToBeClickable(
+                By.xpath("//div[contains(@class,'ant-select-item-option')]//div[normalize-space()='" + roleName + "']")
+        ));
+        option.click();
+    }
+
+    public void setAddress(String empaddress) throws InterruptedException {
+        WebElement element = driver.findElement(By.id("address"));
+
+        element.sendKeys(Keys.COMMAND + "a");
+        element.sendKeys(Keys.DELETE);
+
+        Thread.sleep(500);
+
+        element.sendKeys(empaddress);
+    }
+
+    public void clickSubmit() {
+        driver.findElement(By.xpath("//span[normalize-space(text())='Submit']")).click();
+    }
+
+    public void setEmergencyMobile(String emergencyNumber) throws InterruptedException {
+        WebElement element = driver.findElement(By.id("boutique_emergencyPhone"));
+
+        element.sendKeys(Keys.COMMAND + "a");
+        element.sendKeys(Keys.DELETE);
+
+        Thread.sleep(500);
+
+        element.sendKeys(emergencyNumber);
+    }
+
+
+    public void enterPassword(String password) throws InterruptedException {
+        WebElement element = driver.findElement(By.id("boutique_password"));
+
+        element.sendKeys(Keys.COMMAND + "a");
+        element.sendKeys(Keys.DELETE);
+
+        Thread.sleep(500);
+
+        element.sendKeys(password);
+    }
+
+    public void selectGender(String gender) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        // ✅ Click the actual dropdown container (not input)
+        WebElement dropdown = wait.until(ExpectedConditions.elementToBeClickable(
+                By.xpath("//input[@id='boutique_gender']/ancestor::div[contains(@class,'ant-select')]")
+        ));
+        dropdown.click();
+
+        // ✅ Select option by visible text
+        WebElement option = wait.until(ExpectedConditions.elementToBeClickable(
+                By.xpath("//div[contains(@class,'ant-select-item-option')]//div[text()='" + gender + "']")
+        ));
+        option.click();
+    }
+
+    public void selectUser(String role) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        // ✅ Click actual dropdown container
+        WebElement dropdown = wait.until(ExpectedConditions.elementToBeClickable(
+                By.xpath("//input[@id='boutique_userRoleId']/ancestor::div[contains(@class,'ant-select')]")
+        ));
+        dropdown.click();
+
+        // ✅ Select option by visible text
+        WebElement option = wait.until(ExpectedConditions.elementToBeClickable(
+                By.xpath("//div[contains(@class,'ant-select-item-option')]//div[text()='" + role + "']")
+        ));
+        option.click();
+    }
+
+    public void closeModal() {
+        WebElement close =driver.findElement(By.xpath("//span[normalize-space(text())='Close']"));
+        close.click();
+    }
+
+    public void enterAmount(String number) throws InterruptedException {
+        WebElement element = driver.findElement(By.id("Advance_amount"));
+
+        element.sendKeys(Keys.COMMAND + "a");
+        element.sendKeys(Keys.DELETE);
+
+        Thread.sleep(500);
+
+        element.sendKeys(number);
+    }
+
+    public void enterDate() throws InterruptedException {
+        WebElement element = driver.findElement(By.id("Advance_date"));
+        element.click();
+        WebElement selectToday = driver.findElement(By.xpath("//a[normalize-space(text())='Today']"));
+        selectToday.click();
+    }
+
+    public void enterRemarks(String remarks) throws InterruptedException {
+        WebElement element = driver.findElement(By.id("Advance_remarks"));
+
+        element.sendKeys(Keys.COMMAND + "a");
+        element.sendKeys(Keys.DELETE);
+
+        Thread.sleep(500);
+
+        element.sendKeys(remarks);
+    }
+
+    public void setType() {
+        WebElement type = driver.findElement(By.id("Advance_type"));
+        type.click();
+        WebElement typeOption = driver.findElement(By.xpath("//div[normalize-space(text())='Advance']"));
+        typeOption.click();
+    }
 }

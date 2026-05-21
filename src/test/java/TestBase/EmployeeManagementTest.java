@@ -3,7 +3,13 @@ package TestBase;
 import PageObjects.EmployeeManagement;
 import PageObjects.EmployeePage;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import java.time.Duration;
 
 public class EmployeeManagementTest extends BaseClass{
 
@@ -152,19 +158,261 @@ public class EmployeeManagementTest extends BaseClass{
         boolean closeBtn = driver.findElement(By.xpath("//span[text()='Close']")).isDisplayed();
         System.out.println("Verify submit button :"+closeBtn);
     }
+//
+//    @Test(priority = 24)
+//    public void close() throws InterruptedException {
+//        EmployeeManagement em3 = new EmployeeManagement(driver);
+//        em3.closeBtn();
+//    }
 
     @Test(priority = 24)
-    public void close() throws InterruptedException {
+    public void emptyType() throws InterruptedException {
         EmployeeManagement em3 = new EmployeeManagement(driver);
-        em3.closeBtn();
+        em3.enterAmount("1000");
+        em3.enterRemarks(randomString());
+        em3.clickSubmit();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement toast = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[normalize-space(text())='Type is required']")));
+        Assert.assertTrue(toast.getText().contains("Type is required"), "Error message not displayed");
     }
 
     @Test(priority = 25)
-    public void manageEmployee() throws InterruptedException {
-        EmployeeManagement em = new EmployeeManagement(driver);
-        em.empDetail();
+    public void emptyAmount() throws InterruptedException {
+        EmployeeManagement em3 = new EmployeeManagement(driver);
+        em3.enterAmount("");
+        em3.enterRemarks(randomString());
+        em3.clickSubmit();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement toast = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[normalize-space(text())='Amount is required']")));
+        Assert.assertTrue(toast.getText().contains("Amount is required"), "Error message not displayed");
     }
 
+    @Test(priority = 26)
+    public void emptyDate() throws InterruptedException {
+        EmployeeManagement em3 = new EmployeeManagement(driver);
+        em3.enterAmount("1000");
+        em3.enterRemarks(randomString());
+        em3.clickSubmit();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement toast = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[normalize-space(text())='Date is required']")));
+        Assert.assertTrue(toast.getText().contains("Date is required"), "Error message not displayed");
+    }
 
+    @Test(priority = 27)
+    public void emptyRemarks() throws InterruptedException {
+        EmployeeManagement em3 = new EmployeeManagement(driver);
+        em3.enterAmount("1000");
+        em3.enterDate();
+        em3.enterRemarks("");
+        em3.clickSubmit();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement toast = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[normalize-space(text())='Remarks is required']")));
+        Assert.assertTrue(toast.getText().contains("Remarks is required"), "Error message not displayed");
+    }
+
+    @Test(priority = 28)
+    public void validPayment() throws InterruptedException {
+        EmployeeManagement em3 = new EmployeeManagement(driver);
+        em3.setType();
+        em3.enterAmount("1000");
+        em3.enterDate();
+        em3.enterRemarks(randomString());
+        em3.clickSubmit();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement toast = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space(text())='Employee advance added successfully!']")));
+        Assert.assertTrue(toast.getText().contains("Employee advance added successfully!"), "Error message not displayed");
+    }
+
+    @Test(priority = 29)
+    public void emptyNameValidation() throws InterruptedException {
+        EmployeeManagement em3 = new EmployeeManagement(driver);
+        em3.clickAddEmployee();
+        em3.setName("");
+        em3.setMobile(phoneRandom());
+        em3.setEmergencyMobile(phoneRandom());
+        em3.enterPassword("a@sd");
+        em3.selectGender("Male");
+        em3.selectUser("Employee");
+        em3.chooseRole("PRHjDunSBn");
+        em3.clickSubmit();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement toast = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[normalize-space(text())='Name is required']")));
+        Assert.assertTrue(toast.getText().contains("Name is required"), "Error message not displayed");
+    }
+
+    @Test(priority = 30)
+    public void emptyMobileNumberTest() throws Exception {
+        EmployeeManagement em3 = new EmployeeManagement(driver);
+
+        em3.setName(randomString());
+        em3.setMobile("");
+        em3.setEmergencyMobile(phoneRandom());
+        em3.enterPassword("a@sd");
+        em3.selectGender("Male");
+        em3.selectUser("Employee");
+        em3.chooseRole("PRHjDunSBn");
+        em3.clickSubmit();
+        Thread.sleep(1000);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement toast = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[normalize-space(text())='Mobile Number is required']")));
+        Assert.assertTrue(toast.getText().contains("Mobile Number is required"), "Error message not displayed");
+    }
+
+    @Test(priority = 31)
+    public void singleMobileNumberTest() throws Exception {
+        EmployeeManagement em3 = new EmployeeManagement(driver);
+
+        em3.setName(randomString());
+        em3.setMobile("6");
+        em3.setEmergencyMobile(phoneRandom());
+        em3.enterPassword("a@sd");
+        em3.selectGender("Male");
+        em3.selectUser("Employee");
+        em3.chooseRole("PRHjDunSBn");
+        em3.clickSubmit();
+        Thread.sleep(1000);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement toast = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[normalize-space(text())='Invalid phone number for selected country']")));
+        Assert.assertTrue(toast.getText().contains("Invalid phone number for selected country"), "Error message not displayed");
+    }
+
+    @Test(priority = 32)
+    public void invalidMobileNumberTest() throws Exception {
+        EmployeeManagement em3 = new EmployeeManagement(driver);
+
+        em3.setName(randomString());
+        em3.setMobile("69");
+        em3.setEmergencyMobile(phoneRandom());
+        em3.enterPassword("a@sd");
+        em3.selectGender("Male");
+        em3.selectUser("Employee");
+        em3.chooseRole("PRHjDunSBn");
+        em3.clickSubmit();
+        Thread.sleep(1000);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement toast = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[normalize-space(text())='Please enter a valid 10-digit phone number.']")));
+        Assert.assertTrue(toast.getText().contains("Please enter a valid 10-digit phone number."), "Error message not displayed");
+    }
+
+    @Test(priority = 33)
+    public void emptyEmergencyMobileNumber() throws Exception {
+        EmployeeManagement em3 = new EmployeeManagement(driver);
+
+        em3.setName(randomString());
+        em3.setMobile(phoneRandom());
+        em3.setEmergencyMobile("");
+        em3.enterPassword("a@sd");
+        em3.selectGender("Male");
+        em3.selectUser("Employee");
+        em3.chooseRole("PRHjDunSBn");
+        em3.clickSubmit();
+        Thread.sleep(1000);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement toast = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[normalize-space(text())='Emergency Contact Number is required']")));
+        Assert.assertTrue(toast.getText().contains("Emergency Contact Number is required"), "Error message not displayed");
+    }
+
+    @Test(priority = 34)
+    public void emptyPasswordField() throws InterruptedException {
+        EmployeeManagement em = new EmployeeManagement(driver);
+
+        em.setName(randomString());
+        em.setMobile(phoneRandom());
+        em.setEmergencyMobile(phoneRandom());
+        em.enterPassword("");
+        em.selectGender("Male");
+        em.selectUser("Employee");
+        em.chooseRole("PRHjDunSBn");
+        em.clickSubmit();
+        em.closeModal();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement toast = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[normalize-space(text())='Password is required']")));
+        Assert.assertTrue(toast.getText().contains("Password is required"), "Error message not displayed");
+    }
+
+    @Test(priority = 35)
+    public void emptyGenderTest() throws InterruptedException {
+        EmployeeManagement em = new EmployeeManagement(driver);
+        em.clickAddEmployee();
+        em.setName(randomString());
+        em.setMobile(phoneRandom());
+        em.setEmergencyMobile(phoneRandom());
+        em.enterPassword("");
+        em.selectUser("Employee");
+        em.chooseRole("PRHjDunSBn");
+        em.clickSubmit();
+        em.closeModal();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement toast = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[normalize-space(text())='Gender is required']")));
+        Assert.assertTrue(toast.getText().contains("Gender is required"), "Error message not displayed");
+    }
+
+    @Test(priority = 36)
+    public void emptyUserTest() throws InterruptedException {
+        EmployeeManagement em = new EmployeeManagement(driver);
+        em.clickAddEmployee();
+        em.setName(randomString());
+        em.setMobile(phoneRandom());
+        em.setEmergencyMobile(phoneRandom());
+        em.enterPassword("");
+        em.selectGender("Male");
+        em.chooseRole("PRHjDunSBn");
+        em.clickSubmit();
+        em.closeModal();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement toast = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[normalize-space(text())='Access Right is required']")));
+        Assert.assertTrue(toast.getText().contains("Access Right is required"), "Error message not displayed");
+    }
+
+    @Test(priority = 37)
+    public void emptyRoleTest() throws InterruptedException {
+        EmployeeManagement em = new EmployeeManagement(driver);
+        em.clickAddEmployee();
+        em.setName(randomString());
+        em.setMobile(phoneRandom());
+        em.setEmergencyMobile(phoneRandom());
+        em.enterPassword("");
+        em.selectGender("Male");
+        em.selectUser("Employee");
+        em.clickSubmit();
+        em.closeModal();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement toast = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[normalize-space(text())='Role is required']")));
+        Assert.assertTrue(toast.getText().contains("Role is required"), "Error message not displayed");
+    }
+
+    @Test(priority = 38)
+    public void emptyDataTest() throws InterruptedException {
+        EmployeeManagement em = new EmployeeManagement(driver);
+        em.clickAddEmployee();
+        em.setName("");
+        em.setMobile("");
+        em.setEmergencyMobile("");
+        em.enterPassword("");
+        em.clickSubmit();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement toast = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[normalize-space(text())='Password is required']")));
+        Assert.assertTrue(toast.getText().contains("Password is required"), "Error message not displayed");
+    }
+
+    @Test(priority = 39)
+    public void validInputTest() throws InterruptedException {
+        EmployeeManagement em = new EmployeeManagement(driver);
+
+        em.setName(randomString());
+        em.setMobile(phoneRandom());
+        em.setEmergencyMobile(phoneRandom());
+        em.enterPassword("a@d");
+        em.selectGender("Male");
+        em.selectUser("Employee");
+        em.chooseRole("PRHjDunSBn");
+        em.clickSubmit();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement toast = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space(text())='Employee added successfully!']")));
+        Assert.assertTrue(toast.getText().contains("Employee added successfully!"), "Error message not displayed");
+    }
 
 }

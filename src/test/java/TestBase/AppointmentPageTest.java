@@ -76,7 +76,6 @@ public class AppointmentPageTest extends BaseClass{
         Assert.assertTrue(toast.getText().contains("Invalid phone number for selected country"), "Error message not displayed");
     }
 
-
     @Test(priority = 8)
     public void emptyClientName() throws InterruptedException {
         AppointmentPage ap = new AppointmentPage(driver);
@@ -129,7 +128,7 @@ public class AppointmentPageTest extends BaseClass{
         ap.enterAddress(randomString());
         ap.selectReference();
         ap.enterPurpose("");
-        ap.enterDeliveryDate("20/05/2026 17:30");
+        ap.enterDeliveryDate("21/05/2026 15:00");
         ap.clickSubmit();
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));

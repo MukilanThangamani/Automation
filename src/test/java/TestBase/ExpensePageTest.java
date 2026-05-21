@@ -42,13 +42,6 @@ public class ExpensePageTest extends BaseClass{
         System.out.println("Verify addExpense field is displayed :"+addExpense);
     }
 
-//    @Test(priority = 6)
-//    public void testExpense() throws InterruptedException{
-//        ExpensePage ep = new ExpensePage(driver);
-//        ep.addCategory(randomString());
-//        ep.addExpense(randomString(),"14/04/2026",randomAmount());
-//    }
-
     @Test(priority = 6)
     public void emptyCategory() throws InterruptedException {
         ExpensePage ep = new ExpensePage(driver);

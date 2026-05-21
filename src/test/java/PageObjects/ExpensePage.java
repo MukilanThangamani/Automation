@@ -158,7 +158,7 @@ public class ExpensePage extends BasePage{
 
 
     public void selectExpenseCategory() throws InterruptedException {
-
+        Thread.sleep(1000);
         expenseCategory.click();
         Thread.sleep(1000);
 
