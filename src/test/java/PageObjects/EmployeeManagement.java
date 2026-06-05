@@ -60,7 +60,7 @@ public class EmployeeManagement extends BasePage{
     @FindBy(xpath = "//span[text()='Next']")
     WebElement nextButton;
 
-    @FindBy(xpath = "//table//tbody//tr[1]//*[name()='svg' and @data-testid='PaymentsIcon']")
+    @FindBy(xpath = "(//span[@class='anticon anticon-dollar'])[1]")
     WebElement payment;
 
 

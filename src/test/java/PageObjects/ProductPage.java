@@ -22,7 +22,7 @@ public class ProductPage extends BasePage {
     @FindBy(xpath = "//span[text()='Save']")
     WebElement save;
 
-    @FindBy(xpath = "//span[text()='Add Product Type']")
+    @FindBy(xpath = "//span[normalize-space(text())='Add Product Type']")
     WebElement prodBtn;
 
     @FindBy(xpath = "//span[text()='Others']")
@@ -31,7 +31,7 @@ public class ProductPage extends BasePage {
     @FindBy(xpath = "//label[text()='Gender']/following::div[1]")
     WebElement genderdrp;
 
-    @FindBy(xpath = "//span[text()='Submit']")
+    @FindBy(xpath = "//span[normalize-space(text())='Submit']")
     WebElement subInProd;
 
     @FindBy(xpath = "//span[text()='Done']")
@@ -42,6 +42,9 @@ public class ProductPage extends BasePage {
 
     @FindBy(xpath = "//span[normalize-space(text())='Add Notes']")
     WebElement addNotesBtn;
+
+    @FindBy(id = "noteName")
+    WebElement notename;
 
     SoftAssert softAssert = new SoftAssert();
 
@@ -219,4 +222,21 @@ public class ProductPage extends BasePage {
         WebElement closeBtn = driver.findElement(By.xpath("//span[normalize-space(text())='Close']"));
         closeBtn.click();
     }
+
+    public void nextToNotes() {
+        WebElement next = driver.findElement(By.xpath("//span[normalize-space(text())='Next']"));
+        next.click();
+    }
+
+    public void addProductbtn(){
+        prodBtn.click();
+    }
+
+    public void enterNote(String s) {
+        notename.click();
+        notename.sendKeys(Keys.COMMAND + "a");
+        notename.sendKeys(Keys.DELETE);
+        notename.sendKeys(s);
+    }
+
 }

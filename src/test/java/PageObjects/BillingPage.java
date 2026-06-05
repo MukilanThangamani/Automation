@@ -55,6 +55,9 @@ public class BillingPage extends BasePage{
     @FindBy(xpath = "//span[text()='Submit']")
     WebElement submit;
 
+    @FindBy(xpath = "//span[normalize-space(text())='Add Fitting']")
+    WebElement addFitting;
+
     //Actions
     public void navigateToBilling(String number,String name,String address) throws InterruptedException {
         String pageTitle = driver.getTitle();
@@ -190,5 +193,27 @@ public class BillingPage extends BasePage{
         Thread.sleep(1000);
         WebElement selectProduct = driver.findElement(By.xpath("//div[text()='Skirt']"));
         selectProduct.click();
+    }
+
+    public void clickAdd() {
+        addFitting.click();
+    }
+
+    public void setCharge(String charge) throws InterruptedException {
+        WebElement element = driver.findElement(By.id("extra-fitting-charges_chargeName"));
+
+        element.sendKeys(Keys.COMMAND + "a");
+        element.sendKeys(Keys.DELETE);
+        Thread.sleep(500);
+        element.sendKeys(charge);
+    }
+
+    public void setAmount(String extraAmt) throws InterruptedException {
+        WebElement element = driver.findElement(By.id("extra-fitting-charges_amount"));
+
+        element.sendKeys(Keys.COMMAND + "a");
+        element.sendKeys(Keys.DELETE);
+        Thread.sleep(500);
+        element.sendKeys(extraAmt);
     }
 }

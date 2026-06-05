@@ -15,7 +15,7 @@
             <class name="TestBase.LoginTest"/>
             <class name="TestBase.DashBoardPageTest"/>
             <class name="TestBase.BoutiquePageTest"/>
-            <class name="TestBase.ShopePageTest"/>
+           <class name="TestBase.ShopePageTest"/>
             <class name="TestBase.RolePageTest"/>
             <class name="TestBase.EmployeePageTest"/>
             <class name="TestBase.ProductPageTest"/>

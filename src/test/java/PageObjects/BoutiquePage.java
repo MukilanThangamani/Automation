@@ -40,32 +40,14 @@ public class BoutiquePage extends BasePage {
     @FindBy(id = "boutique_intervalEnd")
     WebElement intervalEndttime;
 
-    @FindBy(id = "boutique_shopNumber")
-    WebElement shopNum;
+    @FindBy(xpath = "//span[normalize-space(text())='Plan Name']")
+    WebElement planname;
 
-    @FindBy(id = "boutique_address")
-    WebElement addr;
+    @FindBy(xpath = "//span[normalize-space(text())='Status']")
+    WebElement status;
 
-    @FindBy(xpath = "//label[text()='Time Zone']")
-    WebElement timeZone;
-
-    @FindBy(id = "boutique_landmark")
-    WebElement land;
-
-    @FindBy(id = "boutique_city")
-    WebElement city;
-
-    @FindBy(id = "boutique_stateCode")
-    WebElement state;
-
-    @FindBy(id = "boutique_pincode")
-    WebElement pin;
-
-    @FindBy(xpath = "//input[@class='PhoneInputInput']")
-    WebElement mobile;
-
-    @FindBy(xpath = "//button[@type='submit' and contains(@class, 'MuiButton-containedPrimary')]")
-    WebElement sub;
+    @FindBy(xpath = "//span[normalize-space(text())='Billing Cycle']")
+    WebElement billingcycle;
 
 
     // Actions
@@ -177,6 +159,18 @@ public class BoutiquePage extends BasePage {
         submit.click();
     }
 
+    public void verifySubcription() {
+        WebElement planDetail = driver.findElement(By.xpath("//h3[normalize-space(text())='Plan Details']"));
+        planDetail.click();
+        System.out.println("Plan name :"+planname.isDisplayed());
+        System.out.println("status name :"+status.isDisplayed());
+        System.out.println("Billing cycle  name :"+billingcycle.isDisplayed());
+    }
+
+    public void clickOnShop() {
+        WebElement generalSettings = driver.findElement(By.xpath("//h3[normalize-space(text())='General Settings']"));
+        generalSettings.click();
+    }
 
 
 }

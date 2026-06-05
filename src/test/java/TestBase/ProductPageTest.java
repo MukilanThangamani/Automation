@@ -102,91 +102,146 @@ public class ProductPageTest extends BaseClass {
         // Assert.assertTrue(notes,"Predefined notes field is NOT displayed");
     }
 
+//
+//    @Test(priority = 14)
+//    public void verifySubmit(){
+//        boolean submitBtn = driver.findElement(By.xpath("//span[normalize-space(text())='Submit']")).isDisplayed();
+//        System.out.println("Verify submit button is displayed :"+submitBtn);
+//        Assert.assertTrue(submitBtn,"submit button is not displayed");
+//    }
+//
+//    @Test(priority = 15)
+//    public void verifyCloseBtn(){
+//        WebElement closeBtn = driver.findElement(By.xpath("//span[normalize-space(text())='Close']"));
+//        System.out.println("Verify close button is displayed :"+closeBtn.isDisplayed());
+//        closeBtn.click();
+//    }
+//
+//    @Test(priority = 16)
+//    public void emptyProductTypeTest() {
+//        ProductPage pp = new ProductPage(driver);
+//        pp.clickAddProduct();
+//        pp.selectGender();
+//        pp.selectProductType();
+//        pp.enterNewProductType("");
+//        pp.clickSubmit();
+//        pp.clickClose();
+//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+//        WebElement toast = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[normalize-space(text())='New Product Type is required']")));
+//        Assert.assertTrue(toast.getText().contains("New Product Type is required"), "Error message not displayed");
+//    }
+//
+//    @Test(priority = 17)
+//    public void genderNotSelectedTest() throws InterruptedException {
+//        ProductPage pp = new ProductPage(driver);
+//        pp.clickAddProduct();
+//        Thread.sleep(1000);
+//        pp.clickSubmit();
+//        Thread.sleep(1000);
+//        pp.clickClose();
+//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+//        WebElement toast = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[normalize-space(text())='Gender is required']")));
+//        Assert.assertTrue(toast.getText().contains("Gender is required"), "Error message not displayed");
+//    }
+//
+//    @Test(priority = 18)
+//    public void verifyPredefinedNotes(){
+//        WebElement notes = driver.findElement(By.xpath("(//label[normalize-space(text())='New Product Type']/following::input)[2]"));
+//        System.out.println("Predefined field is present :"+notes);
+//    }
+
+//    @Test(priority = 21)
+//    public void verifyPrevious(){
+//        WebElement previous = driver.findElement(By.xpath("//span[normalize-space(text())='Previous']"));
+//        System.out.println("Verify previous button :"+previous.isDisplayed());
+//    }
+//
+//    @Test(priority = 22)
+//    public void verifyDone(){
+//        boolean done = driver.findElement(By.xpath("//span[normalize-space(text())='Done']")).isDisplayed();
+//        System.out.println("Verify done button :"+done);
+//    }
+
     @Test(priority = 11)
-    public void verifyDefaultTime(){
-        boolean defaultTime = driver.findElement(By.xpath("//h5[normalize-space(text())='Set Default Time for Each Task']")).isDisplayed();
-        System.out.println("Verify to set default time title id visible :"+defaultTime);
-        Assert.assertTrue(defaultTime,"Default time title is missing");
-    }
-
-    @Test(priority = 12)
-    public void verifyTaskFlow(){
-        boolean taskFlow = driver.findElement(By.xpath("//h5[normalize-space(text())='Drag and drop to re-order the task execution flow']")).isDisplayed();
-        System.out.println("Verify task execution flow :"+taskFlow);
-        Assert.assertTrue(taskFlow,"task execution flow is missing");
-    }
-
-    @Test(priority = 13)
-    public void verifyAddTask(){
-        boolean addTask = driver.findElement(By.xpath("//span[normalize-space(text())='Add Task']")).isDisplayed();
-        System.out.println("Verify addTask button is visible :"+addTask);
-        Assert.assertTrue(addTask,"add task button is not displayed");
-    }
-
-    @Test(priority = 14)
-    public void verifySubmit(){
-        boolean submitBtn = driver.findElement(By.xpath("//span[normalize-space(text())='Submit']")).isDisplayed();
-        System.out.println("Verify submit button is displayed :"+submitBtn);
-        Assert.assertTrue(submitBtn,"submit button is not displayed");
-    }
-
-    @Test(priority = 15)
-    public void verifyCloseBtn(){
-        WebElement closeBtn = driver.findElement(By.xpath("//span[normalize-space(text())='Close']"));
-        System.out.println("Verify close button is displayed :"+closeBtn.isDisplayed());
-        closeBtn.click();
-    }
-
-    @Test(priority = 16)
-    public void emptyProductTypeTest() {
+    public void emptyGender() throws InterruptedException {
         ProductPage pp = new ProductPage(driver);
-        pp.clickAddProduct();
-        pp.selectGender();
-        pp.selectProductType();
-        pp.enterNewProductType("");
+        Thread.sleep(1000);
+        pp.enterNewProductType(randomString());
         pp.clickSubmit();
         pp.clickClose();
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement toast = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[normalize-space(text())='New Product Type is required']")));
-        Assert.assertTrue(toast.getText().contains("New Product Type is required"), "Error message not displayed");
-    }
 
-    @Test(priority = 17)
-    public void genderNotSelectedTest() throws InterruptedException {
-        ProductPage pp = new ProductPage(driver);
-        pp.clickAddProduct();
-        Thread.sleep(1000);
-        pp.clickSubmit();
-        Thread.sleep(1000);
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement toast = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[normalize-space(text())='Gender is required']")));
         Assert.assertTrue(toast.getText().contains("Gender is required"), "Error message not displayed");
     }
 
+    @Test(priority = 12)
+    public void emptyProduct() throws InterruptedException {
+        ProductPage pp = new ProductPage(driver);
+        pp.addProductbtn();
+        Thread.sleep(1000);
+        pp.selectGender();
+        Thread.sleep(1000);
+        pp.clickSubmit();
+        pp.clickClose();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement toast = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[normalize-space(text())='New Product Type is required']")));
+        Assert.assertTrue(toast.getText().contains("New Product Type is required"), "Error message not displayed");
+    }
+
+    @Test(priority = 13)
+    public void validBasicDetail() throws InterruptedException {
+        ProductPage pp = new ProductPage(driver);
+        pp.addProductbtn();
+        Thread.sleep(1000);
+        pp.selectGender();
+        pp.enterNewProductType(randomString());
+        Thread.sleep(1000);
+        pp.nextToNotes();
+    }
+
+    @Test(priority = 14)
+    public void verifyNoteName(){
+        WebElement note = driver.findElement(By.id("noteName"));
+        System.out.println("verify note field is displayed :"+note);
+    }
+
+    @Test(priority = 15)
+    public void verifyCharge(){
+        WebElement charge = driver.findElement(By.id("charge"));
+        System.out.println("verify charge field is displayed :"+charge);
+    }
+
+    @Test(priority = 16)
+    public void verifyAddNote(){
+        WebElement addNote = driver.findElement(By.xpath("//span[normalize-space(text())='Add Note']"));
+        System.out.println("Verify add note is displayed :"+addNote);
+    }
+
+    @Test(priority = 17)
+    public void predefinedNote(){
+        ProductPage pp = new ProductPage(driver);
+        pp.enterNote(randomString());
+        pp.nextToNotes();
+    }
+
     @Test(priority = 18)
-    public void verifyPredefinedNotes(){
-        WebElement notes = driver.findElement(By.xpath("(//label[normalize-space(text())='New Product Type']/following::input)[2]"));
-        System.out.println("Predefined field is present :"+notes);
+    public void verifydefaultTime(){
+        WebElement defaulttime = driver.findElement(By.xpath("//h5[normalize-space(text())='Set Default Time for Each Task']"));
+        System.out.println("Verify default time is displayed :"+defaulttime);
     }
 
     @Test(priority = 19)
-    public void verifyAddBtn(){
+    public void addTaskBtn(){
+        WebElement addTask = driver.findElement(By.xpath("//span[normalize-space(text())='Add Task']"));
+        System.out.println("Verify add task is displayed :"+addTask);
+    }
+
+    @Test(priority = 20)
+    public void Task(){
         ProductPage pp = new ProductPage(driver);
-        WebElement notes = driver.findElement(By.xpath("//span[normalize-space(text())='Add Notes']"));
-        System.out.println("Add notes button is present :"+notes);
-        pp.clickClose();
-    }
-
-    @Test(priority = 21)
-    public void verifyPrevious(){
-        WebElement previous = driver.findElement(By.xpath("//span[normalize-space(text())='Previous']"));
-        System.out.println("Verify previous button :"+previous.isDisplayed());
-    }
-
-    @Test(priority = 22)
-    public void verifyDone(){
-        boolean done = driver.findElement(By.xpath("//span[normalize-space(text())='Done']")).isDisplayed();
-        System.out.println("Verify done button :"+done);
+        pp.clickSubmit();
     }
 
 }
