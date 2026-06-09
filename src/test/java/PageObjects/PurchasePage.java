@@ -182,8 +182,9 @@ public class PurchasePage extends BasePage{
         savePurchase.click();
     }
 
-    public void purchaseStaus() {
+    public void purchaseStatus() throws InterruptedException {
         purchaseStatus.click();
+        Thread.sleep(1000);
         System.out.println("Verify status header  is visible :"+purchaseStatus.isDisplayed());
     }
 }

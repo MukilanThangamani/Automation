@@ -4,8 +4,12 @@ import PageObjects.InventoryPage;
 import org.apache.commons.io.input.BOMInputStream;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import java.time.Duration;
 
 public class InventoryPageTest extends BaseClass {
 
@@ -125,75 +129,146 @@ public class InventoryPageTest extends BaseClass {
     }
 
     @Test(priority = 20)
-    public void verifySubmitButton(){
-        WebElement submitButton = driver.findElement(By.xpath("//span[normalize-space(text())='Submit']"));
-        System.out.println("Verify submit button is displayed :"+submitButton.isDisplayed());
-        submitButton.click();
+    public void invalidItemName() throws InterruptedException {
+        InventoryPage ip1 = new InventoryPage(driver);
+        ip1.enterItemGroupName("");
+        ip1.selectUnit();
+        ip1.enterCategoryName(randomString());
+        ip1.enterAttribute(randomString());
+        ip1.enterOption(randomString());
+        ip1.clickSubmit();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement toast = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[normalize-space(text())='Item Group Name is required']")));
+        Assert.assertTrue(toast.getText().contains("Item Group Name is required"), "Error message not displayed");
+       // ip1.groupFields(randomString(),randomString(),randomString(),randomAmount(),randomString());
     }
 
     @Test(priority = 21)
-    public void verifyItemGroupData() throws InterruptedException {
+    public void unSelectUnit() throws InterruptedException {
         InventoryPage ip1 = new InventoryPage(driver);
-        ip1.groupFields(randomString(),randomString(),randomString(),randomAmount(),randomString());
-
+        driver.navigate().refresh();
+        ip1.enterItemGroupName(randomString());
+        ip1.enterCategoryName(randomString());
+        ip1.enterAttribute(randomString());
+        ip1.enterOption(randomString());
+        ip1.clickSubmit();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement toast = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[normalize-space(text())='Unit is required']")));
+        Assert.assertTrue(toast.getText().contains("Unit is required"), "Error message not displayed");
+        // ip1.groupFields(randomString(),randomString(),randomString(),randomAmount(),randomString());
     }
 
     @Test(priority = 22)
+    public void emptyCategoryName() throws InterruptedException {
+        InventoryPage ip1 = new InventoryPage(driver);
+        driver.navigate().refresh();
+        ip1.enterItemGroupName(randomString());
+        ip1.selectUnit();
+        ip1.enterCategoryName("");
+        ip1.enterAttribute(randomString());
+        ip1.enterOption(randomString());
+        ip1.clickSubmit();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement toast = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[normalize-space(text())='Category Name is required']")));
+        Assert.assertTrue(toast.getText().contains("Category Name is required"), "Error message not displayed");
+        // ip1.groupFields(randomString(),randomString(),randomString(),randomAmount(),randomString());
+    }
+
+    @Test(priority = 23)
+    public void emptyAttribute() throws InterruptedException {
+        InventoryPage ip1 = new InventoryPage(driver);
+        driver.navigate().refresh();
+        ip1.enterItemGroupName(randomString());
+        ip1.selectUnit();
+        ip1.enterCategoryName(randomString());
+        ip1.enterAttribute("");
+        ip1.enterOption(randomString());
+        ip1.clickSubmit();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement toast = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[normalize-space(text())='Attribute is required']")));
+        Assert.assertTrue(toast.getText().contains("Attribute is required"), "Error message not displayed");
+        // ip1.groupFields(randomString(),randomString(),randomString(),randomAmount(),randomString());
+    }
+
+    @Test(priority = 24)
+    public void emptyOption() throws InterruptedException {
+        InventoryPage ip1 = new InventoryPage(driver);
+        driver.navigate().refresh();
+        ip1.enterItemGroupName(randomString());
+        ip1.selectUnit();
+        ip1.enterCategoryName(randomString());
+        ip1.enterAttribute(randomString());
+        ip1.enterOption("");
+        ip1.clickSubmit();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement toast = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[normalize-space(text())='Options required']")));
+        Assert.assertTrue(toast.getText().contains("Options required"), "Error message not displayed");
+        // ip1.groupFields(randomString(),randomString(),randomString(),randomAmount(),randomString());
+    }
+
+    @Test(priority = 25)
+    public void validData() throws InterruptedException {
+        InventoryPage ip1 = new InventoryPage(driver);
+        driver.navigate().refresh();
+        ip1.groupFields(randomString(),randomString(),randomString(),randomAmount(),randomString());
+    }
+
+    @Test(priority = 26)
     public void verifyActiveGroup(){
         boolean activeGroup = driver.findElement(By.xpath("//h5[normalize-space(text())='Active Group Items']")).isDisplayed();
         System.out.println("Verify active group field is displayed :"+activeGroup);
     }
 
-    @Test(priority = 23)
+    @Test(priority = 27)
     public void verifyAddBtn(){
         boolean addBtn = driver.findElement(By.xpath("//span[normalize-space(text())='Add']")).isDisplayed();
         System.out.println("Verify add button is displayed :"+addBtn);
     }
 
-    @Test(priority = 24)
+    @Test(priority = 28)
     public void verifyAddEditBtn(){
         boolean editBtn = driver.findElement(By.xpath("//span[normalize-space(text())='Edit']")).isDisplayed();
         System.out.println("Verify edit button is visible :"+editBtn);
     }
 
-    @Test(priority = 25)
+    @Test(priority = 29)
     public void verifyAddCategoryBtn(){
         boolean addCategory = driver.findElement(By.xpath("//span[normalize-space(text())='Add Category']")).isDisplayed();
         System.out.println("Verify add category button is visible :"+addCategory);
     }
 
-    @Test(priority = 26)
+    @Test(priority = 30)
     public void verifyDeleteBtn(){
         boolean deleteBtn = driver.findElement(By.xpath("//span[normalize-space(text())='Delete']")).isDisplayed();
         System.out.println("Verify delete Button is displayed:"+deleteBtn);
     }
 
-    @Test(priority = 27)
+    @Test(priority = 31)
     public void verifyItemDetail(){
         WebElement item = driver.findElement(By.xpath("//td[@class='ant-table-cell']//button[1]"));
         System.out.println("Item detail is displayed :"+item.isDisplayed());
         item.click();
     }
 
-    @Test(priority = 28)
+    @Test(priority = 32)
     public void verifyOverview(){
         boolean overview = driver.findElement(By.xpath("//div[normalize-space(text())='Overview']")).isDisplayed();
         System.out.println("Verify overview is visible :"+overview);
     }
 
-    @Test(priority = 29)
+    @Test(priority = 33)
     public void verifyPrimary(){
         boolean details = driver.findElement(By.xpath("//h5[normalize-space(text())='Primary Details']")).isDisplayed();
         System.out.println("Verify transaction tab is displayed :"+details);
     }
 
-    @Test(priority = 30)
+    @Test(priority = 34)
     public void verifyItemGroup(){
         boolean itemName = driver.findElement(By.xpath("//span[normalize-space(text())='Item Group']")).isDisplayed();
         System.out.println("Verify itemname is displayed :"+itemName);
     }
 
-    @Test(priority = 31)
+    @Test(priority = 35)
     public void verifyUnitField(){
         boolean unit = driver.findElement(By.xpath("//span[normalize-space(text())='Unit']")).isDisplayed();
         System.out.println("Verify unit is displayed :"+unit);
@@ -397,7 +472,6 @@ public class InventoryPageTest extends BaseClass {
     public void verifyConvertAdjustField(){
         WebElement convert = driver.findElement(By.xpath("//span[normalize-space(text())='Convert to Adjusted']"));
         System.out.println("Verify convert field is visible :"+convert.isDisplayed());
-        convert.click();
     }
 
     @Test(priority = 62)
@@ -407,16 +481,80 @@ public class InventoryPageTest extends BaseClass {
     }
 
     @Test(priority = 63)
-    public void validateFillAdjustment() throws InterruptedException {
+    public void emptyType() throws InterruptedException {
         InventoryPage ip = new InventoryPage(driver);
         ip.fillAdjustment("22/04/2026",randomLength(),randomOne(),randomString());
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement toast = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[normalize-space(text())='Please select adjustment type']")));
+        Assert.assertTrue(toast.getText().contains("Please select adjustment type"), "Error message not displayed");
     }
 
+    @Test(priority = 64)
+    public void emptyDate() throws InterruptedException {
+        InventoryPage ip = new InventoryPage(driver);
+        driver.navigate().refresh();
+        ip.emptyDate(randomLength(),randomOne(),randomString());
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement toast = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[normalize-space(text())='Please select a date']")));
+        Assert.assertTrue(toast.getText().contains("Please select a date"), "Error message not displayed");
+    }
 
+    @Test(priority = 65)
+    public void emptyQuant() throws InterruptedException {
+        InventoryPage ip = new InventoryPage(driver);
+        driver.navigate().refresh();
+        ip.Quantity("22/04/2026",randomLength(),randomString());
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement toast = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[normalize-space(text())='Please enter quantity']")));
+        Assert.assertTrue(toast.getText().contains("Please enter quantity"), "Error message not displayed");
+    }
 
+    @Test(priority = 66)
+    public void validTransaction() throws InterruptedException {
+        InventoryPage ip = new InventoryPage(driver);
+        driver.navigate().refresh();
+        ip.validData("22/04/2026",randomLength(),randomOne(),randomString());
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement toast = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space(text())='Adjustment saved Successfully!']")));
+        Assert.assertTrue(toast.getText().contains("Adjustment saved Successfully!"), "Error message not displayed");
+    }
 
+    @Test(priority = 67)
+    public void verifyEdit(){
+        WebElement editBtn = driver.findElement(By.xpath("//span[normalize-space(text())='Edit']"));
+        System.out.println("Edit button is visible :"+editBtn.isDisplayed());
+        editBtn.click();
+    }
 
+    @Test(priority = 68)
+    public void verifySKUField(){
+        WebElement sku = driver.findElement(By.id("sku"));
+        System.out.println("SKU field is displayed :"+sku.isDisplayed());
+    }
 
+    @Test(priority = 69)
+    public void preferredVendor(){
+        WebElement vendor = driver.findElement(By.id("preferredVendor"));
+        System.out.println("vendor field is displayed :"+vendor.isDisplayed());
+    }
 
+    @Test(priority = 70)
+    public void costPrice(){
+        WebElement cost = driver.findElement(By.id("costPrice"));
+        System.out.println("cost price field is displayed :"+cost.isDisplayed());
+    }
+
+    @Test(priority = 71)
+    public void sellingPrice(){
+        WebElement sell = driver.findElement(By.id("sellingPrice"));
+        System.out.println("sell price field is displayed :"+sell.isDisplayed());
+    }
+
+    @Test(priority = 72)
+    public void verifySubmit(){
+        WebElement submit = driver.findElement(By.xpath("//span[normalize-space(text())='Submit']"));
+        System.out.println("submit is displayed :"+submit.isDisplayed());
+        submit.click();
+    }
 
 }

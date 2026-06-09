@@ -153,10 +153,10 @@ public class PurchasePageTest extends BaseClass{
 
         PurchasePage vp = new PurchasePage(driver);
 
-        vp.enterVendorName("Vendor123");
+        vp.enterVendorName(randomString());
         vp.enterCompanyName("ABC Pvt Ltd");
         vp.enterDisplayName("Vendor Display");
-        vp.enterMobile("9876543210");
+        vp.enterMobile(phoneRandom());
         vp.enterEmail("vendor@test.com");
         vp.enterAddress("Chennai");
         vp.enterPincode("600001");
@@ -178,7 +178,7 @@ public class PurchasePageTest extends BaseClass{
         PurchasePage vp = new PurchasePage(driver);
         vp.enterCompanyName("ABC Pvt Ltd");
         vp.enterDisplayName("Vendor Display");
-        vp.enterMobile("9876543210");
+        vp.enterMobile(phoneRandom());
         vp.enterEmail("vendor@test.com");
         vp.enterAddress("Chennai");
         vp.enterPincode("600001");
@@ -200,7 +200,7 @@ public class PurchasePageTest extends BaseClass{
         vp.enterCompanyName("");
         vp.enterVendorName("Vendor123");
         vp.enterDisplayName("Vendor Display");
-        vp.enterMobile("9876543210");
+        vp.enterMobile(phoneRandom());
         vp.enterEmail("vendor@test.com");
         vp.enterAddress("Chennai");
         vp.enterPincode("600001");
@@ -218,10 +218,10 @@ public class PurchasePageTest extends BaseClass{
 
         PurchasePage vp = new PurchasePage(driver);
 
-        vp.enterVendorName("Vendor123");
+        vp.enterVendorName(randomString());
         vp.enterDisplayName("");
         vp.enterCompanyName("ABC Pvt Ltd");
-        vp.enterMobile("9876543210");
+        vp.enterMobile(phoneRandom());
         vp.enterEmail("vendor@test.com");
         vp.enterAddress("Chennai");
         vp.enterPincode("600001");
@@ -239,7 +239,7 @@ public class PurchasePageTest extends BaseClass{
 
         PurchasePage vp = new PurchasePage(driver);
 
-        vp.enterVendorName("Vendor123");
+        vp.enterVendorName(randomString());
         vp.enterCompanyName("ABC Pvt Ltd");
         vp.enterDisplayName("Vendor Display");
         vp.enterMobile("");
@@ -260,10 +260,10 @@ public class PurchasePageTest extends BaseClass{
 
         PurchasePage vp = new PurchasePage(driver);
 
-        vp.enterVendorName("Vendor123");
+        vp.enterVendorName(randomString());
         vp.enterCompanyName("ABC Pvt Ltd");
         vp.enterDisplayName("Vendor Display");
-        vp.enterMobile("9876543210");
+        vp.enterMobile(phoneRandom());
         vp.enterEmail("abc");
         vp.enterAddress("Chennai");
         vp.enterPincode("600001");
@@ -281,10 +281,10 @@ public class PurchasePageTest extends BaseClass{
 
         PurchasePage vp = new PurchasePage(driver);
 
-        vp.enterVendorName("Vendor123");
+        vp.enterVendorName(randomString());
         vp.enterCompanyName("ABC Pvt Ltd");
         vp.enterDisplayName("Vendor Display");
-        vp.enterMobile("9876543210");
+        vp.enterMobile(phoneRandom());
         vp.enterEmail("vendor@test.com");
         vp.enterAddress("");
         vp.enterPincode("600001");
@@ -302,10 +302,10 @@ public class PurchasePageTest extends BaseClass{
 
         PurchasePage vp = new PurchasePage(driver);
 
-        vp.enterVendorName("Vendor123");
+        vp.enterVendorName(randomString());
         vp.enterCompanyName("ABC Pvt Ltd");
         vp.enterDisplayName("Vendor Display");
-        vp.enterMobile("9876543210");
+        vp.enterMobile(phoneRandom());
         vp.enterEmail("vendor@test.com");
         vp.enterAddress("Chennai");
         vp.enterPincode("");
@@ -323,10 +323,10 @@ public class PurchasePageTest extends BaseClass{
 
         PurchasePage vp = new PurchasePage(driver);
 
-        vp.enterVendorName("Vendor123");
+        vp.enterVendorName(randomString());
         vp.enterCompanyName("ABC Pvt Ltd");
         vp.enterDisplayName("Vendor Display");
-        vp.enterMobile("9876543210");
+        vp.enterMobile(phoneRandom());
         vp.enterEmail("vendor@test.com");
         vp.enterAddress("Chennai");
         vp.enterPincode("600001");
@@ -344,7 +344,7 @@ public class PurchasePageTest extends BaseClass{
 
         PurchasePage vp = new PurchasePage(driver);
 
-        vp.enterVendorName("Vendor123");
+        vp.enterVendorName(randomString());
         vp.enterCompanyName("ABC Pvt Ltd");
         vp.enterDisplayName("Display Vendor");
         vp.enterMobile("98765");
@@ -369,7 +369,7 @@ public class PurchasePageTest extends BaseClass{
 
         PurchasePage vp = new PurchasePage(driver);
 
-        vp.enterVendorName("Vendor123");
+        vp.enterVendorName(randomString());
         vp.enterCompanyName("ABC Pvt Ltd");
         Thread.sleep(1000);
         vp.enterDisplayName("Display Vendor");
@@ -398,13 +398,13 @@ public class PurchasePageTest extends BaseClass{
 
         PurchasePage vp = new PurchasePage(driver);
 
-        vp.enterVendorName("Vendor123");
+        vp.enterVendorName(randomString());
         Thread.sleep(1000);
         vp.enterCompanyName("ABC Pvt Ltd");
         Thread.sleep(1000);
         vp.enterDisplayName("Display Vendor");
         Thread.sleep(1000);
-        vp.enterMobile("9876543210");
+        vp.enterMobile(phoneRandom());
         Thread.sleep(1000);
         vp.enterEmail("vendor@test.com");
         Thread.sleep(1000);
@@ -429,13 +429,13 @@ public class PurchasePageTest extends BaseClass{
 
         PurchasePage vp = new PurchasePage(driver);
 
-        vp.enterVendorName("Vendor123");
+        vp.enterVendorName(randomString());
         Thread.sleep(1000);
         vp.enterCompanyName("ABC Pvt Ltd");
         Thread.sleep(1000);
         vp.enterDisplayName("Display Vendor");
         Thread.sleep(1000);
-        vp.enterMobile("9876543210");
+        vp.enterMobile(phoneRandom());
         Thread.sleep(1000);
         vp.enterEmail("vendortest.com");
         Thread.sleep(1000);
@@ -458,13 +458,13 @@ public class PurchasePageTest extends BaseClass{
 
         PurchasePage vp = new PurchasePage(driver);
 
-        vp.enterVendorName("Vendor123");
+        vp.enterVendorName(randomString());
         Thread.sleep(1000);
         vp.enterCompanyName("ABC Pvt Ltd");
         Thread.sleep(1000);
         vp.enterDisplayName("Display Vendor");
         Thread.sleep(1000);
-        vp.enterMobile("9876543210");
+        vp.enterMobile(phoneRandom());
         Thread.sleep(1000);
         vp.enterEmail("abc@#$%.com");
         Thread.sleep(1000);
@@ -486,13 +486,13 @@ public class PurchasePageTest extends BaseClass{
 
         PurchasePage vp = new PurchasePage(driver);
 
-        vp.enterVendorName("Vendor123");
+        vp.enterVendorName(randomString());
         Thread.sleep(1000);
         vp.enterCompanyName("ABC Pvt Ltd");
         Thread.sleep(1000);
         vp.enterDisplayName("Display Vendor");
         Thread.sleep(1000);
-        vp.enterMobile("9876543210");
+        vp.enterMobile(phoneRandom());
         Thread.sleep(1000);
         vp.enterEmail("vendor@");
         vp.enterAddress("Chennai");
@@ -513,13 +513,13 @@ public class PurchasePageTest extends BaseClass{
 
         PurchasePage vp = new PurchasePage(driver);
 
-        vp.enterVendorName("Vendor123");
+        vp.enterVendorName(randomString());
         Thread.sleep(1000);
         vp.enterCompanyName("ABC Pvt Ltd");
         Thread.sleep(1000);
         vp.enterDisplayName("Display Vendor");
         Thread.sleep(1000);
-        vp.enterMobile("9876543210");
+        vp.enterMobile(phoneRandom());
         vp.enterEmail("vendor@test.com");
         vp.enterAddress("Chennai");
         Thread.sleep(1000);
@@ -543,13 +543,13 @@ public class PurchasePageTest extends BaseClass{
 
         PurchasePage vp = new PurchasePage(driver);
 
-        vp.enterVendorName("Vendor123");
+        vp.enterVendorName(randomString());
         Thread.sleep(1000);
         vp.enterCompanyName("ABC Pvt Ltd");
         Thread.sleep(1000);
         vp.enterDisplayName("Display Vendor");
         Thread.sleep(1000);
-        vp.enterMobile("9876543210");
+        vp.enterMobile(phoneRandom());
         Thread.sleep(1000);
         vp.enterEmail("vendor@test.com");
         Thread.sleep(1000);
@@ -718,9 +718,9 @@ public class PurchasePageTest extends BaseClass{
     }
 
     @Test(priority = 59)
-    public void verifyPurchaseStatus(){
+    public void verifyPurchaseStatus() throws InterruptedException {
         PurchasePage pp2 = new PurchasePage(driver);
-        pp2.purchaseStaus();
+        pp2.purchaseStatus();
     }
 
     @Test(priority = 60)

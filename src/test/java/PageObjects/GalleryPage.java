@@ -26,8 +26,23 @@ public class GalleryPage extends BasePage{
     @FindBy(xpath = "//span[text()='Add Folder']")
     WebElement addFolder;
 
+    @FindBy(xpath = "(//button[@type='button']//span)[3]")
+    WebElement folderinClient;
+
     @FindBy(xpath = "//span[text()='Update']")
     WebElement update;
+
+    @FindBy(xpath = "//div[normalize-space(text())='Client Images']")
+    WebElement clientImage;
+
+    @FindBy(xpath ="//div[normalize-space(text())='VFSXL - 9731312671']")
+    WebElement client;
+
+    @FindBy(id = "editFolder_clientId")
+    WebElement dropdownclick;
+
+    @FindBy(xpath = "//span[normalize-space(text())='Close']")
+    WebElement close;
 
     public void moduleClick() throws InterruptedException {
         Thread.sleep(1000);
@@ -45,4 +60,23 @@ public class GalleryPage extends BasePage{
         update.click();
     }
 
+    public void clientFolder() {
+        clientImage.click();
+        folderinClient.click();
+    }
+
+    public void selectClientName() {
+        dropdownclick.click();
+        client.click();
+        update.click();
+
+    }
+
+    public void closeBtn() {
+        close.click();
+    }
+
+    public void clientImageFolder(){
+        folderinClient.click();
+    }
 }

@@ -49,6 +49,27 @@ public class BoutiquePage extends BasePage {
     @FindBy(xpath = "//span[normalize-space(text())='Billing Cycle']")
     WebElement billingcycle;
 
+    @FindBy(xpath = "(//span[@class='anticon anticon-plus'])[1]")
+    WebElement addCrm;
+
+    @FindBy(id = "CustomField_stepKey")
+    WebElement dropdownStep;
+
+    @FindBy(xpath = "//div[normalize-space(text())='Client Details']")
+    WebElement chooseStep;
+
+    @FindBy(id = "CustomField_fieldType")
+    WebElement dropdownType;
+
+    @FindBy(xpath = "//div[normalize-space(text())='Text']")
+    WebElement chooseType;
+
+    @FindBy(xpath = "//span[normalize-space(text())='Create']")
+    WebElement createBtn;
+
+    @FindBy(xpath = "//span[normalize-space(text())='Cancel']")
+    WebElement cancelBtn;
+
 
     // Actions
 
@@ -172,5 +193,42 @@ public class BoutiquePage extends BasePage {
         generalSettings.click();
     }
 
+    public void clickOnCustom() {
+        WebElement customsettings = driver.findElement(By.xpath("//h3[normalize-space(text())='Custom Settings']"));
+        customsettings.click();
+    }
 
+
+    public void clickOnCrm() {
+      addCrm.click();
+    }
+
+    public void enterFieldName(String fieldname) throws InterruptedException {
+        WebElement element = driver.findElement(By.id("CustomField_fieldLabel"));
+
+        element.sendKeys(Keys.COMMAND + "a");
+        element.sendKeys(Keys.DELETE);
+        Thread.sleep(500);
+        element.sendKeys(fieldname);
+    }
+
+    public void selectStep() throws InterruptedException {
+        dropdownStep.click();
+        Thread.sleep(500);
+        chooseStep.click();
+    }
+
+    public void selectType() throws InterruptedException {
+      dropdownType.click();
+      Thread.sleep(500);
+      chooseType.click();
+    }
+
+    public void clickCreate() {
+        createBtn.click();
+    }
+
+    public void clickClose() {
+        cancelBtn.click();
+    }
 }

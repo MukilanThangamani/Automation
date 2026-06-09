@@ -241,7 +241,7 @@ public class BillingPageTest extends BaseClass{
     }
 
     @Test(priority = 26)
-    public void validdatas() throws InterruptedException {
+    public void validatas() throws InterruptedException {
         BillingPage bp = new BillingPage(driver);
         bp.setCharge(randomString());
         bp.setAmount("100");
